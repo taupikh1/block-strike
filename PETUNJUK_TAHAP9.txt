@@ -1,0 +1,20 @@
+BLOCK STRIKE TAHAP 9 — CARA EKSTRAK
+
+WAJIB UNDUH SEMUA PAKET_1_DARI_N sampai PAKET_N_DARI_N.
+Kelima/dst ZIP adalah arsip independen berisi bagian-bagian folder BLOCK_STRIKE yang berbeda, BUKAN file RAR multipart.
+
+Gabungkan semua ZIP dengan meng-ekstraknya ke FOLDER INDUK YANG SAMA.
+Di Windows gunakan Extract Here dari semua paket, pilih merge, jangan replace satu folder BLOCK_STRIKE dengan folder dari part berikutnya.
+
+GitHub Codespaces/Linux, setelah seluruh ZIP ada di folder yang sama:
+  mkdir -p keluar
+  for f in BLOCK_STRIKE_TAHAP9_PAKET_*.zip; do unzip -oq "$f" -d keluar; done
+  cd keluar/BLOCK_STRIKE
+  python -m http.server 8080
+
+Untuk GitHub Pages unggah ISI dari keluar/BLOCK_STRIKE ke root repository, bukan lima ZIP-nya. Simpan .nojekyll.
+GitHub > Settings > Pages > Deploy from branch > main > /(root).
+
+Batas tiap paket <= 24.900.000 byte (24,9 MB desimal).
+Cek VERIFIKASI_TAHAP9.json untuk file, byte, dan SHA-256.
+QA_TAHAP9.md menjelaskan tes simulasi dan apa yang belum teruji pada GPU/iPhone.

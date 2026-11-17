@@ -25,7 +25,7 @@ function disposeBot(b){
 }
 function resetInputs(){
  fh=fl=jmp=firedLatch=false;jx=jy=0;Object.keys(K).forEach(k=>K[k]=0);
- jid=lid=null;jb.style.display=jk.style.display='none';
+ jid=lid=null;jb.style.display=jk.style.display='none';if(typeof Phase9!=='undefined')Phase9.releaseControls();
 }
 function requestLock(){try{const p=$('pad').requestPointerLock?.();p?.catch?.(()=>{})}catch(e){}}
 function inputBlocked(){return !running||!$('buyMenu').classList.contains('hidden')||!$('menu').classList.contains('hidden')}
@@ -51,16 +51,16 @@ function shotgunPhase(phase){
 function updateReload(dt){
  if(shotgunReload){
   shotgunReload.time-=dt;
-  if(shotgunReload.time<=0){const st=A[cur()];
+  if(shotgunReload.time<=0){const key=cur()==='shield'?Phase9.shieldPistol():cur(),st=A[key];
    if(shotgunReload.phase==='insert'){st.mag++;st.res--;hud()}
    if(shotgunReload.phase==='end'){shotgunReload=null;reloading=0;playWeaponAnimation('idle');hud();return}
-   shotgunPhase(st.mag<W[cur()].mag&&st.res>0?'insert':'end');
+   shotgunPhase(st.mag<W[cur()==='shield'?Phase9.shieldPistol():cur()].mag&&st.res>0?'insert':'end');
   }
   reloading=.1;return;
  }
- if(reloading>0){reloading-=dt;if(reloading<=0){reloading=0;const st=A[cur()],n=Math.min(W[cur()].mag-st.mag,st.res);st.mag+=n;st.res-=n;hud()}}
+ if(reloading>0){reloading-=dt;if(reloading<=0){reloading=0;const key=cur()==='shield'?Phase9.shieldPistol():cur(),st=A[key],n=Math.min(W[key].mag-st.mag,st.res);st.mag+=n;st.res-=n;hud()}}
 }
-function pauseToMenu(){activeVoices.forEach(s=>{try{s.stop()}catch(e){}});running=false;reloadSfxToken++;resetInputs();aiming=false;syncAim();$('buyMenu').classList.add('hidden');$('menu').classList.remove('hidden');document.body.classList.remove('playing');if(document.pointerLockElement)document.exitPointerLock()}
+function pauseToMenu(){Phase10.closeRadio();activeVoices.forEach(s=>{try{s.stop()}catch(e){}});running=false;reloadSfxToken++;resetInputs();aiming=false;syncAim();$('buyMenu').classList.add('hidden');$('menu').classList.remove('hidden');document.body.classList.remove('playing');if(document.pointerLockElement)document.exitPointerLock()}
 addEventListener('blur',resetInputs);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)resetInputs()});
 document.addEventListener('pointerlockchange',()=>{if(!document.pointerLockElement)resetInputs()});
@@ -72,11 +72,33 @@ function placeMapSpawns(){
  if(!window.bspCol)return;
  const graph=window.NavGraph?.graph();
  const list=team=>{
-  if(graph)return graph.spawns.filter(s=>s.team===team).map(s=>V(...s.pos));
-  const anchor=activeMapData.spawn[team==='CT'?'ct':'t'];
+  if(graph){const sp=graph.spawns.filter(s=>s.team===team).map(s=>V(...s.pos));if(sp.length)return sp}
+  const anchor=activeMapData?.spawn?.[team==='CT'?'ct':'t']||[0,0,0];
   return bspCol.spawns.map(h=>V(...BSP.toGame(bspCol.T,h))).sort((a,b)=>Math.hypot(a.x-anchor[0],a.z-anchor[2])-Math.hypot(b.x-anchor[0],b.z-anchor[2]));
  };
- const ct=list('CT'),t=list('T'),counts={CT:playerTeam==='CT'?1:0,T:playerTeam==='T'?1:0};
- const own=playerTeam==='CT'?ct:t;if(own.length)P.pos.copy(own[0]);
- bots.forEach(b=>{const spawns=b.team==='CT'?ct:t;if(spawns.length)b.g.position.copy(spawns[counts[b.team]++%spawns.length]);b.nav=null});
+ const ct=list('CT'),t=list('T'),counts={CT:playerTeam==='CT'?1:0,T:playerTeam==='T'?1:0},used={CT:[],T:[]};
+ const own=playerTeam==='CT'?ct:t;
+ if(own.length){P.pos.copy(own[0]);used[playerTeam].push(P.pos.clone())}
+ // GoldSrc BSP maps may provide fewer native spawn entities than the requested
+ // 2..32 players. Stagger surplus slots with headroom and separation checks,
+ // rather than blindly stacking several bots at exactly the same coordinate.
+ function spawnFor(team){
+  const base=team==='CT'?ct:t;if(!base.length)return null;
+  const index=counts[team]++,seen=used[team],point=base[index%base.length];
+  if(index<base.length&&!seen.some(v=>v.distanceTo(point)<1.1)){
+   seen.push(point.clone());return point.clone()
+  }
+  for(let attempt=0;attempt<35;attempt++){
+   const j=index*7+attempt,rad=1.35+(Math.floor(j/8)%6)*.75,angle=j*2.39996323;
+   const candidate=point.clone().add(V(Math.cos(angle)*rad,0,Math.sin(angle)*rad));
+   candidate.y=BSP.snapSpawn(bspCol,candidate.x,candidate.z);
+   if(Math.abs(candidate.y-point.y)>2.5)continue;
+   if(!BSP.canStand(bspCol,candidate))continue;
+   if(seen.some(v=>Math.hypot(v.x-candidate.x,v.z-candidate.z)<1.1&&Math.abs(v.y-candidate.y)<1.5))continue;
+   seen.push(candidate.clone());return candidate;
+  }
+  console.warn('Tahap10: no distinct BSP spawn near',team,index);
+  seen.push(point.clone());return point.clone();
+ }
+ bots.forEach(b=>{const pos=spawnFor(b.team);if(pos)b.g.position.copy(pos);b.nav=null});
 }

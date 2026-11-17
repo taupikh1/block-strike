@@ -46,3 +46,13 @@ Map KVARTAL mencantumkan penulis **Smith** pada `assets/maps/cs16-kvartal/*_KVAR
 Ikon senjata dibuat dengan render ortografik model world asli, tanpa karakter. Preview class dibuat dari model karakter dan held weapon yang sama dengan runtime. Background menu merupakan render peta game lokal. Konversi tidak mengubah kepemilikan atau memberi lisensi baru. Paket akhir disediakan sebagai hasil kerja lokal atas file pengguna; izin publikasi pihak ketiga tetap perlu dipastikan sebelum redistribusi publik.
 
 Alpha 45 tekstur foliage map hasil ekspor Tahap 7 diperbaiki (palette key hitam menjadi transparan); warna RGB, geometri, dan graf navigasi tidak diubah oleh langkah ini. Daftar dan skrip konversinya disertakan di `tools/foliage-alpha.json` dan `tools/fix_prop_alpha.py`.
+
+
+## Tahap 10: empat arsip disediakan pengguna
+
+- `bot_chatter_remixed.rar`: sumber klip bot radio/chatter WAV, 491 nama entry. Dipilih 42 klip relevan, dikonversi ke `assets/phase10/audio/bot/*.mp3`. Sebagian entry RAR tidak dapat didekompresi bersih dengan libarchive; gunakan hanya hasil ffprobe valid.
+- `radio_remixed.rar`: 44 WAV radio CS, dikonversi ke `assets/phase10/audio/radio/*.mp3`.
+- `muzzle_flash_pack.7z`: file GoldSrc `muzzleflash1.spr`, `muzzleflash2.spr`, `muzzleflash3.spr`; first frame dikonversi menjadi PNG transparan `assets/phase10/fx/muzzleflash*.png`.
+- `hd_blood_packed_by_ralex_08.7z`: file GoldSrc decals WAD3 dua varian; sebagian blood/bigblood dikonversi menjadi PNG RGBA.
+
+**Hak penggunaan dan redistribusi paket mod pihak ketiga belum diverifikasi.** Keempat arsip aslinya tidak disertakan di rilis untuk menghindari menggandakan sumber mentah. Hasil konversinya tetap mungkin tunduk pada hak cipta paket asli. Nilai penerbitan publik perlu ditinjau oleh pemilik proyek.

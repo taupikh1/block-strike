@@ -125,7 +125,8 @@ function unstick(col, pos) {
 }
 
 // st: { pos:[gx,gy,gz], vy (game/s), on }, wish: [vx, vz] (game/s, bidang XZ game)
-function movePlayer(col, T, st, wish, dt, jump) {
+function movePlayer(col, T, st, wish, dt, jump, crouching=false) {
+  const priorHead=col.head; if(crouching&&Number.isInteger(col.crouchHead))col.head=col.crouchHead;
   let h = unstick(col, toHammer(T, st.pos));
   let vz = st.vy / T.k;
   if (jump && st.on) { vz = JUMP; st.on = false; }
@@ -140,7 +141,7 @@ function movePlayer(col, T, st, wish, dt, jump) {
 
   st.pos = toGame(T, h);
   st.vy = vz * T.k;
-  return st;
+  col.head=priorHead;return st;
 }
 
 // ---- tahap 6: func_breakable (collision statis) dan func_buyzone ----
@@ -223,7 +224,7 @@ function loadCollision(dir) {
       clip.c0[i] = dv.getInt16(i * 8 + 4, true);
       clip.c1[i] = dv.getInt16(i * 8 + 6, true);
     }
-    return { clip, T: makeTransform(meta), head: 0, breakables: ent.breakables, buyzones: ent.buyzones, spawns: ent.spawns };
+    return { clip, T: makeTransform(meta), head: 0, crouchHead:meta.hulls?.["3"], breakables: ent.breakables, buyzones: ent.buyzones, spawns: ent.spawns };
   });
 }
 function snapFloor(col, gx, gz) {
@@ -232,6 +233,18 @@ function snapFloor(col, gx, gz) {
   const r = slideAll(col, top, [0, 0, bot[2] - top[2]]);
   return toGame(col.T, r.pos)[1];
 }
-window.BSP = { movePlayer, loadCollision, snapFloor, snapSpawn, inBuyzone, toHammer, toGame, makeTransform, STEP, GRAV, JUMP };
+function canStand(col, g){
+ const old=col.head;col.head=0;
+ try{const h=toHammer(col.T,[g.x,g.y,g.z]);return !traceAll(col,h,h).startsolid}
+ finally{col.head=old}
+}
+function traceSegment(col, start, end){
+ const old=col.head;col.head=0;
+ try{const a=toHammer(col.T,start.toArray()),b=toHammer(col.T,end.toArray()),r=traceAll(col,a,b);
+  const n=r.normal;
+  return {hit:r.hit,frac:r.frac,normal:n?new THREE.Vector3((col.T.c*n[0]-col.T.s*n[1]),n[2],(col.T.s*n[0]+col.T.c*n[1])).normalize():null};
+ }finally{col.head=old}
+}
+window.BSP = { canStand, traceSegment, movePlayer, loadCollision, snapFloor, snapSpawn, inBuyzone, toHammer, toGame, makeTransform, STEP, GRAV, JUMP };
 
 })();

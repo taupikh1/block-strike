@@ -1,3 +1,29 @@
+# BLOCK STRIKE Tahap 10 — 17 November 2026
+
+- [10A] Radio Commands: Z/X/C dan tombol mobile; Follow, Cover, Hold, Attack, Backup, Regroup; respons bot dari Bot Chatter Remixed, global dan per-bot cooldown.
+- [10B] Integrasi empat arsip pengguna: 44 radio MP3, 42 bot voice MP3, 3 first-frame GoldSrc muzzle sprites + 32 blood decals PNG dari dua varian WAD3. Muzzle flash dan blood impact rendering mempunyai batas objek dan lifetime.
+- [10C] Match Configuration: jumlah pemain bebas **integer 2–32**, bukan hanya preset; satu slot manusia, pembagian CT/T hampir sama untuk total ganjil. Shortcut 2/6/12/16/24/32. Persist `localStorage`.
+- [10D] Difficulty Easy/Normal/Hard diterapkan ke **kedua sisi**: reaksi, aim, vision, kecepatan, scanning; pencarian target berbasis LOS/memori dan perintah; HE bot dengan budget aman.
+- [10E] Scoreboard klasik: Tab desktop, ikon mobile; statistik seluruh roster, bot yang mati tetap terlihat, kills/deaths dihitung dari kejadian nyata.
+- [10F] AI LOD berdasarkan jumlah pemain, spawn fallback pada peta BSP, ikon radio/score masuk editor kontrol, dokumentasi QA, ZIP rilis independen <=24,9 MB/file.
+- **QA:** 51/51 Tahap10 logic simulation, 37/37 regression Tahap9, 57 static asset/JS checks. **GPU WebGL asli & Safari iPhone fisik tidak diuji**, verdict CONDITIONAL.
+
+---
+
+# Tahap 9 — 17 November 2026
+
+- Scope: perkuat layering HUD di atas scope mask; FOV dan reticle core tetap dipakai.
+- USP/M4A1: secondary-action suppressor dengan animasi on/off dan suara tembakan sesuai state.
+- Kontrol: ikon SVG, crouch desktop/mobile, night vision toggle dan custom 2/3/4-finger layout editor.
+- Tactical Shield: buy CT, viewmodel GoldSrc, proteksi tembakan depan saat diangkat dan pistol saat diturunkan.
+- Grenade: proyektil HE/Flash/Smoke dengan bounce/fuse, efek damage/blind/smoke dan pengaruh smoke pada deteksi bot.
+- Loot: drop model dunia dari bot mati, pickup AMBIL/BATAL/E, swap slot + ammo dan drop senjata lama.
+- Aset: pakai konversi GoldSrc GLB existing, koreksi orientasi/scale untuk model `w_` di dunia.
+- QA: 37/37 PASS simulasi logic dengan GPU/GLB stub; validator aset lulus. **Safari iPhone fisik dan WebGL nyata belum diverifikasi.**
+- Lihat `QA_TAHAP9.md` untuk metodologi dan seluruh batasan, jangan mengartikan ini sebagai rilis bebas bug.
+
+---
+
 # Tahap 8 — 17 November 2026
 
 ## Baseline

@@ -3,9 +3,9 @@ const BUY={pistols:['usp','glock18','p228','deagle','elite','fiveseven'],shotgun
  primaryAmmo:[{id:'primaryAmmo',name:'PRIMARY AMMO',price:60,desc:'Isi cadangan senjata utama'}],secondaryAmmo:[{id:'secondaryAmmo',name:'SECONDARY AMMO',price:40,desc:'Isi cadangan pistol'}],equipment:[
  {id:'kevlar',name:'KEVLAR VEST',price:650,desc:'Armor 100'}, {id:'helmet',name:'VEST + HELMET',price:1000,desc:'Armor 100 + helmet'},
  {id:'flash',name:'FLASHBANG',price:200,desc:'Maksimum 2'}, {id:'he',name:'HE GRENADE',price:300,desc:'Maksimum 1'}, {id:'smoke',name:'SMOKE GRENADE',price:300,desc:'Maksimum 1'},
- {id:'defuse',name:'DEFUSE KIT',price:200,desc:'Tidak digunakan pada mode eliminasi'}, {id:'nightvision',name:'NIGHT VISION',price:1250,desc:'Penglihatan untuk area gelap'}]};
+ {id:'shield',name:'TACTICAL SHIELD',price:2200,desc:'CT only · uses primary slot'}, {id:'defuse',name:'DEFUSE KIT',price:200,desc:'Tidak digunakan pada mode eliminasi'}, {id:'nightvision',name:'NIGHT VISION',price:1250,desc:'Penglihatan untuk area gelap'}]};
 let activeBuyTab='',playerClass='gign',playerAvatar;
-function getItem(id){if(W[id])return {id,name:W[id].n,price:W[id].price,desc:W[id].mag+' rounds · '+(W[id].team||'ALL TEAMS')};return Object.values(BUY).flat().find(x=>typeof x==='object'&&x.id===id)}
+function getItem(id){if(W[id])return {id,name:W[id].n,price:W[id].price,desc:id==='shield'?'CT · Perisai + pistol':' '+W[id].mag+' rounds · '+(W[id].team||'ALL TEAMS')};return Object.values(BUY).flat().find(x=>typeof x==='object'&&x.id===id)}
 function buyReason(item){
  const id=item.id,w=W[id];if(!running||buyTime<=0||!inBuyZone())return 'BUY ZONE CLOSED';
  if(w?.team&&w.team!==playerTeam)return w.team+' ONLY';
@@ -17,7 +17,7 @@ function buyReason(item){
  if(money<item.price)return 'NOT ENOUGH MONEY';return '';
 }
 function openBuyMenu(){
- if(!running)return;if(buyTime<=0||!inBuyZone()){say('BUY ZONE CLOSED');return}
+ if(!running)return;Phase10.closeRadio();if(buyTime<=0||!inBuyZone()){say('BUY ZONE CLOSED');return}
  resetInputs();aiming=false;syncAim();$('buyMenu').classList.remove('hidden');renderBuyTab('');if(document.pointerLockElement)document.exitPointerLock();$('closeBuy').focus();
 }
 function closeBuyMenu(){resetInputs();$('buyMenu').classList.add('hidden');if(running&&!isT)requestLock()}
@@ -42,9 +42,9 @@ function purchase(id){
  else if(id==='kevlar')armor=100;
  else if(id==='helmet'){armor=100;helmet=true}
  else if(['flash','he','smoke'].includes(id))grenades[id]++;
- else if(id==='nightvision'){nightVision=true;document.body.classList.add('night-vision')}
+ else if(id==='nightvision'){nightVision=true;Phase9.updateHud()}
  else if(id.endsWith('Ammo')){const k=inventory.find(k=>W[k].slot===(id==='primaryAmmo'?'primary':'pistol'));A[k].res=W[k].res}
- money-=item.price;const scroll=$('buyItems').scrollTop;renderBuyTab(activeBuyTab);$('buyItems').scrollTop=scroll;$('buyHint').textContent='PURCHASED · '+item.name;hud();return true;
+ money-=item.price;Phase9.updateHud();const scroll=$('buyItems').scrollTop;renderBuyTab(activeBuyTab);$('buyItems').scrollTop=scroll;$('buyHint').textContent='PURCHASED · '+item.name;hud();return true;
 }
 document.querySelectorAll('#buyTabs [data-tab]').forEach(b=>b.onclick=()=>renderBuyTab(b.dataset.tab));
 $('closeBuy').onclick=$('closeBuy2').onclick=$('buyCancel').onclick=closeBuyMenu;
@@ -69,7 +69,7 @@ function createPlayerClass(){
 $('classBack').onclick=()=>{$('classScreen').classList.add('hidden');$('teamScreen').classList.remove('hidden')};
 $('startMatch').onclick=beginMatch;
 $('loadBack').onclick=()=>{
- ['loadingScreen','mapScreen','teamScreen','classScreen'].forEach(id=>$(id).classList.add('hidden'));
+ ['loadingScreen','mapScreen','matchConfigScreen','teamScreen','classScreen'].forEach(id=>$(id).classList.add('hidden'));
  over=true;pauseToMenu();$('resumeBtn').classList.add('hidden');
 };
 $('settingsBtn').onclick=()=>$('settingsScreen').classList.remove('hidden');
