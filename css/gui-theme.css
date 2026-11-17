@@ -1,0 +1,13 @@
+/* Warna dari ClientScheme.res (CSGO GUI 1.6). Belum dipasang ke layout. */
+:root {
+  --gui-title: rgba(255, 174, 0, 1.000); /* TitleText */
+  --gui-text: rgba(233, 233, 233, 1.000); /* BaseText */
+  --gui-dark-bg: rgba(0, 0, 0, 0.502); /* ControlDarkBG */
+  --gui-window-bg: rgba(0, 0, 0, 0.784); /* WindowBG */
+  --gui-menu-bg: rgba(0, 0, 0, 0.890); /* Menu/BgColor */
+  --gui-accent: rgba(255, 174, 0, 1.000); /* CreditsTitleFG */
+  --gui-track: rgba(31, 31, 31, 1.000); /* SliderTrackColor */
+  --gui-select-bg2: rgba(255, 255, 255, 0.063); /* SelectionBG2 */
+  --gui-disabled: rgba(70, 70, 70, 1.000); /* DisabledText1 */
+  --gui-icon: rgba(255, 174, 0, 1.000); /* TitleIcon */
+}

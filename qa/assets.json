@@ -1,0 +1,193 @@
+{
+  "models": [
+    {
+      "name": "ak47",
+      "bones": 42,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "aug",
+      "bones": 42,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "awp",
+      "bones": 42,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "c4",
+      "bones": 37,
+      "clips": 4,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "deagle",
+      "bones": 43,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "elite",
+      "bones": 48,
+      "clips": 16,
+      "bind_error": 8.756983582713929e-07
+    },
+    {
+      "name": "famas",
+      "bones": 52,
+      "clips": 6,
+      "bind_error": 2.1650469506084846e-06
+    },
+    {
+      "name": "fiveseven",
+      "bones": 42,
+      "clips": 6,
+      "bind_error": 8.756983582713929e-07
+    },
+    {
+      "name": "flashbang",
+      "bones": 37,
+      "clips": 4,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "g3sg1",
+      "bones": 43,
+      "clips": 5,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "galil",
+      "bones": 52,
+      "clips": 6,
+      "bind_error": 2.0944885861240436e-06
+    },
+    {
+      "name": "glock18",
+      "bones": 41,
+      "clips": 13,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "hegrenade",
+      "bones": 37,
+      "clips": 4,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "knife",
+      "bones": 39,
+      "clips": 8,
+      "bind_error": 8.815787548854814e-07
+    },
+    {
+      "name": "knife_r",
+      "bones": 6,
+      "clips": 8,
+      "bind_error": 4.1935381522861803e-07
+    },
+    {
+      "name": "m249",
+      "bones": 50,
+      "clips": 5,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "m3",
+      "bones": 43,
+      "clips": 7,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "m4a1",
+      "bones": 44,
+      "clips": 14,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "mac10",
+      "bones": 46,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "mp5",
+      "bones": 43,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "p228",
+      "bones": 43,
+      "clips": 7,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "p90",
+      "bones": 41,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "scout",
+      "bones": 42,
+      "clips": 5,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "sg550",
+      "bones": 42,
+      "clips": 5,
+      "bind_error": 8.756983582713929e-07
+    },
+    {
+      "name": "sg552",
+      "bones": 43,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "shield_r",
+      "bones": 58,
+      "clips": 9,
+      "bind_error": 1.8748658661138506e-06
+    },
+    {
+      "name": "smokegrenade",
+      "bones": 37,
+      "clips": 4,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "tmp",
+      "bones": 41,
+      "clips": 6,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "ump45",
+      "bones": 43,
+      "clips": 6,
+      "bind_error": 8.756983582713929e-07
+    },
+    {
+      "name": "usp",
+      "bones": 45,
+      "clips": 16,
+      "bind_error": 1.1310562575417293e-06
+    },
+    {
+      "name": "xm1014",
+      "bones": 42,
+      "clips": 7,
+      "bind_error": 1.1310562575417293e-06
+    }
+  ],
+  "sounds": 165,
+  "icons": 34,
+  "missing": []
+}

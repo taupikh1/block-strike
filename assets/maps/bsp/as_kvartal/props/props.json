@@ -1,0 +1,3205 @@
+{
+ "models": {
+  "models/buzz/buzzer_kt_derevsew.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_0.png",
+     "vertices": 228,
+     "alpha": false,
+     "posOffset": 0,
+     "uvOffset": 2736
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_1.png",
+     "vertices": 204,
+     "alpha": true,
+     "posOffset": 4560,
+     "uvOffset": 7008
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_2.png",
+     "vertices": 72,
+     "alpha": true,
+     "posOffset": 8640,
+     "uvOffset": 9504
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_3.png",
+     "vertices": 60,
+     "alpha": true,
+     "posOffset": 10080,
+     "uvOffset": 10800
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_4.png",
+     "vertices": 156,
+     "alpha": true,
+     "posOffset": 11280,
+     "uvOffset": 13152
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_5.png",
+     "vertices": 180,
+     "alpha": false,
+     "posOffset": 14400,
+     "uvOffset": 16560
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_6.png",
+     "vertices": 84,
+     "alpha": true,
+     "posOffset": 18000,
+     "uvOffset": 19008
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_7.png",
+     "vertices": 132,
+     "alpha": true,
+     "posOffset": 19680,
+     "uvOffset": 21264
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_8.png",
+     "vertices": 72,
+     "alpha": true,
+     "posOffset": 22320,
+     "uvOffset": 23184
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_9.png",
+     "vertices": 36,
+     "alpha": true,
+     "posOffset": 23760,
+     "uvOffset": 24192
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_10.png",
+     "vertices": 312,
+     "alpha": false,
+     "posOffset": 24480,
+     "uvOffset": 28224
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_11.png",
+     "vertices": 144,
+     "alpha": true,
+     "posOffset": 30720,
+     "uvOffset": 32448
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_12.png",
+     "vertices": 84,
+     "alpha": true,
+     "posOffset": 33600,
+     "uvOffset": 34608
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_13.png",
+     "vertices": 180,
+     "alpha": true,
+     "posOffset": 35280,
+     "uvOffset": 37440
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_derevsew_mdl_14.png",
+     "vertices": 96,
+     "alpha": true,
+     "posOffset": 38880,
+     "uvOffset": 40032
+    }
+   ]
+  },
+  "models/buzz/buzzer_kt_gazel.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_buzz_buzzer_kt_gazel_mdl_0.png",
+     "vertices": 489,
+     "alpha": false,
+     "posOffset": 40800,
+     "uvOffset": 46668
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_gazel_mdl_1.png",
+     "vertices": 612,
+     "alpha": false,
+     "posOffset": 50580,
+     "uvOffset": 57924
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_gazel_mdl_2.png",
+     "vertices": 336,
+     "alpha": false,
+     "posOffset": 62820,
+     "uvOffset": 66852
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_gazel_mdl_3.png",
+     "vertices": 255,
+     "alpha": false,
+     "posOffset": 69540,
+     "uvOffset": 72600
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_kt_gazel_mdl_4.png",
+     "vertices": 558,
+     "alpha": false,
+     "posOffset": 74640,
+     "uvOffset": 81336
+    }
+   ]
+  },
+  "models/buzz/buzzer_teatp_ladasp.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_ladasp_mdl_0.png",
+     "vertices": 1128,
+     "alpha": false,
+     "posOffset": 85800,
+     "uvOffset": 99336
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_ladasp_mdl_1.png",
+     "vertices": 159,
+     "alpha": false,
+     "posOffset": 108360,
+     "uvOffset": 110268
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_ladasp_mdl_2.png",
+     "vertices": 174,
+     "alpha": false,
+     "posOffset": 111540,
+     "uvOffset": 113628
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_ladasp_mdl_3.png",
+     "vertices": 339,
+     "alpha": false,
+     "posOffset": 115020,
+     "uvOffset": 119088
+    }
+   ]
+  },
+  "models/buzz/buzzer_teatp_toyota.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_toyota_mdl_0.png",
+     "vertices": 1206,
+     "alpha": false,
+     "posOffset": 121800,
+     "uvOffset": 136272
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_toyota_mdl_1.png",
+     "vertices": 168,
+     "alpha": false,
+     "posOffset": 145920,
+     "uvOffset": 147936
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_toyota_mdl_2.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 149280,
+     "uvOffset": 149928
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_toyota_mdl_3.png",
+     "vertices": 414,
+     "alpha": false,
+     "posOffset": 150360,
+     "uvOffset": 155328
+    },
+    {
+     "tex": "tex/models_buzz_buzzer_teatp_toyota_mdl_4.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 158640,
+     "uvOffset": 162096
+    }
+   ]
+  },
+  "models/chernobyl/budka_kalash.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_chernobyl_budka_kalash_mdl_0.png",
+     "vertices": 30,
+     "alpha": false,
+     "posOffset": 164400,
+     "uvOffset": 164760
+    },
+    {
+     "tex": "tex/models_chernobyl_budka_kalash_mdl_1.png",
+     "vertices": 3600,
+     "alpha": false,
+     "posOffset": 165000,
+     "uvOffset": 208200
+    },
+    {
+     "tex": "tex/models_chernobyl_budka_kalash_mdl_2.png",
+     "vertices": 1656,
+     "alpha": false,
+     "posOffset": 237000,
+     "uvOffset": 256872
+    },
+    {
+     "tex": "tex/models_chernobyl_budka_kalash_mdl_3.png",
+     "vertices": 432,
+     "alpha": false,
+     "posOffset": 270120,
+     "uvOffset": 275304
+    }
+   ]
+  },
+  "models/chernobyl/furgon_kalash.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_chernobyl_furgon_kalash_mdl_0.png",
+     "vertices": 3456,
+     "alpha": false,
+     "posOffset": 278760,
+     "uvOffset": 320232
+    },
+    {
+     "tex": "tex/models_chernobyl_furgon_kalash_mdl_1.png",
+     "vertices": 567,
+     "alpha": false,
+     "posOffset": 347880,
+     "uvOffset": 354684
+    },
+    {
+     "tex": "tex/models_chernobyl_furgon_kalash_mdl_2.png",
+     "vertices": 222,
+     "alpha": false,
+     "posOffset": 359220,
+     "uvOffset": 361884
+    },
+    {
+     "tex": "tex/models_chernobyl_furgon_kalash_mdl_3.png",
+     "vertices": 537,
+     "alpha": false,
+     "posOffset": 363660,
+     "uvOffset": 370104
+    }
+   ]
+  },
+  "models/chernobyl/kotushka_kalash.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_chernobyl_kotushka_kalash_mdl_0.png",
+     "vertices": 378,
+     "alpha": false,
+     "posOffset": 374400,
+     "uvOffset": 378936
+    }
+   ]
+  },
+  "models/man/3dm_seagull.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_3dm_seagull_mdl_0.png",
+     "vertices": 372,
+     "alpha": false,
+     "posOffset": 381960,
+     "uvOffset": 386424
+    }
+   ]
+  },
+  "models/man/78rus_gazel_blue.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_gazel_blue_mdl_0.png",
+     "vertices": 489,
+     "alpha": false,
+     "posOffset": 389400,
+     "uvOffset": 395268
+    },
+    {
+     "tex": "tex/models_man_78rus_gazel_blue_mdl_1.png",
+     "vertices": 612,
+     "alpha": false,
+     "posOffset": 399180,
+     "uvOffset": 406524
+    },
+    {
+     "tex": "tex/models_man_78rus_gazel_blue_mdl_2.png",
+     "vertices": 336,
+     "alpha": false,
+     "posOffset": 411420,
+     "uvOffset": 415452
+    },
+    {
+     "tex": "tex/models_man_78rus_gazel_blue_mdl_3.png",
+     "vertices": 255,
+     "alpha": false,
+     "posOffset": 418140,
+     "uvOffset": 421200
+    },
+    {
+     "tex": "tex/models_man_78rus_gazel_blue_mdl_4.png",
+     "vertices": 558,
+     "alpha": false,
+     "posOffset": 423240,
+     "uvOffset": 429936
+    }
+   ]
+  },
+  "models/man/78rus_icarus.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_0.png",
+     "vertices": 129,
+     "alpha": false,
+     "posOffset": 434400,
+     "uvOffset": 435948
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_1.png",
+     "vertices": 24,
+     "alpha": false,
+     "posOffset": 436980,
+     "uvOffset": 437268
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_2.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 437460,
+     "uvOffset": 438108
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_3.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 438540,
+     "uvOffset": 439188
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_4.png",
+     "vertices": 12,
+     "alpha": false,
+     "posOffset": 439620,
+     "uvOffset": 439764
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_5.png",
+     "vertices": 120,
+     "alpha": false,
+     "posOffset": 439860,
+     "uvOffset": 441300
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_6.png",
+     "vertices": 120,
+     "alpha": false,
+     "posOffset": 442260,
+     "uvOffset": 443700
+    },
+    {
+     "tex": "tex/models_man_78rus_icarus_mdl_7.png",
+     "vertices": 300,
+     "alpha": false,
+     "posOffset": 444660,
+     "uvOffset": 448260
+    }
+   ]
+  },
+  "models/man/78rus_ladasp.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_ladasp_mdl_0.png",
+     "vertices": 1128,
+     "alpha": false,
+     "posOffset": 450660,
+     "uvOffset": 464196
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_mdl_1.png",
+     "vertices": 159,
+     "alpha": false,
+     "posOffset": 473220,
+     "uvOffset": 475128
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_mdl_2.png",
+     "vertices": 174,
+     "alpha": false,
+     "posOffset": 476400,
+     "uvOffset": 478488
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_mdl_3.png",
+     "vertices": 339,
+     "alpha": false,
+     "posOffset": 479880,
+     "uvOffset": 483948
+    }
+   ]
+  },
+  "models/man/78rus_ladasp_blue.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_ladasp_blue_mdl_0.png",
+     "vertices": 1128,
+     "alpha": false,
+     "posOffset": 486660,
+     "uvOffset": 500196
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_blue_mdl_1.png",
+     "vertices": 159,
+     "alpha": false,
+     "posOffset": 509220,
+     "uvOffset": 511128
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_blue_mdl_2.png",
+     "vertices": 174,
+     "alpha": false,
+     "posOffset": 512400,
+     "uvOffset": 514488
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_blue_mdl_3.png",
+     "vertices": 339,
+     "alpha": false,
+     "posOffset": 515880,
+     "uvOffset": 519948
+    }
+   ]
+  },
+  "models/man/78rus_ladasp_orange.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_ladasp_orange_mdl_0.png",
+     "vertices": 1128,
+     "alpha": false,
+     "posOffset": 522660,
+     "uvOffset": 536196
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_orange_mdl_1.png",
+     "vertices": 159,
+     "alpha": false,
+     "posOffset": 545220,
+     "uvOffset": 547128
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_orange_mdl_2.png",
+     "vertices": 174,
+     "alpha": false,
+     "posOffset": 548400,
+     "uvOffset": 550488
+    },
+    {
+     "tex": "tex/models_man_78rus_ladasp_orange_mdl_3.png",
+     "vertices": 339,
+     "alpha": false,
+     "posOffset": 551880,
+     "uvOffset": 555948
+    }
+   ]
+  },
+  "models/man/78rus_toyota.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_toyota_mdl_0.png",
+     "vertices": 1206,
+     "alpha": false,
+     "posOffset": 558660,
+     "uvOffset": 573132
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_mdl_1.png",
+     "vertices": 168,
+     "alpha": false,
+     "posOffset": 582780,
+     "uvOffset": 584796
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_mdl_2.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 586140,
+     "uvOffset": 586788
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_mdl_3.png",
+     "vertices": 414,
+     "alpha": false,
+     "posOffset": 587220,
+     "uvOffset": 592188
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_mdl_4.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 595500,
+     "uvOffset": 598956
+    }
+   ]
+  },
+  "models/man/78rus_toyota_blue.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_toyota_blue_mdl_0.png",
+     "vertices": 1206,
+     "alpha": false,
+     "posOffset": 601260,
+     "uvOffset": 615732
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_blue_mdl_1.png",
+     "vertices": 168,
+     "alpha": false,
+     "posOffset": 625380,
+     "uvOffset": 627396
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_blue_mdl_2.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 628740,
+     "uvOffset": 629388
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_blue_mdl_3.png",
+     "vertices": 414,
+     "alpha": false,
+     "posOffset": 629820,
+     "uvOffset": 634788
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_blue_mdl_4.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 638100,
+     "uvOffset": 641556
+    }
+   ]
+  },
+  "models/man/78rus_toyota_red.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_78rus_toyota_red_mdl_0.png",
+     "vertices": 1206,
+     "alpha": false,
+     "posOffset": 643860,
+     "uvOffset": 658332
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_red_mdl_1.png",
+     "vertices": 168,
+     "alpha": false,
+     "posOffset": 667980,
+     "uvOffset": 669996
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_red_mdl_2.png",
+     "vertices": 54,
+     "alpha": false,
+     "posOffset": 671340,
+     "uvOffset": 671988
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_red_mdl_3.png",
+     "vertices": 414,
+     "alpha": false,
+     "posOffset": 672420,
+     "uvOffset": 677388
+    },
+    {
+     "tex": "tex/models_man_78rus_toyota_red_mdl_4.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 680700,
+     "uvOffset": 684156
+    }
+   ]
+  },
+  "models/man/bush_evergreen_group1_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_bush_evergreen_group1_nl_mdl_0.png",
+     "vertices": 36,
+     "alpha": true,
+     "posOffset": 686460,
+     "uvOffset": 686892
+    },
+    {
+     "tex": "tex/models_man_bush_evergreen_group1_nl_mdl_1.png",
+     "vertices": 216,
+     "alpha": true,
+     "posOffset": 687180,
+     "uvOffset": 689772
+    }
+   ]
+  },
+  "models/man/bush_japan_group1_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_bush_japan_group1_nl_mdl_0.png",
+     "vertices": 144,
+     "alpha": true,
+     "posOffset": 691500,
+     "uvOffset": 693228
+    }
+   ]
+  },
+  "models/man/byxlo_group1.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_0.png",
+     "vertices": 300,
+     "alpha": false,
+     "posOffset": 694380,
+     "uvOffset": 697980
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_1.png",
+     "vertices": 450,
+     "alpha": false,
+     "posOffset": 700380,
+     "uvOffset": 705780
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_2.png",
+     "vertices": 450,
+     "alpha": false,
+     "posOffset": 709380,
+     "uvOffset": 714780
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_3.png",
+     "vertices": 507,
+     "alpha": false,
+     "posOffset": 718380,
+     "uvOffset": 724464
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_4.png",
+     "vertices": 294,
+     "alpha": false,
+     "posOffset": 728520,
+     "uvOffset": 732048
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_5.png",
+     "vertices": 72,
+     "alpha": false,
+     "posOffset": 734400,
+     "uvOffset": 735264
+    },
+    {
+     "tex": "tex/models_man_byxlo_group1_mdl_6.png",
+     "vertices": 72,
+     "alpha": false,
+     "posOffset": 735840,
+     "uvOffset": 736704
+    }
+   ]
+  },
+  "models/man/dm_g_truck.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_0.png",
+     "vertices": 828,
+     "alpha": false,
+     "posOffset": 737280,
+     "uvOffset": 747216
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_1.png",
+     "vertices": 18,
+     "alpha": false,
+     "posOffset": 753840,
+     "uvOffset": 754056
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_2.png",
+     "vertices": 45,
+     "alpha": false,
+     "posOffset": 754200,
+     "uvOffset": 754740
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_3.png",
+     "vertices": 1107,
+     "alpha": false,
+     "posOffset": 755100,
+     "uvOffset": 768384
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_4.png",
+     "vertices": 99,
+     "alpha": false,
+     "posOffset": 777240,
+     "uvOffset": 778428
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_5.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 779220,
+     "uvOffset": 780372
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_6.png",
+     "vertices": 2172,
+     "alpha": false,
+     "posOffset": 781140,
+     "uvOffset": 807204
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_7.png",
+     "vertices": 114,
+     "alpha": false,
+     "posOffset": 824580,
+     "uvOffset": 825948
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_8.png",
+     "vertices": 1212,
+     "alpha": false,
+     "posOffset": 826860,
+     "uvOffset": 841404
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_9.png",
+     "vertices": 192,
+     "alpha": false,
+     "posOffset": 851100,
+     "uvOffset": 853404
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_10.png",
+     "vertices": 180,
+     "alpha": false,
+     "posOffset": 854940,
+     "uvOffset": 857100
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_11.png",
+     "vertices": 216,
+     "alpha": false,
+     "posOffset": 858540,
+     "uvOffset": 861132
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_12.png",
+     "vertices": 36,
+     "alpha": false,
+     "posOffset": 862860,
+     "uvOffset": 863292
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_13.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 863580,
+     "uvOffset": 864732
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_14.png",
+     "vertices": 384,
+     "alpha": false,
+     "posOffset": 865500,
+     "uvOffset": 870108
+    },
+    {
+     "tex": "tex/models_man_dm_g_truck_mdl_15.png",
+     "vertices": 984,
+     "alpha": false,
+     "posOffset": 873180,
+     "uvOffset": 884988
+    }
+   ]
+  },
+  "models/man/dom_kv_1.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_dom_kv_1_mdl_0.png",
+     "vertices": 2328,
+     "alpha": false,
+     "posOffset": 892860,
+     "uvOffset": 920796
+    }
+   ]
+  },
+  "models/man/dom_school-1.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_dom_school_1_mdl_0.png",
+     "vertices": 180,
+     "alpha": false,
+     "posOffset": 939420,
+     "uvOffset": 941580
+    },
+    {
+     "tex": "tex/models_man_dom_school_1_mdl_1.png",
+     "vertices": 504,
+     "alpha": false,
+     "posOffset": 943020,
+     "uvOffset": 949068
+    },
+    {
+     "tex": "tex/models_man_dom_school_1_mdl_2.png",
+     "vertices": 498,
+     "alpha": false,
+     "posOffset": 953100,
+     "uvOffset": 959076
+    }
+   ]
+  },
+  "models/man/grasdw.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_grasdw_mdl_0.png",
+     "vertices": 72,
+     "alpha": true,
+     "posOffset": 963060,
+     "uvOffset": 963924
+    }
+   ]
+  },
+  "models/man/hl2_apc001.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_hl2_apc001_mdl_0.png",
+     "vertices": 3429,
+     "alpha": false,
+     "posOffset": 964500,
+     "uvOffset": 1005648
+    },
+    {
+     "tex": "tex/models_man_hl2_apc001_mdl_1.png",
+     "vertices": 2808,
+     "alpha": false,
+     "posOffset": 1033080,
+     "uvOffset": 1066776
+    }
+   ]
+  },
+  "models/man/njeep.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_njeep_mdl_0.png",
+     "vertices": 2628,
+     "alpha": false,
+     "posOffset": 1089240,
+     "uvOffset": 1120776
+    }
+   ]
+  },
+  "models/man/racovina.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_racovina_mdl_0.png",
+     "vertices": 261,
+     "alpha": false,
+     "posOffset": 1141800,
+     "uvOffset": 1144932
+    },
+    {
+     "tex": "tex/models_man_racovina_mdl_1.png",
+     "vertices": 432,
+     "alpha": false,
+     "posOffset": 1147020,
+     "uvOffset": 1152204
+    },
+    {
+     "tex": "tex/models_man_racovina_mdl_2.png",
+     "vertices": 285,
+     "alpha": false,
+     "posOffset": 1155660,
+     "uvOffset": 1159080
+    }
+   ]
+  },
+  "models/man/radiator.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_radiator_mdl_0.png",
+     "vertices": 1392,
+     "alpha": false,
+     "posOffset": 1161360,
+     "uvOffset": 1178064
+    }
+   ]
+  },
+  "models/man/sat.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_sat_mdl_0.png",
+     "vertices": 498,
+     "alpha": false,
+     "posOffset": 1189200,
+     "uvOffset": 1195176
+    }
+   ]
+  },
+  "models/man/shit.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_shit_mdl_0.png",
+     "vertices": 468,
+     "alpha": false,
+     "posOffset": 1199160,
+     "uvOffset": 1204776
+    }
+   ]
+  },
+  "models/man/topol1w.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_topol1w_mdl_0.png",
+     "vertices": 360,
+     "alpha": false,
+     "posOffset": 1208520,
+     "uvOffset": 1212840
+    },
+    {
+     "tex": "tex/models_man_topol1w_mdl_1.png",
+     "vertices": 456,
+     "alpha": true,
+     "posOffset": 1215720,
+     "uvOffset": 1221192
+    }
+   ]
+  },
+  "models/man/unitaz.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_unitaz_mdl_0.png",
+     "vertices": 252,
+     "alpha": false,
+     "posOffset": 1224840,
+     "uvOffset": 1227864
+    },
+    {
+     "tex": "tex/models_man_unitaz_mdl_1.png",
+     "vertices": 798,
+     "alpha": false,
+     "posOffset": 1229880,
+     "uvOffset": 1239456
+    },
+    {
+     "tex": "tex/models_man_unitaz_mdl_2.png",
+     "vertices": 102,
+     "alpha": false,
+     "posOffset": 1245840,
+     "uvOffset": 1247064
+    }
+   ]
+  },
+  "models/man/vans.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_man_vans_mdl_0.png",
+     "vertices": 1008,
+     "alpha": false,
+     "posOffset": 1247880,
+     "uvOffset": 1259976
+    },
+    {
+     "tex": "tex/models_man_vans_mdl_1.png",
+     "vertices": 1008,
+     "alpha": false,
+     "posOffset": 1268040,
+     "uvOffset": 1280136
+    },
+    {
+     "tex": "tex/models_man_vans_mdl_2.png",
+     "vertices": 1008,
+     "alpha": false,
+     "posOffset": 1288200,
+     "uvOffset": 1300296
+    },
+    {
+     "tex": "tex/models_man_vans_mdl_3.png",
+     "vertices": 1008,
+     "alpha": false,
+     "posOffset": 1308360,
+     "uvOffset": 1320456
+    }
+   ]
+  },
+  "models/props/antenna_urban.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_antenna_urban_mdl_0.png",
+     "vertices": 18,
+     "alpha": true,
+     "posOffset": 1328520,
+     "uvOffset": 1328736
+    }
+   ]
+  },
+  "models/props/bathroom_toilet_dirty.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_bathroom_toilet_dirty_mdl_0.png",
+     "vertices": 477,
+     "alpha": false,
+     "posOffset": 1328880,
+     "uvOffset": 1334604
+    }
+   ]
+  },
+  "models/props/bicycle_dead.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_bicycle_dead_mdl_0.png",
+     "vertices": 1026,
+     "alpha": false,
+     "posOffset": 1338420,
+     "uvOffset": 1350732
+    },
+    {
+     "tex": "tex/models_props_bicycle_dead_mdl_1.png",
+     "vertices": 1200,
+     "alpha": true,
+     "posOffset": 1358940,
+     "uvOffset": 1373340
+    }
+   ]
+  },
+  "models/props/bobik_rus-1.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_bobik_rus_1_mdl_0.png",
+     "vertices": 1278,
+     "alpha": false,
+     "posOffset": 1382940,
+     "uvOffset": 1398276
+    },
+    {
+     "tex": "tex/models_props_bobik_rus_1_mdl_1.png",
+     "vertices": 672,
+     "alpha": false,
+     "posOffset": 1408500,
+     "uvOffset": 1416564
+    },
+    {
+     "tex": "tex/models_props_bobik_rus_1_mdl_2.png",
+     "vertices": 1911,
+     "alpha": false,
+     "posOffset": 1421940,
+     "uvOffset": 1444872
+    },
+    {
+     "tex": "tex/models_props_bobik_rus_1_mdl_3.png",
+     "vertices": 276,
+     "alpha": false,
+     "posOffset": 1460160,
+     "uvOffset": 1463472
+    }
+   ]
+  },
+  "models/props/boxsprings_wreck.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_boxsprings_wreck_mdl_0.png",
+     "vertices": 438,
+     "alpha": false,
+     "posOffset": 1465680,
+     "uvOffset": 1470936
+    }
+   ]
+  },
+  "models/props/dumpster_lidclosed.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_dumpster_lidclosed_mdl_0.png",
+     "vertices": 606,
+     "alpha": false,
+     "posOffset": 1474440,
+     "uvOffset": 1481712
+    }
+   ]
+  },
+  "models/props/dumpster_lidclosed_green.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_dumpster_lidclosed_green_mdl_0.png",
+     "vertices": 150,
+     "alpha": false,
+     "posOffset": 1486560,
+     "uvOffset": 1488360
+    },
+    {
+     "tex": "tex/models_props_dumpster_lidclosed_green_mdl_1.png",
+     "vertices": 84,
+     "alpha": false,
+     "posOffset": 1489560,
+     "uvOffset": 1490568
+    }
+   ]
+  },
+  "models/props/furniture_group-hall01.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_furniture_group_hall01_mdl_0.png",
+     "vertices": 468,
+     "alpha": false,
+     "posOffset": 1491240,
+     "uvOffset": 1496856
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hall01_mdl_1.png",
+     "vertices": 156,
+     "alpha": false,
+     "posOffset": 1500600,
+     "uvOffset": 1502472
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hall01_mdl_2.png",
+     "vertices": 438,
+     "alpha": false,
+     "posOffset": 1503720,
+     "uvOffset": 1508976
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hall01_mdl_3.png",
+     "vertices": 192,
+     "alpha": false,
+     "posOffset": 1512480,
+     "uvOffset": 1514784
+    }
+   ]
+  },
+  "models/props/furniture_group-hotel01.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_furniture_group_hotel01_mdl_0.png",
+     "vertices": 468,
+     "alpha": false,
+     "posOffset": 1516320,
+     "uvOffset": 1521936
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel01_mdl_1.png",
+     "vertices": 438,
+     "alpha": false,
+     "posOffset": 1525680,
+     "uvOffset": 1530936
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel01_mdl_2.png",
+     "vertices": 192,
+     "alpha": false,
+     "posOffset": 1534440,
+     "uvOffset": 1536744
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel01_mdl_3.png",
+     "vertices": 432,
+     "alpha": false,
+     "posOffset": 1538280,
+     "uvOffset": 1543464
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel01_mdl_4.png",
+     "vertices": 864,
+     "alpha": false,
+     "posOffset": 1546920,
+     "uvOffset": 1557288
+    }
+   ]
+  },
+  "models/props/furniture_group-hotel02.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_furniture_group_hotel02_mdl_0.png",
+     "vertices": 468,
+     "alpha": false,
+     "posOffset": 1564200,
+     "uvOffset": 1569816
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel02_mdl_1.png",
+     "vertices": 1776,
+     "alpha": false,
+     "posOffset": 1573560,
+     "uvOffset": 1594872
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel02_mdl_2.png",
+     "vertices": 192,
+     "alpha": false,
+     "posOffset": 1609080,
+     "uvOffset": 1611384
+    },
+    {
+     "tex": "tex/models_props_furniture_group_hotel02_mdl_3.png",
+     "vertices": 576,
+     "alpha": false,
+     "posOffset": 1612920,
+     "uvOffset": 1619832
+    }
+   ]
+  },
+  "models/props/furniture_group-wreck.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_furniture_group_wreck_mdl_0.png",
+     "vertices": 840,
+     "alpha": false,
+     "posOffset": 1624440,
+     "uvOffset": 1634520
+    },
+    {
+     "tex": "tex/models_props_furniture_group_wreck_mdl_1.png",
+     "vertices": 270,
+     "alpha": false,
+     "posOffset": 1641240,
+     "uvOffset": 1644480
+    }
+   ]
+  },
+  "models/props/group_kitchen.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_group_kitchen_mdl_0.png",
+     "vertices": 858,
+     "alpha": false,
+     "posOffset": 1646640,
+     "uvOffset": 1656936
+    }
+   ]
+  },
+  "models/props/jeep-russian.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_jeep_russian_mdl_0.png",
+     "vertices": 2700,
+     "alpha": false,
+     "posOffset": 1663800,
+     "uvOffset": 1696200
+    }
+   ]
+  },
+  "models/props/light_bulb2.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_light_bulb2_mdl_0.png",
+     "vertices": 144,
+     "alpha": false,
+     "posOffset": 1717800,
+     "uvOffset": 1719528
+    }
+   ]
+  },
+  "models/props/mattress_wreck.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_mattress_wreck_mdl_0.png",
+     "vertices": 192,
+     "alpha": false,
+     "posOffset": 1720680,
+     "uvOffset": 1722984
+    }
+   ]
+  },
+  "models/props/pi_tree1_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_pi_tree1_nl_mdl_0.png",
+     "vertices": 396,
+     "alpha": false,
+     "posOffset": 1724520,
+     "uvOffset": 1729272
+    },
+    {
+     "tex": "tex/models_props_pi_tree1_nl_mdl_1.png",
+     "vertices": 108,
+     "alpha": true,
+     "posOffset": 1732440,
+     "uvOffset": 1733736
+    },
+    {
+     "tex": "tex/models_props_pi_tree1_nl_mdl_2.png",
+     "vertices": 144,
+     "alpha": true,
+     "posOffset": 1734600,
+     "uvOffset": 1736328
+    },
+    {
+     "tex": "tex/models_props_pi_tree1_nl_mdl_3.png",
+     "vertices": 48,
+     "alpha": true,
+     "posOffset": 1737480,
+     "uvOffset": 1738056
+    },
+    {
+     "tex": "tex/models_props_pi_tree1_nl_mdl_4.png",
+     "vertices": 84,
+     "alpha": true,
+     "posOffset": 1738440,
+     "uvOffset": 1739448
+    }
+   ]
+  },
+  "models/props/pi_tree2_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_0.png",
+     "vertices": 36,
+     "alpha": false,
+     "posOffset": 1740120,
+     "uvOffset": 1740552
+    },
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_1.png",
+     "vertices": 36,
+     "alpha": false,
+     "posOffset": 1740840,
+     "uvOffset": 1741272
+    },
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_2.png",
+     "vertices": 126,
+     "alpha": false,
+     "posOffset": 1741560,
+     "uvOffset": 1743072
+    },
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_3.png",
+     "vertices": 96,
+     "alpha": true,
+     "posOffset": 1744080,
+     "uvOffset": 1745232
+    },
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_4.png",
+     "vertices": 156,
+     "alpha": true,
+     "posOffset": 1746000,
+     "uvOffset": 1747872
+    },
+    {
+     "tex": "tex/models_props_pi_tree2_nl_mdl_5.png",
+     "vertices": 144,
+     "alpha": true,
+     "posOffset": 1749120,
+     "uvOffset": 1750848
+    }
+   ]
+  },
+  "models/props/pi_tree3_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_0.png",
+     "vertices": 228,
+     "alpha": false,
+     "posOffset": 1752000,
+     "uvOffset": 1754736
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_1.png",
+     "vertices": 204,
+     "alpha": true,
+     "posOffset": 1756560,
+     "uvOffset": 1759008
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_2.png",
+     "vertices": 72,
+     "alpha": true,
+     "posOffset": 1760640,
+     "uvOffset": 1761504
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_3.png",
+     "vertices": 60,
+     "alpha": true,
+     "posOffset": 1762080,
+     "uvOffset": 1762800
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_4.png",
+     "vertices": 156,
+     "alpha": true,
+     "posOffset": 1763280,
+     "uvOffset": 1765152
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_5.png",
+     "vertices": 180,
+     "alpha": false,
+     "posOffset": 1766400,
+     "uvOffset": 1768560
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_6.png",
+     "vertices": 84,
+     "alpha": true,
+     "posOffset": 1770000,
+     "uvOffset": 1771008
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_7.png",
+     "vertices": 132,
+     "alpha": true,
+     "posOffset": 1771680,
+     "uvOffset": 1773264
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_8.png",
+     "vertices": 72,
+     "alpha": true,
+     "posOffset": 1774320,
+     "uvOffset": 1775184
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_9.png",
+     "vertices": 36,
+     "alpha": true,
+     "posOffset": 1775760,
+     "uvOffset": 1776192
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_10.png",
+     "vertices": 312,
+     "alpha": false,
+     "posOffset": 1776480,
+     "uvOffset": 1780224
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_11.png",
+     "vertices": 144,
+     "alpha": true,
+     "posOffset": 1782720,
+     "uvOffset": 1784448
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_12.png",
+     "vertices": 84,
+     "alpha": true,
+     "posOffset": 1785600,
+     "uvOffset": 1786608
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_13.png",
+     "vertices": 180,
+     "alpha": true,
+     "posOffset": 1787280,
+     "uvOffset": 1789440
+    },
+    {
+     "tex": "tex/models_props_pi_tree3_nl_mdl_14.png",
+     "vertices": 96,
+     "alpha": true,
+     "posOffset": 1790880,
+     "uvOffset": 1792032
+    }
+   ]
+  },
+  "models/props/pi_tree_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_pi_tree_nl_mdl_0.png",
+     "vertices": 732,
+     "alpha": true,
+     "posOffset": 1792800,
+     "uvOffset": 1801584
+    }
+   ]
+  },
+  "models/props/pi_treeb_nl.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_pi_treeb_nl_mdl_0.png",
+     "vertices": 801,
+     "alpha": true,
+     "posOffset": 1807440,
+     "uvOffset": 1817052
+    }
+   ]
+  },
+  "models/props/rug_oriental-large3.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_rug_oriental_large3_mdl_0.png",
+     "vertices": 120,
+     "alpha": false,
+     "posOffset": 1823460,
+     "uvOffset": 1824900
+    }
+   ]
+  },
+  "models/props/shelves_warehouse.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_shelves_warehouse_mdl_0.png",
+     "vertices": 1098,
+     "alpha": false,
+     "posOffset": 1825860,
+     "uvOffset": 1839036
+    },
+    {
+     "tex": "tex/models_props_shelves_warehouse_mdl_1.png",
+     "vertices": 792,
+     "alpha": false,
+     "posOffset": 1847820,
+     "uvOffset": 1857324
+    },
+    {
+     "tex": "tex/models_props_shelves_warehouse_mdl_2.png",
+     "vertices": 240,
+     "alpha": false,
+     "posOffset": 1863660,
+     "uvOffset": 1866540
+    },
+    {
+     "tex": "tex/models_props_shelves_warehouse_mdl_3.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 1868460,
+     "uvOffset": 1871916
+    }
+   ]
+  },
+  "models/props/sink_small.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_sink_small_mdl_0.png",
+     "vertices": 174,
+     "alpha": false,
+     "posOffset": 1874220,
+     "uvOffset": 1876308
+    },
+    {
+     "tex": "tex/models_props_sink_small_mdl_1.png",
+     "vertices": 852,
+     "alpha": false,
+     "posOffset": 1877700,
+     "uvOffset": 1887924
+    }
+   ]
+  },
+  "models/props/toilet.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_toilet_mdl_0.png",
+     "vertices": 477,
+     "alpha": false,
+     "posOffset": 1894740,
+     "uvOffset": 1900464
+    }
+   ]
+  },
+  "models/props/trash_02.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_trash_02_mdl_0.png",
+     "vertices": 168,
+     "alpha": false,
+     "posOffset": 1904280,
+     "uvOffset": 1906296
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_1.png",
+     "vertices": 630,
+     "alpha": false,
+     "posOffset": 1907640,
+     "uvOffset": 1915200
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_2.png",
+     "vertices": 312,
+     "alpha": false,
+     "posOffset": 1920240,
+     "uvOffset": 1923984
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_3.png",
+     "vertices": 198,
+     "alpha": false,
+     "posOffset": 1926480,
+     "uvOffset": 1928856
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_4.png",
+     "vertices": 396,
+     "alpha": false,
+     "posOffset": 1930440,
+     "uvOffset": 1935192
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_5.png",
+     "vertices": 348,
+     "alpha": false,
+     "posOffset": 1938360,
+     "uvOffset": 1942536
+    },
+    {
+     "tex": "tex/models_props_trash_02_mdl_6.png",
+     "vertices": 108,
+     "alpha": false,
+     "posOffset": 1945320,
+     "uvOffset": 1946616
+    }
+   ]
+  },
+  "models/props/trashv01.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_trashv01_mdl_0.png",
+     "vertices": 348,
+     "alpha": false,
+     "posOffset": 1947480,
+     "uvOffset": 1951656
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_1.png",
+     "vertices": 252,
+     "alpha": false,
+     "posOffset": 1954440,
+     "uvOffset": 1957464
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_2.png",
+     "vertices": 156,
+     "alpha": false,
+     "posOffset": 1959480,
+     "uvOffset": 1961352
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_3.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 1962600,
+     "uvOffset": 1963752
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_4.png",
+     "vertices": 294,
+     "alpha": false,
+     "posOffset": 1964520,
+     "uvOffset": 1968048
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_5.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 1970400,
+     "uvOffset": 1971552
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_6.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 1972320,
+     "uvOffset": 1973472
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_7.png",
+     "vertices": 336,
+     "alpha": false,
+     "posOffset": 1974240,
+     "uvOffset": 1978272
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_8.png",
+     "vertices": 198,
+     "alpha": false,
+     "posOffset": 1980960,
+     "uvOffset": 1983336
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_9.png",
+     "vertices": 288,
+     "alpha": false,
+     "posOffset": 1984920,
+     "uvOffset": 1988376
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_10.png",
+     "vertices": 336,
+     "alpha": false,
+     "posOffset": 1990680,
+     "uvOffset": 1994712
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_11.png",
+     "vertices": 180,
+     "alpha": false,
+     "posOffset": 1997400,
+     "uvOffset": 1999560
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_12.png",
+     "vertices": 420,
+     "alpha": false,
+     "posOffset": 2001000,
+     "uvOffset": 2006040
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_13.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 2009400,
+     "uvOffset": 2010552
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_14.png",
+     "vertices": 96,
+     "alpha": false,
+     "posOffset": 2011320,
+     "uvOffset": 2012472
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_15.png",
+     "vertices": 84,
+     "alpha": false,
+     "posOffset": 2013240,
+     "uvOffset": 2014248
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_16.png",
+     "vertices": 264,
+     "alpha": false,
+     "posOffset": 2014920,
+     "uvOffset": 2018088
+    },
+    {
+     "tex": "tex/models_props_trashv01_mdl_17.png",
+     "vertices": 210,
+     "alpha": false,
+     "posOffset": 2020200,
+     "uvOffset": 2022720
+    }
+   ]
+  },
+  "models/props/tree_pine.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_tree_pine_mdl_0.png",
+     "vertices": 75,
+     "alpha": true,
+     "posOffset": 2024400,
+     "uvOffset": 2025300
+    },
+    {
+     "tex": "tex/models_props_tree_pine_mdl_1.png",
+     "vertices": 240,
+     "alpha": true,
+     "posOffset": 2025900,
+     "uvOffset": 2028780
+    },
+    {
+     "tex": "tex/models_props_tree_pine_mdl_2.png",
+     "vertices": 48,
+     "alpha": true,
+     "posOffset": 2030700,
+     "uvOffset": 2031276
+    }
+   ]
+  },
+  "models/props/truck_large-brown.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_truck_large_brown_mdl_0.png",
+     "vertices": 408,
+     "alpha": false,
+     "posOffset": 2031660,
+     "uvOffset": 2036556
+    },
+    {
+     "tex": "tex/models_props_truck_large_brown_mdl_1.png",
+     "vertices": 2643,
+     "alpha": false,
+     "posOffset": 2039820,
+     "uvOffset": 2071536
+    }
+   ]
+  },
+  "models/props/washingmachine.mdl": {
+   "groups": [
+    {
+     "tex": "tex/models_props_washingmachine_mdl_0.png",
+     "vertices": 150,
+     "alpha": false,
+     "posOffset": 2092680,
+     "uvOffset": 2094480
+    }
+   ]
+  }
+ },
+ "instances": [
+  {
+   "model": "models/props/dumpster_lidclosed_green.mdl",
+   "x": 20.551,
+   "y": -12.46,
+   "z": 21.395,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/dumpster_lidclosed.mdl",
+   "x": 21.405,
+   "y": -12.46,
+   "z": 23.787,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/trash_02.mdl",
+   "x": 16.331,
+   "y": -12.6,
+   "z": 23.136,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/trashv01.mdl",
+   "x": 17.009,
+   "y": -12.58,
+   "z": 25.272,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/truck_large-brown.mdl",
+   "x": -2.087,
+   "y": -12.8,
+   "z": 21.515,
+   "rotY": -0.18065
+  },
+  {
+   "model": "models/props/jeep-russian.mdl",
+   "x": -1.249,
+   "y": -12.78,
+   "z": 27.31,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/buzz/buzzer_teatp_ladasp.mdl",
+   "x": 20.012,
+   "y": -12.8,
+   "z": -17.466,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/buzz/buzzer_teatp_toyota.mdl",
+   "x": -14.814,
+   "y": -12.8,
+   "z": 27.206,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_gazel.mdl",
+   "x": -35.17,
+   "y": -12.8,
+   "z": -5.239,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/chernobyl/furgon_kalash.mdl",
+   "x": -41.58,
+   "y": -11.26,
+   "z": 8.39,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/rug_oriental-large3.mdl",
+   "x": -20.572,
+   "y": 0.32,
+   "z": -1.765,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -19.515,
+   "y": 2.82,
+   "z": -2.376,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/dom_kv_1.mdl",
+   "x": -36.974,
+   "y": -12.28,
+   "z": 98.254,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/dom_kv_1.mdl",
+   "x": 13.637,
+   "y": -12.28,
+   "z": 80.184,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_gazel_blue.mdl",
+   "x": -6.235,
+   "y": -12.8,
+   "z": 14.119,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/78rus_ladasp.mdl",
+   "x": -43.805,
+   "y": -12.48,
+   "z": 4.003,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/78rus_toyota_blue.mdl",
+   "x": -35.22,
+   "y": -12.78,
+   "z": 7.882,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/chernobyl/budka_kalash.mdl",
+   "x": 8.86,
+   "y": -11.04,
+   "z": 35.402,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/chernobyl/kotushka_kalash.mdl",
+   "x": 15.665,
+   "y": -11.42,
+   "z": 32.633,
+   "rotY": -2.01325
+  },
+  {
+   "model": "models/chernobyl/kotushka_kalash.mdl",
+   "x": 15.023,
+   "y": -11.82,
+   "z": 34.582,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree_nl.mdl",
+   "x": -10.609,
+   "y": -7.36,
+   "z": 43.564,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 25.413,
+   "y": -12.14,
+   "z": 29.301,
+   "rotY": 1.12834
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -39.354,
+   "y": -11.28,
+   "z": 38.176,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 38.17,
+   "y": -11.84,
+   "z": -14.967,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -29.02,
+   "y": -0.34,
+   "z": 31.492,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -27.689,
+   "y": -0.34,
+   "z": 26.239,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -21.807,
+   "y": -12.46,
+   "z": 27.069,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": -23.602,
+   "y": -12.46,
+   "z": 30.726,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -17.597,
+   "y": -12.46,
+   "z": 30.833,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -20.691,
+   "y": -12.46,
+   "z": 33.169,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -15.371,
+   "y": -12.46,
+   "z": 37.067,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": -18.199,
+   "y": -12.46,
+   "z": 36.165,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 19.351,
+   "y": -12.46,
+   "z": 17.916,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 21.443,
+   "y": -12.46,
+   "z": 9.737,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 23.626,
+   "y": -12.46,
+   "z": 13.056,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 25.961,
+   "y": -12.46,
+   "z": 7.996,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": 24.165,
+   "y": -12.4,
+   "z": 18.194,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": -20.879,
+   "y": -9.92,
+   "z": -20.768,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -22.424,
+   "y": -12.44,
+   "z": -18.136,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -17.125,
+   "y": -12.44,
+   "z": -17.628,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": -17.302,
+   "y": -12.44,
+   "z": -23.893,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -12.522,
+   "y": -0.32,
+   "z": -21.629,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -11.881,
+   "y": -12.46,
+   "z": -26.615,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree_nl.mdl",
+   "x": -17.264,
+   "y": -7.68,
+   "z": -44.485,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -29.401,
+   "y": -0.32,
+   "z": -40.47,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -15.074,
+   "y": -11.18,
+   "z": -13.667,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -19.077,
+   "y": -11.18,
+   "z": -11.558,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": -17.249,
+   "y": -9.92,
+   "z": -31.239,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -10.922,
+   "y": -12.44,
+   "z": -15.957,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -21.599,
+   "y": -12.46,
+   "z": -27.244,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -28.891,
+   "y": -12.48,
+   "z": -8.649,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -26.994,
+   "y": -12.46,
+   "z": -1.256,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -25.695,
+   "y": -12.46,
+   "z": 2.442,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": -24.688,
+   "y": -12.46,
+   "z": 7.286,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -24.711,
+   "y": -12.46,
+   "z": 11.86,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 6.183,
+   "y": -12.44,
+   "z": -13.017,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": 15.486,
+   "y": -9.92,
+   "z": -8.97,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 14.629,
+   "y": -12.46,
+   "z": 1.955,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 9.808,
+   "y": -12.46,
+   "z": -5.243,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 12.293,
+   "y": -12.46,
+   "z": -13.627,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": 7.104,
+   "y": -0.34,
+   "z": 5.682,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 9.054,
+   "y": -12.46,
+   "z": -1.109,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 7.404,
+   "y": -12.44,
+   "z": -9.418,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 9.799,
+   "y": -12.46,
+   "z": 3.0,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -15.954,
+   "y": 2.82,
+   "z": -5.071,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/boxsprings_wreck.mdl",
+   "x": -17.122,
+   "y": 0.32,
+   "z": -4.059,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/props/mattress_wreck.mdl",
+   "x": -17.165,
+   "y": 0.32,
+   "z": -6.082,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/shelves_warehouse.mdl",
+   "x": -13.589,
+   "y": 0.32,
+   "z": -3.621,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -11.129,
+   "y": 2.84,
+   "z": -2.143,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/sink_small.mdl",
+   "x": -9.724,
+   "y": 0.4,
+   "z": -5.108,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/props/washingmachine.mdl",
+   "x": -9.624,
+   "y": 0.32,
+   "z": -3.699,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/bathroom_toilet_dirty.mdl",
+   "x": -9.94,
+   "y": 0.32,
+   "z": -6.368,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -12.775,
+   "y": 2.84,
+   "z": -8.181,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/group_kitchen.mdl",
+   "x": -10.993,
+   "y": 0.34,
+   "z": -8.902,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/sink_small.mdl",
+   "x": -9.301,
+   "y": 0.38,
+   "z": 3.215,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/toilet.mdl",
+   "x": -8.191,
+   "y": 0.34,
+   "z": 4.241,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -12.481,
+   "y": 2.82,
+   "z": 1.207,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -10.774,
+   "y": 2.82,
+   "z": 5.036,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -14.322,
+   "y": 2.84,
+   "z": 5.984,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/furniture_group-hotel02.mdl",
+   "x": -20.052,
+   "y": 0.34,
+   "z": 6.947,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -18.548,
+   "y": 2.84,
+   "z": 7.472,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -3.407,
+   "y": 8.6,
+   "z": -9.126,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": 0.937,
+   "y": 8.6,
+   "z": -8.32,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -2.058,
+   "y": 8.6,
+   "z": -2.493,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/tree_pine.mdl",
+   "x": 70.192,
+   "y": -12.94,
+   "z": 6.198,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -25.638,
+   "y": -0.32,
+   "z": -14.588,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/light_bulb2.mdl",
+   "x": -6.212,
+   "y": 8.6,
+   "z": -7.466,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 15.029,
+   "y": -12.46,
+   "z": -42.127,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": 20.726,
+   "y": -9.92,
+   "z": -43.779,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 35.503,
+   "y": -12.44,
+   "z": -38.436,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 48.275,
+   "y": -12.46,
+   "z": -29.193,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 45.923,
+   "y": -12.46,
+   "z": -32.983,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 54.39,
+   "y": -12.44,
+   "z": -7.485,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 59.68,
+   "y": -12.46,
+   "z": -6.826,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 39.575,
+   "y": -12.46,
+   "z": -1.516,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 45.42,
+   "y": -12.46,
+   "z": -0.311,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 45.48,
+   "y": -12.46,
+   "z": -3.773,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": 16.213,
+   "y": -0.34,
+   "z": -3.007,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 9.372,
+   "y": -12.46,
+   "z": -24.01,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 9.371,
+   "y": -12.44,
+   "z": -29.127,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 31.796,
+   "y": -12.46,
+   "z": -47.986,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 36.181,
+   "y": -12.46,
+   "z": -53.608,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 36.106,
+   "y": -12.46,
+   "z": -49.653,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 42.517,
+   "y": -12.16,
+   "z": -0.889,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 45.641,
+   "y": -11.84,
+   "z": -30.206,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": 58.295,
+   "y": -12.44,
+   "z": -33.663,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 61.898,
+   "y": -12.46,
+   "z": -22.738,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 61.464,
+   "y": -11.22,
+   "z": -27.701,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": 39.474,
+   "y": -0.34,
+   "z": -50.749,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 54.927,
+   "y": -12.46,
+   "z": -4.555,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": 27.348,
+   "y": -12.46,
+   "z": 4.209,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/dom_kv_1.mdl",
+   "x": -33.34,
+   "y": -12.28,
+   "z": 79.883,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/78rus_ladasp_orange.mdl",
+   "x": -60.482,
+   "y": -12.78,
+   "z": 12.549,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/78rus_toyota_red.mdl",
+   "x": -50.479,
+   "y": -12.48,
+   "z": 14.456,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_ladasp_blue.mdl",
+   "x": -52.569,
+   "y": -12.48,
+   "z": 12.229,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_toyota.mdl",
+   "x": -42.596,
+   "y": -12.48,
+   "z": 0.429,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -42.164,
+   "y": -12.46,
+   "z": 16.329,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -64.499,
+   "y": -12.46,
+   "z": 10.755,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": -57.305,
+   "y": -12.46,
+   "z": 2.474,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -46.519,
+   "y": -12.48,
+   "z": 15.314,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -46.946,
+   "y": -12.46,
+   "z": 30.417,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -41.832,
+   "y": -12.46,
+   "z": 32.903,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": -39.759,
+   "y": -0.34,
+   "z": 29.55,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -6.223,
+   "y": -12.46,
+   "z": 12.012,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -10.8,
+   "y": -12.46,
+   "z": 12.754,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": -14.207,
+   "y": -9.92,
+   "z": 14.395,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -19.26,
+   "y": -12.46,
+   "z": 15.35,
+   "rotY": 3.48454
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 24.391,
+   "y": -12.46,
+   "z": 17.816,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree2_nl.mdl",
+   "x": 24.574,
+   "y": -12.46,
+   "z": 22.253,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -65.456,
+   "y": -11.28,
+   "z": 14.558,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -71.633,
+   "y": -11.28,
+   "z": -4.643,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": -70.541,
+   "y": -11.84,
+   "z": -10.151,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/antenna_urban.mdl",
+   "x": -3.875,
+   "y": 15.84,
+   "z": 3.422,
+   "rotY": -0.44245
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": -23.91,
+   "y": -9.92,
+   "z": -33.597,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -15.771,
+   "y": -12.44,
+   "z": -36.439,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_toyota_red.mdl",
+   "x": 37.726,
+   "y": -12.8,
+   "z": -3.956,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_ladasp_blue.mdl",
+   "x": 44.931,
+   "y": -12.78,
+   "z": -12.029,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/chernobyl/furgon_kalash.mdl",
+   "x": 25.414,
+   "y": -11.56,
+   "z": -37.786,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/78rus_ladasp.mdl",
+   "x": 33.784,
+   "y": -12.78,
+   "z": -46.105,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/buzz/buzzer_kt_derevsew.mdl",
+   "x": -48.307,
+   "y": -12.48,
+   "z": -19.194,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": -54.534,
+   "y": -12.44,
+   "z": -17.48,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/pi_tree3_nl.mdl",
+   "x": -66.041,
+   "y": -12.46,
+   "z": -9.74,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": -68.572,
+   "y": -9.92,
+   "z": -3.506,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/78rus_ladasp_orange.mdl",
+   "x": 4.944,
+   "y": -12.78,
+   "z": 19.259,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": 2.87,
+   "y": -9.92,
+   "z": -17.717,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_tree1_nl.mdl",
+   "x": 5.086,
+   "y": -12.46,
+   "z": 7.762,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 56.4,
+   "y": -11.22,
+   "z": -41.884,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/props/pi_treeb_nl.mdl",
+   "x": 6.881,
+   "y": -9.92,
+   "z": -34.078,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/topol1w.mdl",
+   "x": 9.701,
+   "y": -0.34,
+   "z": -18.032,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/furniture_group-hall01.mdl",
+   "x": 1.9,
+   "y": 6.1,
+   "z": 0.086,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/furniture_group-hotel01.mdl",
+   "x": -1.777,
+   "y": 6.1,
+   "z": -5.928,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/furniture_group-wreck.mdl",
+   "x": -7.75,
+   "y": 0.34,
+   "z": 6.845,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_teatp_ladasp.mdl",
+   "x": -34.1,
+   "y": -12.78,
+   "z": 24.641,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/buzz/buzzer_kt_gazel.mdl",
+   "x": 11.672,
+   "y": -12.8,
+   "z": -30.119,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/sat.mdl",
+   "x": -4.418,
+   "y": 11.52,
+   "z": -13.861,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/unitaz.mdl",
+   "x": -8.822,
+   "y": 6.08,
+   "z": -6.746,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/racovina.mdl",
+   "x": -7.591,
+   "y": 6.08,
+   "z": -5.975,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/byxlo_group1.mdl",
+   "x": 1.497,
+   "y": 6.84,
+   "z": -10.261,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/radiator.mdl",
+   "x": 3.111,
+   "y": 6.46,
+   "z": -8.416,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/dom_school-1.mdl",
+   "x": 18.762,
+   "y": -11.52,
+   "z": 67.714,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/dm_g_truck.mdl",
+   "x": 16.421,
+   "y": -12.48,
+   "z": 39.328,
+   "rotY": -0.44245
+  },
+  {
+   "model": "models/man/shit.mdl",
+   "x": -1.588,
+   "y": -12.48,
+   "z": -15.212,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": 11.464,
+   "y": -12.4,
+   "z": 0.643,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": 5.943,
+   "y": -12.4,
+   "z": -20.47,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": 14.392,
+   "y": -12.4,
+   "z": -9.237,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": 9.212,
+   "y": -12.44,
+   "z": -24.696,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": 51.225,
+   "y": -12.4,
+   "z": -47.873,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/grasdw.mdl",
+   "x": 57.277,
+   "y": -12.16,
+   "z": -6.18,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -8.565,
+   "y": -12.4,
+   "z": -22.086,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -22.107,
+   "y": -12.4,
+   "z": -31.522,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": -12.526,
+   "y": -12.4,
+   "z": -22.71,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": -28.8,
+   "y": -12.4,
+   "z": -12.143,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -32.334,
+   "y": -12.4,
+   "z": -3.066,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -26.161,
+   "y": -12.4,
+   "z": 7.621,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -26.802,
+   "y": -12.4,
+   "z": 29.617,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/bush_japan_group1_nl.mdl",
+   "x": -24.738,
+   "y": -12.4,
+   "z": 25.822,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": -19.506,
+   "y": -12.4,
+   "z": 14.78,
+   "rotY": -2.79865
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": 24.101,
+   "y": -12.4,
+   "z": 10.401,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": 44.645,
+   "y": -12.4,
+   "z": -18.659,
+   "rotY": -0.44245
+  },
+  {
+   "model": "models/man/bush_evergreen_group1_nl.mdl",
+   "x": 20.236,
+   "y": -12.44,
+   "z": -28.972,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/props/bicycle_dead.mdl",
+   "x": -0.661,
+   "y": -11.84,
+   "z": 3.145,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/buzz/buzzer_teatp_ladasp.mdl",
+   "x": -21.502,
+   "y": -12.8,
+   "z": -60.28,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/3dm_seagull.mdl",
+   "x": -55.371,
+   "y": 20.48,
+   "z": 4.799,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/hl2_apc001.mdl",
+   "x": -67.201,
+   "y": -11.24,
+   "z": 42.683,
+   "rotY": -1.75145
+  },
+  {
+   "model": "models/props/bobik_rus-1.mdl",
+   "x": 49.194,
+   "y": -12.48,
+   "z": -70.572,
+   "rotY": -3.58405
+  },
+  {
+   "model": "models/props/bobik_rus-1.mdl",
+   "x": 46.367,
+   "y": -12.48,
+   "z": -69.923,
+   "rotY": 0.34295
+  },
+  {
+   "model": "models/man/njeep.mdl",
+   "x": -32.074,
+   "y": -11.68,
+   "z": -40.344,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/vans.mdl",
+   "x": -34.606,
+   "y": -12.78,
+   "z": -43.687,
+   "rotY": -2.01325
+  },
+  {
+   "model": "models/man/vans.mdl",
+   "x": -27.058,
+   "y": -12.48,
+   "z": -42.475,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/njeep.mdl",
+   "x": -22.816,
+   "y": -11.36,
+   "z": -43.501,
+   "rotY": -3.58405
+  },
+  {
+   "model": "models/man/78rus_icarus.mdl",
+   "x": -22.786,
+   "y": -12.64,
+   "z": -63.877,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/radiator.mdl",
+   "x": -17.35,
+   "y": 0.66,
+   "z": -8.267,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/radiator.mdl",
+   "x": -12.51,
+   "y": 0.66,
+   "z": -9.996,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/radiator.mdl",
+   "x": -8.721,
+   "y": 0.66,
+   "z": 9.06,
+   "rotY": -1.22785
+  },
+  {
+   "model": "models/man/3dm_seagull.mdl",
+   "x": 27.554,
+   "y": 20.48,
+   "z": -22.75,
+   "rotY": 1.91374
+  },
+  {
+   "model": "models/man/hl2_apc001.mdl",
+   "x": 73.165,
+   "y": -11.24,
+   "z": 4.117,
+   "rotY": -0.44245
+  }
+ ],
+ "failed": []
+}
