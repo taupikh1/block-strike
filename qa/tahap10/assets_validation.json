@@ -202,6 +202,11 @@
       "detail": null
     },
     {
+      "name": "JS syntax game-systems11.js",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "JS syntax game-systems8.js",
       "pass": true,
       "detail": null
@@ -297,7 +302,7 @@
       "detail": null
     }
   ],
-  "passed": 57,
+  "passed": 58,
   "failed": 0,
   "errors": []
 }

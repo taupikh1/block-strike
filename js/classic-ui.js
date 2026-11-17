@@ -10,6 +10,7 @@ function buyReason(item){
  const id=item.id,w=W[id];if(!running||buyTime<=0||!inBuyZone())return 'BUY ZONE CLOSED';
  if(w?.team&&w.team!==playerTeam)return w.team+' ONLY';
  if(w&&inventory.includes(id))return 'OWNED';
+ if((id==='elite'&&inventory.includes('shield'))||(id==='shield'&&inventory.includes('elite')))return 'DUAL ELITES NOT COMPATIBLE WITH SHIELD';
  if(id==='defuse')return 'ELIMINATION MODE';
  if(id==='kevlar'&&armor>=100||id==='helmet'&&armor>=100&&helmet||id==='nightvision'&&nightVision)return 'OWNED';
  if(['he','flash','smoke'].includes(id)&&grenades[id]>=(id==='flash'?2:1))return 'FULL';

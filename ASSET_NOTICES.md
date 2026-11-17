@@ -56,3 +56,7 @@ Alpha 45 tekstur foliage map hasil ekspor Tahap 7 diperbaiki (palette key hitam 
 - `hd_blood_packed_by_ralex_08.7z`: file GoldSrc decals WAD3 dua varian; sebagian blood/bigblood dikonversi menjadi PNG RGBA.
 
 **Hak penggunaan dan redistribusi paket mod pihak ketiga belum diverifikasi.** Keempat arsip aslinya tidak disertakan di rilis untuk menghindari menggandakan sumber mentah. Hasil konversinya tetap mungkin tunduk pada hak cipta paket asli. Nilai penerbitan publik perlu ditinjau oleh pemilik proyek.
+
+
+### Tahap 11 character reskin
+`assets/models/t/arctic.glb` dan `assets/ui/classes/arctic.png` merupakan **reskin warna dari aset karakter pengguna yang telah tersedia pada Tahap 10**, bukan model geometri orisinal baru. Hak model/tekstur sumber mengikuti hak pemilik aslinya. Tidak ada model baru yang diunduh untuk Tahap 11.

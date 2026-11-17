@@ -1,6 +1,8 @@
+> **Tahap 11 — CONDITIONAL (18 Nov 2026).** Radio Z/X/C masing-masing 9 perintah + MORE 6, radio scroll mobile, scoreboard kompak 2 kolom, ekonomi bot dengan pistol/$800 awal, bot crouch prosedural, shield dapat memakai Desert Eagle dan pistol tunggal lain, Arctic sekarang memakai reskin salju yang berbeda dari Phoenix. QA 39/39 khusus + 51/51 regresi 10 + 37/37 regresi 9 lulus pada **renderer simulasi**; WebGL asli dan Safari fisik belum teruji. Lihat `QA_TAHAP11.md`.
+
 > **Tahap 10 — CONDITIONAL.** Radio command, bot difficulty, match setup 2–32, scoreboard dan efek aset telah diimplementasikan. QA 51 tes simulasi Tahap 10 + 37 regresi Tahap 9 + 57 cek aset/JS lulus, tetapi **perangkat Safari iPhone fisik dan WebGL asli belum diuji**. Lihat `QA_TAHAP10.md`.
 
-# BLOCK STRIKE — Tahap 10
+# BLOCK STRIKE — Tahap 11
 
 FPS 3D single-player melawan bot dengan Three.js/WebGL. Build ini melanjutkan Tahap 7; peta, collision BSP, pintu, props, karakter, dan graf navigasi asli dipertahankan.
 
@@ -99,3 +101,9 @@ Seluruh kode tetap statis untuk GitHub Pages. Fitur di atas telah diimplementasi
 - **ASET:** `assets/phase10/audio/{radio,bot}/` adalah hasil kompresi MP3 dari dua RAR unggahan pengguna. `assets/phase10/fx/` berisi sprites PNG dari 7Z muzzle flash dan WAD3 darah. Hanya klip terpilih digunakan untuk menghemat download iPhone.
 - **Performance:** 25–32 pemain ditandai eksperimental sampai ada QA GPU/Safari fisik.
 - **QA:** `python tools/qa/tahap10_simulated.py`, `python tools/qa/tahap9_regression10.py`, `python tools/qa/validate_tahap10.py`, dan `python tools/qa/validate_assets.py`.
+
+## Tahap 11: kontrol baru
+- PC: buka radio `Z`, `X`, `C`; pilih perintah menggunakan `1` sampai `9`, ganti tab atau klik MORE untuk tambahan. `Tab` menampilkan scoreboard kedua tim secara bersamaan, `Ctrl` tetap untuk crouch pemain.
+- Mobile: tombol radio; daftar opsi di-scroll dengan usapan; scoreboard CT/T berdampingan dengan scroll independen; tombol tutup `×`.
+- Bot: crouch dilakukan otomatis secara situasional (termasuk perintah Hold); semua bot mulai ronde pertama dengan pistol/$800 dan membeli senjata di awal ronde berikutnya jika mampu. Data uang setiap bot terlihat di scoreboard.
+- Shield: selagi shield dipilih, klik kanan/tombol aksi mengangkat atau menurunkan; setelah diturunkan pistol tunggal termasuk Desert Eagle dapat digunakan. Dual Elites tidak kompatibel.

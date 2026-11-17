@@ -134,6 +134,7 @@ const Phase9=(()=>{
  function pickupNearest(){
   if(blocked())return false;
   const d=nearestDrop();if(!d)return false;
+  if((d.id==='elite'&&inventory.includes('shield'))||(d.id==='shield'&&inventory.includes('elite'))){say('DUAL ELITES CANNOT BE USED WITH SHIELD');return false}
   const slot=W[d.id].slot,old=inventory.find(k=>W[k].slot===slot);
   if(old){const state=A[old];makeDrop(old,P.pos.clone().add(new THREE.Vector3(.45,0,.35)),state?.mag,state?.res);inventory=inventory.filter(k=>k!==old)}
   inventory.splice(slot==='pistol'?0:Math.min(1,inventory.length),0,d.id);

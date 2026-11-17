@@ -198,7 +198,7 @@ function playWeaponAnimation(kind){
  if(kind==='idle')state.currentKind='idle';
 }
 function mkGun(k){
- if(weaponInstances[k]){flash=weaponInstances[k].userData.flash;return weaponInstances[k]}
+ if(weaponInstances[k]){flash=weaponInstances[k].userData.flash;if(k==='shield'&&typeof Phase11!=='undefined')Phase11.updateShieldView(weaponInstances[k]);return weaponInstances[k]}
  const g=new THREE.Group(),w=W[k];
  if(weaponModels[k]){
   const gltf=weaponModels[k],model=THREE.SkeletonUtils&&THREE.SkeletonUtils.clone?THREE.SkeletonUtils.clone(gltf.scene):gltf.scene.clone(true);
@@ -212,7 +212,7 @@ function mkGun(k){
   });
   g.userData.weaponAnimation=state;
   flash=new THREE.Mesh(new THREE.SphereGeometry(.035,6,6),new THREE.MeshBasicMaterial({color:0xffdd55}));flash.position.set(0,.02,-Math.max(.55,w.len+.15));flash.visible=false;g.add(flash);
-  g.userData.flash=flash;weaponInstances[k]=g;return g;
+  g.userData.flash=flash;weaponInstances[k]=g;if(k==='shield'&&typeof Phase11!=='undefined')Phase11.updateShieldView(g);return g;
  }
  ensureWeaponModel(k).then(()=>{if(cur()===k&&viewScene){disposeFallback(vm);viewScene.remove(vm);vm=mkGun(k);viewScene.add(vm);playWeaponAnimation('draw')}}).catch(()=>say('MODEL '+w.n+' GAGAL DIMUAT'));
  const bx=(a,b,c,x,y,z,col)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(a,b,c),new THREE.MeshLambertMaterial({color:col}));m.position.set(x,y,z);g.add(m);return m};
@@ -278,7 +278,7 @@ function mkModel(team,x,z,gl){
  const headP=new THREE.Mesh(new THREE.BoxGeometry(.3,.3,.3),pm);headP.position.y=1.62;
  bodyP.userData={part:'body',bot:b};headP.userData={part:'head',bot:b};
  root.add(bodyP,headP);b.parts.push(bodyP,headP);
- root.position.set(x,0,z);S.add(root);bots.push(b);equipBot(b,bots.length-1);return b;
+ root.position.set(x,0,z);S.add(root);bots.push(b);return b;
 }
 function setAnim(b,name,once){
  if(!b.mixer||!b.acts[name]||b.cur===name)return;
@@ -300,15 +300,16 @@ function startRound(){
  for(let i=0;i<match.enemies;i++){
   const x=(enemySpawn?.[0]||0)+((i%5)-2)*1.85,z=enemyZ+Math.floor(i/5)*(enemyTeam==='CT'?-1.8:1.8);
   const b=enemyTeam==='T'?mkBot(x,z,i,'T'):mkCT(x,z,CTN[(round+i)%CTN.length],'CT');
-  if(!b.weaponId)equipBot(b,i);b.name=(enemyTeam==='T'?TN[(round+i)%TN.length]:CTN[(round+i)%CTN.length]).toUpperCase();Phase10.registerBot(b,i);
+  b.name=(enemyTeam==='T'?TN[(round+i)%TN.length]:CTN[(round+i)%CTN.length]).toUpperCase();Phase10.registerBot(b,i);Phase10.prepareBotRound(b);
  }
  for(let i=0;i<match.allies;i++){
   const x=(ownSpawn?.[0]||0)+((i%5)-2)*1.85,z=ownZ+Math.floor(i/5)*(allyTeam==='CT'?-1.8:1.8);
   const b=allyTeam==='T'?(i===0&&TC[playerClass]?mkModel('T',x,z,TC[playerClass]):mkBot(x,z,i,'T'))
    :mkCT(x,z,i===0?playerClass:CTN[(round+i)%CTN.length],'CT');
-  if(!b.weaponId)equipBot(b,i);b.name=(i===0?playerClass:(allyTeam==='T'?TN[(round+i)%TN.length]:CTN[(round+i)%CTN.length])).toUpperCase();Phase10.registerBot(b,i);
+  b.name=(i===0?playerClass:(allyTeam==='T'?TN[(round+i)%TN.length]:CTN[(round+i)%CTN.length])).toUpperCase();Phase10.registerBot(b,i);Phase10.prepareBotRound(b);
  }
  bots.forEach(b=>{if(window.bspCol){b.g.position.y=BSP.snapSpawn(bspCol,b.g.position.x,b.g.position.z);if(b.body)b.body.position.y=-.72;b.parts.forEach(p=>p.position.y-=.72)}});
+ bots.forEach(b=>{b.baseBodyY=b.body?.position.y??0;Phase11?.initBotPose(b)});
  const spawn=activeMapData?.spawn?.[playerTeam==='CT'?'ct':'t'];P.pos.set(spawn?.[0]??0,spawn?.[1]??0,spawn?.[2]??(playerTeam==='CT'?26:-26));
  if(window.bspCol)P.pos.y=BSP.snapSpawn(bspCol,P.pos.x,P.pos.z);P.yaw=playerTeam==='CT'?0:Math.PI;
  P.hp=Math.min(100,P.hp+40);buyTime=15;roundTime=120;
@@ -317,7 +318,7 @@ function startRound(){
 }
 
 function los(b,tp){
- const o=V(b.g.position.x,b.g.position.y+(window.bspCol ? .56 : 1.5),b.g.position.z),t=V(tp.x,tp.y+(window.bspCol ? .56 : 1.5),tp.z),d=t.clone().sub(o),L=d.length();
+ const o=V(b.g.position.x,b.g.position.y+(window.bspCol ? .56 : 1.5)-(b.crouching?(window.bspCol?.18:.36):0),b.g.position.z),t=V(tp.x,tp.y+(window.bspCol ? .56 : 1.5),tp.z),d=t.clone().sub(o),L=d.length();
  ray.set(o,d.normalize());ray.far=L;return ray.intersectObjects(obsM).length==0;
 }
 function tgtFor(b){
@@ -329,6 +330,7 @@ function tgtFor(b){
 function botUpdate(b,dt){
  const p=b.g.position;
  if(b.mixer)b.mixer.update(dt);
+ if(!b.dead)Phase11.updateBotPose(b,dt);
  if(b.dead){b.dead+=dt;if(b.mixer)setAnim(b,'death1',true);else b.g.rotation.x=Math.min(1.5,b.dead*5)*-1;
   if(b.dead>2.5){disposeBot(b);bots.splice(bots.indexOf(b),1)}return}
  if(b.blinded>0){b.blinded=Math.max(0,b.blinded-dt);b.los=false;b.cd=Math.max(b.cd,.3);return}
@@ -340,6 +342,7 @@ function botUpdate(b,dt){
  const target=hasEnemy?tg.pos:order.pos,dx=target.x-p.x,dz=target.z-p.z,dist=Math.hypot(dx,dz)||1;
  const ux=dx/dist,uz=dz/dist,baseSpeed=(b.skill?.speed||1)*(2.65+Math.min(round,10)*.065);
  let mx=0,mz=0,sp=baseSpeed;
+ Phase11.decideBotCrouch(b,hasEnemy,order,step);if(b.crouching)sp*=.59;
  b.st-=step;if(b.st<0){b.st=1+rnd()*2;b.strafe=rnd()<.5?-1:1}
  const ox=p.x,oz=p.z;
  if(hasEnemy){
@@ -362,7 +365,7 @@ function botUpdate(b,dt){
  const needsMove=moveLen>.05;
  if(needsMove&&activeMapData?.id==='es_kvartal'&&!hasEnemy){LayoutNav.step(b,destination,sp,step)}
  else if(needsMove&&window.NAV_BOTS&&window.bspCol&&window.NavGraph&&NavGraph.graph()&&!hasEnemy){NavGraph.botStep(b,destination,sp,step)}
- else if(window.bspCol){const st={pos:p.toArray(),vy:b.vy||0,on:false};BSP.movePlayer(bspCol,bspCol.T,st,[mx*sp,mz*sp],step,false);p.fromArray(st.pos);b.vy=st.vy}
+ else if(window.bspCol){const st={pos:p.toArray(),vy:b.vy||0,on:false};BSP.movePlayer(bspCol,bspCol.T,st,[mx*sp,mz*sp],step,false,!!b.crouching);p.fromArray(st.pos);b.vy=st.vy}
  else{p.x+=mx*sp*step;p.z+=mz*sp*step;collide(p,.4)}
  const moved=Math.hypot(p.x-ox,p.z-oz);
  if(needsMove&&moved<sp*step*.15)b.stuck=(b.stuck||0)+step;else b.stuck=0;
@@ -377,7 +380,7 @@ function botShot(b,tg){
  const w=W[b.weaponId];if(b.ammo<=0){b.ammo=w.mag;b.cd=w.rl;return}
  b.ammo--;b.burst=(b.burst||0)+1;
  const burstSize=w.auto?3:1;b.cd=b.burst<burstSize?w.rate:Math.max(w.rate,.85+rnd()*.45);if(b.burst>=burstSize)b.burst=0;
- const d=tg.dist,o=V(b.g.position.x,b.g.position.y+1.35,b.g.position.z);
+ const d=tg.dist,o=V(b.g.position.x,b.g.position.y+1.35-(b.crouching?.34:0),b.g.position.z);
  const moving=Math.hypot(jx,jy)>.3||K.w||K.s;
  const acc=Math.max(.08,Math.min(.65,b.accuracy-d/b.effectiveRange*.35))*(moving?.8:1);
  const hit=rnd()<acc,tp=tg.pos;
@@ -385,13 +388,13 @@ function botShot(b,tg){
  tracer(o,t,b.team==='CT'?0x66aaff:0xffcc55);
  playOriginalSound(w.sound,Math.max(.025,.23/(1+d*.08)),.15,1400);Phase10.muzzleBot(b);b.lastShot={sound:w.sound,damage:b.damage,at:performance.now(),cooldown:b.cd};
  if(hit){
-  if(tg.isP)hurt(b.damage,b.g.position);
+  if(tg.isP)hurt(b.damage,b.g.position,'bullet',b);
   else damageBot(tg.bot,b.damage,'body',null,false,b);
  }
 }
-function hurt(d,source=null,kind='bullet'){
+function hurt(d,source=null,kind='bullet',killer=null){
  if(over)return;if(kind==='bullet'&&source&&Phase9.blockShieldHit(source)){Phase9.shieldImpact();return}let taken=d;if(armor>0){const absorb=Math.min(armor,d*.55);armor-=absorb;taken-=absorb*.7;}P.hp-=taken;dmgA=.7;hud();
- if(P.hp<=0){P.hp=0;Phase10.onPlayerDeath();Phase10.roundEnd(playerTeam==='CT'?'T':'CT');over=true;running=false;if(document.pointerLockElement)document.exitPointerLock();
+ if(P.hp<=0){P.hp=0;Phase10.onPlayerDeath(killer);Phase10.roundEnd(playerTeam==='CT'?'T':'CT');over=true;running=false;if(document.pointerLockElement)document.exitPointerLock();
   $('menu').querySelector('.menu-copy span').textContent='You were eliminated in round '+round+' with '+kills+' kills. Choose PLAY GAME to restart.';$('go').textContent='PLAY AGAIN';$('menu').classList.remove('hidden');document.body.classList.remove('playing');$('resumeBtn').classList.add('hidden');resetInputs();reloadSfxToken++}
 }
 /* FX */
@@ -424,7 +427,8 @@ function shoot(){
 }
 const targets=()=>{const a=obsM.slice();bots.forEach(b=>{if(!b.dead&&b.team!==playerTeam)a.push(...b.parts)});return a};
 function damageBot(b,d,part,pt,byPlayer=true,attacker=null){
- const head=part=='head';b.hp-=d*(head?3:part=='leg'?.75:1);
+ const head=part=='head';let damage=d*(head?3:part=='leg'?.75:1);
+ if((b.armor||0)>0){const absorb=Math.min(b.armor,damage*.55);b.armor-=absorb;damage-=absorb*.7;}b.hp-=damage;
  if(byPlayer){hitT=.15;$('cross').classList.add('hit')}
  if(pt){burst(pt,head?0xffd166:0xb8402e,5);Phase10.bloodImpact(b,pt)}
  if(byPlayer&&head)playOriginalSound('headshot2.wav',.42,.1,1600);else if(byPlayer&&cur()==='knife')playOriginalSound('knife_hit1.wav',.32,.1,1200);else snd(.2,.08,600);
@@ -447,7 +451,7 @@ function killFeed(victim,head){
 let sbOpen=false,crossSpread=4;
 function renderScoreboard(){Phase10.renderBoard()}
 
-function setScoreboard(on){sbOpen=on;$('scoreboard').classList.toggle('hidden',!on);if(on)renderScoreboard()}
+function setScoreboard(on){sbOpen=on;$('scoreboard').classList.toggle('hidden',!on);$('scoreboard').setAttribute('aria-hidden',String(!on));if(on)renderScoreboard()}
 addEventListener('keydown',e=>{if(e.code==='Tab'){e.preventDefault();if(running)setScoreboard(true)}});
 addEventListener('keyup',e=>{if(e.code==='Tab')setScoreboard(false)});
 addEventListener('blur',()=>setScoreboard(false));

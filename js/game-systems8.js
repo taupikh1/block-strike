@@ -5,15 +5,22 @@ function loadHeld(id){
  if(heldModels[id])return Promise.resolve(heldModels[id]);
  return heldLoads[id]||(heldLoads[id]=new Promise((ok,no)=>new THREE.GLTFLoader().load('assets/models/held/'+id+'.glb',g=>{heldModels[id]=g;ok(g)},undefined,no)));
 }
-function equipBot(b,i){
- const id=BOT_POOLS[b.team][i%BOT_POOLS[b.team].length],w=W[id];
- Object.assign(b,{weaponId:id,weaponModel:null,damage:w.dmg*.38,fireRate:w.rate,effectiveRange:w.slot==='pistol'?32:Math.max(38,70-w.sp*800),accuracy:Math.max(.35,.62-w.sp*5),sound:w.sound,ammo:w.mag,burst:0});
+function equipBot(b,i,preferredId=null){
+ // No random rifles on the pistol round. Changing loadout must detach the
+ // previous model and invalidate pending asynchronous GLTF loads.
+ const id=preferredId||BOT_POOLS[b.team][i%BOT_POOLS[b.team].length],w=W[id];
+ if(!w||!b)return;
+ const token=b.weaponLoadToken=(b.weaponLoadToken||0)+1;
+ if(b.weaponModel?.length){for(const mesh of b.weaponModel)mesh.parent?.remove(mesh)}
+ b.weaponModel=[];
+ Object.assign(b,{weaponId:id,damage:w.dmg*.38,fireRate:w.rate,
+  effectiveRange:(w.slot==='pistol'?32:Math.max(38,70-w.sp*800))*(b.skill?.range||1),
+  accuracy:Math.min(.72,Math.max(.10,Math.max(.35,.62-w.sp*5)*(b.skill?.aim||1))),sound:w.sound,ammo:w.mag,reserve:w.res,burst:0});
  loadHeld(id).then(g=>{
-  if(!b.g.parent||b.dead||!b.body)return;
-  b.weaponModel=[];
+  if(!b.g.parent||b.dead||!b.body||b.weaponLoadToken!==token)return;
   g.scene.traverse(o=>{if(!o.isMesh)return;
    const boneName=(o.userData.attachBone||'').replace(/\s/g,'_');
-   const bone=b.body.getObjectByName(boneName);if(!bone){console.warn('Missing weapon attachment bone',boneName);return}
+   const bone=b.body.getObjectByName(boneName)||b.body.getObjectByName(o.userData.attachBone||'');if(!bone){console.warn('Missing weapon attachment bone',boneName);return}
    const mesh=o.clone();mesh.frustumCulled=false;bone.add(mesh);b.weaponModel.push(mesh);
   });
  }).catch(e=>console.warn('Held model failed',id,e));

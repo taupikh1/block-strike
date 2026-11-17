@@ -1,0 +1,41 @@
+/* BLOCK STRIKE Tahap 11: radio extended and compact double-column scoreboard. */
+#radioOverlay{width:min(390px,60vw);max-height:min(88dvh,470px);overflow:hidden;display:flex;flex-direction:column;gap:5px;padding:9px;touch-action:auto}
+#radioOverlay.hidden{display:none!important}
+#radioOverlay header{flex:0 0 auto;margin:0}
+#radioOverlay header b{font-size:clamp(11px,1.5vw,14px)}
+#radioOverlay .radio-tabs{flex:0 0 auto;display:flex;gap:4px;overflow-x:auto;overscroll-behavior-x:contain;margin:0;padding-bottom:3px}
+#radioOverlay .radio-tabs button{flex:1 0 auto;min-width:52px;padding:7px 5px!important;font-size:10px!important}
+#radioOverlay .radio-tabs button.selected{background:#856a34;color:#fff1c5;border-color:#e7bf68}
+#radioCommands{display:block;flex:1 1 auto;min-height:0;max-height:min(65dvh,340px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding-right:5px;scrollbar-width:thin;scrollbar-color:#9b8758 #28362c}
+#radioCommands button{display:block;width:100%;min-height:32px;font-size:11px;margin-bottom:4px;white-space:normal;line-height:1.2;text-align:left;padding:7px 10px;touch-action:manipulation}
+#radioCommands button:last-child{margin-bottom:0}
+#scoreboard{padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));box-sizing:border-box}
+#scoreboard .sb-box{width:min(1180px,96vw);height:min(86dvh,590px);max-height:86dvh;min-height:0;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box;padding:5px 7px;backdrop-filter:blur(4px)}
+#scoreboard .sb-topline{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #665739;min-height:24px}
+#scoreboard #sbHead{flex:1;padding:4px;font-size:clamp(10px,1.4vw,15px);border:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scoreboard #scoreClose{flex:0 0 auto;font-size:20px;padding:0px 9px;color:#eed6a5;background:#24322b;border:1px solid #786647;cursor:pointer}
+#scoreboard .sb-cols{display:none!important}
+#scoreboard #sbBody{flex:1;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;overflow:hidden}
+#scoreboard .sb-team-column{display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden}
+#scoreboard .sb-team-label{flex:0 0 auto;font-size:clamp(9px,1.35vw,13px);padding:4px 5px;min-height:18px;box-sizing:border-box;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#scoreboard .sb-team-column.sb-ct .sb-team-label{color:#85c3e7}
+#scoreboard .sb-team-column.sb-t .sb-team-label{color:#e89b92}
+#scoreboard .sb-mini-head,#scoreboard .sb-compact-row{display:grid;grid-template-columns:minmax(0,1fr) 23px 23px 48px 34px;gap:2px;align-items:center;box-sizing:border-box;padding:1px 4px;font-size:clamp(8px,1.2vw,11px);line-height:1.15;min-height:17px}
+#scoreboard .sb-mini-head{flex:0 0 auto;background:#142019;color:#d9c5a1;font-weight:700;border-bottom:1px solid #405143}
+#scoreboard .sb-team-rows{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;scrollbar-width:thin;scrollbar-color:#837851 #1b2620}
+#scoreboard .sb-compact-row{white-space:nowrap;border-bottom:1px solid #ffffff0b}
+#scoreboard .sb-compact-row:nth-child(even){background:#ffffff0d}
+#scoreboard .sb-compact-row.me{background:#9c833e55;color:#fff0c6!important;font-weight:800}
+#scoreboard .sb-compact-row.dead{opacity:.64}
+#scoreboard .sb-team-column.sb-ct .sb-compact-row{color:#a8d4f0}
+#scoreboard .sb-team-column.sb-t .sb-compact-row{color:#e8a9a1}
+#scoreboard .sb-compact-row span{overflow:hidden;text-overflow:ellipsis;min-width:0}
+#scoreboard .sb-mini-head span:not(:first-child),#scoreboard .sb-compact-row span:not(:first-child){text-align:right}
+@media (orientation:landscape) and (max-height:500px){
+ #scoreboard .sb-box{width:min(1180px,98vw);height:90dvh;max-height:90dvh;padding:3px}
+ #scoreboard .sb-mini-head,#scoreboard .sb-compact-row{font-size:clamp(8px,1.4vh,10px);min-height:15px;padding:1px 3px}
+ #scoreboard .sb-team-label{font-size:10px;padding:3px 4px;min-height:17px}
+ #scoreboard #sbBody{gap:4px}
+ #radioOverlay{width:min(380px,61vw);max-height:89dvh}
+ #radioCommands button{min-height:30px;font-size:11px;padding:6px 9px}
+}

@@ -1,3 +1,7 @@
+## Tahap 11 — 18 November 2026
+
+Baca `CHANGELOG_TAHAP11.md` untuk daftar perubahan dan `QA_TAHAP11.md` untuk status pengujian.
+
 # BLOCK STRIKE Tahap 10 — 17 November 2026
 
 - [10A] Radio Commands: Z/X/C dan tombol mobile; Follow, Cover, Hold, Attack, Backup, Regroup; respons bot dari Bot Chatter Remixed, global dan per-bot cooldown.

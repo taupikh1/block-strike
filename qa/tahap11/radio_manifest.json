@@ -1,0 +1,101 @@
+{
+  "cover": {
+    "sound": "ct_coverme"
+  },
+  "takepoint": {
+    "sound": "takepoint"
+  },
+  "hold": {
+    "sound": "com_getinpos"
+  },
+  "regroup": {
+    "sound": "regroup"
+  },
+  "follow": {
+    "sound": "followme"
+  },
+  "takingfire": {
+    "sound": "fireassis"
+  },
+  "go": {
+    "sound": "go"
+  },
+  "fallback": {
+    "sound": "fallback"
+  },
+  "stick": {
+    "sound": "sticktog"
+  },
+  "getinpos": {
+    "sound": "com_getinpos"
+  },
+  "attack": {
+    "sound": "stormfront"
+  },
+  "report": {
+    "sound": "com_reportin"
+  },
+  "roger": {
+    "sound": "roger"
+  },
+  "enemy": {
+    "sound": "ct_enemys"
+  },
+  "backup": {
+    "sound": "ct_backup"
+  },
+  "sectorclear": {
+    "sound": "clear"
+  },
+  "inpos": {
+    "sound": "ct_inpos"
+  },
+  "reporting": {
+    "sound": "ct_reportingin"
+  },
+  "negative": {
+    "sound": "negative"
+  },
+  "enemydown": {
+    "sound": "enemydown"
+  },
+  "moveout": {
+    "sound": "moveout"
+  },
+  "letsgo": {
+    "sound": "letsgo"
+  },
+  "circleback": {
+    "sound": "circleback"
+  },
+  "meetme": {
+    "sound": "meetme"
+  },
+  "followcom": {
+    "sound": "com_followcom"
+  },
+  "fireinhole": {
+    "sound": "ct_fireinhole"
+  },
+  "imhit": {
+    "sound": "ct_imhit"
+  },
+  "locknload": {
+    "sound": "locknload"
+  },
+  "matedown": {
+    "sound": "matedown"
+  },
+  "getout": {
+    "sound": "getout"
+  },
+  "position": {
+    "sound": "position"
+  },
+  "ctpoint": {
+    "sound": "ct_point"
+  },
+  "ctaffirm": {
+    "sound": "ct_affirm"
+  }
+}

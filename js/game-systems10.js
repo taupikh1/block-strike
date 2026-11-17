@@ -44,7 +44,7 @@ const Phase10=(()=>{
  function resetMatch(){statCache.clear();roster=[];playerDeaths=0;matchStart=now();roundWinner=null;closeRadio();}
  function roundStart(){roster=[];roundWinner=null;grenadeBudget={CT:0,T:0};radioSeq++;closeRadio()}
  function registerBot(b,sideIndex){
-  const id=`${b.team}-${sideIndex}`,prev=statCache.get(id)||{kills:0,deaths:0};
+  const id=`${b.team}-${sideIndex}`,prev=statCache.get(id)||{kills:0,deaths:0,money:800};
   b.botId=id;b.teamIndex=sideIndex;
   b.name=`${b.team} ${String(sideIndex+1).padStart(2,'0')} · ${(b.name||'BOT').toUpperCase()}`;
   b.skill=PROFILES[config.difficulty];
@@ -52,29 +52,81 @@ const Phase10=(()=>{
   b.effectiveRange=(b.effectiveRange||42)*b.skill.range;
   b.cd=Math.max(b.cd||0,b.skill.reaction*.6);
   b.aiAccum=(sideIndex%4)*.012;b.scanTimer=(sideIndex%6)*.045;
+  b.money=clamp(prev.money??800,0,16000);b.armor=prev.armor??0;
   b.noticeElapsed=0;b.seenId=null;b.visibleEnemy=null;b.memory=null;b.radioOrder=null;b.grenadeUsed=false;
-  const rec={id,team:b.team,name:b.name,bot:b,kills:prev.kills,deaths:prev.deaths,alive:true};
+  const rec={id,team:b.team,name:b.name,bot:b,kills:prev.kills,deaths:prev.deaths,money:b.money,alive:true};
   statCache.set(id,prev);roster.push(rec);return b;
  }
+ // Each side keeps individual money across rounds; $800 is the first-round balance.
+ function creditBot(b,amount,reason=''){
+  if(!b||!b.botId||amount<=0)return 0;
+  const value=Math.floor(amount);b.money=clamp((b.money??800)+value,0,16000);
+  const rec=roster.find(r=>r.bot===b),stored=statCache.get(b.botId)||{kills:0,deaths:0};
+  stored.money=b.money;statCache.set(b.botId,stored);
+  if(rec)rec.money=b.money;
+  return b.money;
+ }
+ function prepareBotRound(b){
+  if(!b)return;
+  const pistol=b.team==='CT'?'usp':'glock18';
+  // Round one always starts with the free pistol (never a randomly assigned rifle).
+  let chosen=pistol;
+  if(round>1){
+   const team=b.team,limit=clamp((b.money??800)-Math.min(650,(b.money??800)*.17),0,16000);
+   const options=team==='CT'?['m4a1','famas','mp5','aug','ump45','p90','scout','awp','m249']
+    :['ak47','galil','mac10','mp5','ump45','p90','scout','awp','m249'];
+   const affordable=options.filter(id=>W[id]&&W[id].price<=limit);
+   if(affordable.length){
+    const preferred=affordable.filter(id=>['ak47','m4a1','famas','galil','mp5','aug'].includes(id));
+    const pool=preferred.length?preferred:affordable;
+    chosen=pool[(b.teamIndex+round*3)%pool.length];
+    b.money-=W[chosen].price;
+   }else if(b.money>=W.deagle.price+300&&((b.teamIndex+round)%3===0)){
+    chosen='deagle';b.money-=W.deagle.price;
+   }
+   if(b.money>=750){b.armor=100;b.money-=650;}else b.armor=0;
+  }else b.armor=0;
+  const stored=statCache.get(b.botId);if(stored){stored.money=b.money;stored.armor=b.armor;}
+  const rec=roster.find(r=>r.bot===b);if(rec)rec.money=b.money;
+  equipBot(b,b.teamIndex,chosen);
+ }
  function onBotDeath(b,killer){
-  const rec=roster.find(r=>r.bot===b);if(rec&&rec.alive){rec.alive=false;rec.deaths++;statCache.set(rec.id,{kills:rec.kills,deaths:rec.deaths})}
-  if(killer&&killer!==b&&killer.botId){const k=roster.find(r=>r.bot===killer);if(k){k.kills++;statCache.set(k.id,{kills:k.kills,deaths:k.deaths})}}
-  if(killer&&killer!==b&&Math.random()<.22)botTalk(killer,'enemy_down')
+  const rec=roster.find(r=>r.bot===b);
+  if(rec&&rec.alive){rec.alive=false;rec.deaths++;const st=statCache.get(rec.id)||{};Object.assign(st,{kills:rec.kills,deaths:rec.deaths,money:b.money});statCache.set(rec.id,st)}
+  if(killer&&killer!==b&&killer.botId&&killer.team!==b.team){
+   const k=roster.find(r=>r.bot===killer);if(k){k.kills++;const st=statCache.get(k.id)||{};st.kills=k.kills;statCache.set(k.id,st);creditBot(killer,300,'KILL')}
+  }
+  if(killer&&killer!==b&&Math.random()<.22)botTalk(killer,'enemy_down');
   if(sbOpen)renderScoreboard();
  }
- function onPlayerDeath(){playerDeaths++;if(sbOpen)renderScoreboard()}
+ function onPlayerDeath(killer){
+  playerDeaths++;
+  if(killer?.botId&&killer.team!==playerTeam){
+   const rec=roster.find(r=>r.bot===killer);if(rec){rec.kills++;const st=statCache.get(rec.id)||{};st.kills=rec.kills;statCache.set(rec.id,st);creditBot(killer,300,'KILL HUMAN')}
+  }
+  if(sbOpen)renderScoreboard();
+ }
  function renderBoard(){
   const head=$('sbHead'),body=$('sbBody');if(!head||!body)return;
-  const all=[{team:playerTeam,name:'★ YOU',kills:kills,deaths:playerDeaths,alive:P.hp>0,hp:Math.max(0,Math.ceil(P.hp)),me:true,bot:null},...roster.map(r=>({...r,hp:r.alive?Math.max(0,Math.ceil(r.bot.hp)):0}))];
+  const all=[{team:playerTeam,name:'★ YOU',kills:kills,deaths:playerDeaths,money,alive:P.hp>0,hp:Math.max(0,Math.ceil(P.hp)),me:true,bot:null},
+   ...roster.map(r=>({...r,money:r.bot.money??800,hp:r.alive?Math.max(0,Math.ceil(r.bot.hp)):0}))];
   const ct=all.filter(r=>r.team==='CT'),t=all.filter(r=>r.team==='T');
   const alive=team=>team.filter(r=>r.alive).length;
   head.textContent=`BLOCK STRIKE · ROUND ${round} · CT ${alive(ct)}/${ct.length} · T ${alive(t)}/${t.length}`;
   body.replaceChildren();
   for(const [team,rows] of [['CT',ct],['T',t]]){
-   const title=document.createElement('div');title.className='sb-team-label '+(team==='CT'?'sb-ct':'sb-t');title.textContent=(team==='CT'?'COUNTER-TERRORISTS':'TERRORISTS')+` · ${alive(rows)} ALIVE / ${rows.length}`;body.appendChild(title);
+   const panel=document.createElement('section');panel.className='sb-team-column '+(team==='CT'?'sb-ct':'sb-t');
+   panel.setAttribute('aria-label',team==='CT'?'Counter-Terrorists':'Terrorists');
+   const title=document.createElement('div');title.className='sb-team-label';
+   title.textContent=(team==='CT'?'COUNTER-TERRORISTS':'TERRORISTS')+` · ${alive(rows)}/${rows.length}`;
+   const cols=document.createElement('div');cols.className='sb-mini-head';
+   for(const label of ['PLAYER','K','D','$','HP']){const cell=document.createElement('span');cell.textContent=label;cols.appendChild(cell)}
+   const list=document.createElement('div');list.className='sb-team-rows';
    rows.sort((a,b)=>Number(b.alive)-Number(a.alive)||b.kills-a.kills||(a.bot?.teamIndex??-1)-(b.bot?.teamIndex??-1));
-   for(const r of rows){const row=document.createElement('div');row.className='sb-row '+(team==='CT'?'ct':'t')+(r.alive?'':' dead')+(r.me?' me':'');
-    for(const str of [r.name,String(r.kills),String(r.deaths),r.alive?'ALIVE':'DEAD',r.alive?String(r.hp):'0',r.me?'LOCAL':'BOT']){const cell=document.createElement('span');cell.textContent=str;row.appendChild(cell)}body.appendChild(row)}
+   for(const r of rows){const row=document.createElement('div');row.className='sb-compact-row '+(r.alive?'':'dead')+(r.me?' me':'');
+    for(const str of [r.name,String(r.kills),String(r.deaths),'$'+(r.money??800),r.alive?String(r.hp):'DEAD']){
+     const cell=document.createElement('span');cell.textContent=str;cell.title=str;row.appendChild(cell)}list.appendChild(row)}
+   panel.append(title,cols,list);body.appendChild(panel);
   }
  }
  function botVec(b,raw){return new THREE.Vector3(raw.x,raw.y,raw.z)}
@@ -126,6 +178,7 @@ const Phase10=(()=>{
    if(current.mode==='attack')return {pos:current.anchor,mode:'attack',radius:4};
    if(current.mode==='backup')return {pos:P.pos,mode:'backup',radius:3.7};
    if(current.mode==='regroup')return {pos:P.pos,mode:'regroup',radius:3.3};
+   if(current.mode==='retreat')return {pos:current.anchor,mode:'retreat',radius:4};
    if(current.mode==='follow'||current.mode==='cover')return {pos:P.pos,mode:current.mode,radius:current.mode==='follow'?5:7};
   }
   if(isTargetFresh(b))return {pos:b.lastSeen.pos,mode:'search',radius:1.4};
@@ -153,17 +206,27 @@ const Phase10=(()=>{
   if(!running||inputBlocked())return false;
   const t=now();if(t-radioLast<1.05)return false;
   const spec=RADIO_COMMANDS[name];if(!spec)return false;
+  if(!spec.behavior){
+   closeRadio();radioPlay('radio',spec.sound,.55);showRadioText('RADIO · '+spec.label);
+   if(name==='report'){
+    // "Report in" requests a situational response, but reveals no hidden enemy.
+    const ally=bots.filter(b=>!b.dead&&b.team===playerTeam).sort((a,b)=>a.g.position.distanceTo(P.pos)-b.g.position.distanceTo(P.pos))[0];
+    if(ally)botTalk(ally,ally.visibleEnemy?'target_spotted':'sector_clear',true);
+   }
+   return true;
+  }
   radioLast=t;closeRadio();
   const dir=cam?.getWorldDirection(new THREE.Vector3())||new THREE.Vector3(0,0,-1);
   let anchor=P.pos.clone().addScaledVector(dir,23);
-  if(name==='attack'){
+  if(spec.behavior==='attack'){
    // Advance toward a fixed location in the player's view, not the live enemy.
    const lim=worldLim()-1;anchor.x=clamp(anchor.x,-lim,lim);anchor.z=clamp(anchor.z,-lim,lim);
   }
+  if(spec.behavior==='retreat'){const spawn=activeMapData?.spawn?.[playerTeam==='CT'?'ct':'t'];if(spawn)anchor=new THREE.Vector3(...spawn);else anchor=P.pos.clone().addScaledVector(dir,-15)}
   let changed=0,best=null,closest=Infinity;
   for(const b of bots){if(b.dead||b.team!==playerTeam)continue;
    const dist=b.g.position.distanceTo(P.pos);
-   b.radioOrder={mode:name,anchor:name==='hold'?b.g.position.clone():anchor.clone(),expiresAt:t+(name==='attack'?36:55)};
+   b.radioOrder={mode:spec.behavior,anchor:spec.behavior==='hold'?b.g.position.clone():anchor.clone(),expiresAt:t+(spec.behavior==='attack'?36:55)};
    b.nav=null;b.scanTimer=Math.min(b.scanTimer||0,.03);
    changed++;if(dist<closest){closest=dist;best=b}
   }
@@ -171,16 +234,54 @@ const Phase10=(()=>{
   const label=`RADIO · ${spec.label}${changed?' · '+changed+' BOT':' · NO ALLIES'}`;
   showRadioText(label);
   if(best){const token=++radioSeq;
-   setTimeout(()=>{if(token!==radioSeq||!running||best.dead)return;botTalk(best,name==='backup'?'be_right_there':name==='attack'?'attacking':'roger_that',true)},850+Math.random()*400)
+   setTimeout(()=>{if(token!==radioSeq||!running||best.dead)return;botTalk(best,spec.behavior==='backup'?'be_right_there':spec.behavior==='attack'?'attacking':'roger_that',true)},850+Math.random()*400)
   }
   return changed>0;
  }
+ // These commands are backed by audio files in assets/phase10/audio/radio.
+ // State-changing commands have a behavior; announcements are voice-only.
  const RADIO_COMMANDS={
-  cover:{label:'Cover Me!',sound:'ct_coverme'},follow:{label:'Follow Me!',sound:'followme'},hold:{label:'Hold This Position!',sound:'com_getinpos'},
-  attack:{label:'Storm the Front!',sound:'stormfront'},backup:{label:'Need Backup!',sound:'ct_backup'},regroup:{label:'Regroup Team!',sound:'regroup'},
-  report:{label:'Report In!',sound:'com_reportin'},enemy:{label:'Enemy Spotted!',sound:'ct_enemys'},roger:{label:'Roger That',sound:'roger'}
+  cover:{label:'Cover Me!',sound:'ct_coverme',behavior:'cover'},
+  takepoint:{label:'You Take the Point!',sound:'takepoint',behavior:'attack'},
+  hold:{label:'Hold This Position!',sound:'com_getinpos',behavior:'hold'},
+  regroup:{label:'Regroup Team!',sound:'regroup',behavior:'regroup'},
+  follow:{label:'Follow Me!',sound:'followme',behavior:'follow'},
+  takingfire:{label:'Taking Fire, Need Assistance!',sound:'fireassis',behavior:'backup'},
+  go:{label:'Go Go Go!',sound:'go',behavior:'attack'},
+  fallback:{label:'Team Fall Back!',sound:'fallback',behavior:'retreat'},
+  stick:{label:'Stick Together!',sound:'sticktog',behavior:'follow'},
+  getinpos:{label:'Get in Position!',sound:'com_getinpos',behavior:'hold'},
+  attack:{label:'Storm the Front!',sound:'stormfront',behavior:'attack'},
+  report:{label:'Report In!',sound:'com_reportin'},
+  roger:{label:'Roger That!',sound:'roger'},
+  enemy:{label:'Enemy Spotted!',sound:'ct_enemys'},
+  backup:{label:'Need Backup!',sound:'ct_backup',behavior:'backup'},
+  sectorclear:{label:'Sector Clear!',sound:'clear'},
+  inpos:{label:"I'm in Position!",sound:'ct_inpos'},
+  reporting:{label:'Reporting In!',sound:'ct_reportingin'},
+  negative:{label:'Negative!',sound:'negative'},
+  enemydown:{label:'Enemy Down!',sound:'enemydown'},
+  moveout:{label:'Move Out!',sound:'moveout',behavior:'attack'},
+  letsgo:{label:"Let's Go!",sound:'letsgo',behavior:'attack'},
+  circleback:{label:'Circle Back!',sound:'circleback',behavior:'retreat'},
+  meetme:{label:'Meet Me!',sound:'meetme',behavior:'regroup'},
+  followcom:{label:'Follow Commander!',sound:'com_followcom',behavior:'follow'},
+  fireinhole:{label:'Fire in the Hole!',sound:'ct_fireinhole'},
+  imhit:{label:"I'm Hit!",sound:'ct_imhit'},
+  locknload:{label:'Lock and Load!',sound:'locknload'},
+  matedown:{label:'Teammate Down!',sound:'matedown'},
+  getout:{label:'Get Out!',sound:'getout',behavior:'retreat'},
+  position:{label:'Take Position!',sound:'position',behavior:'hold'},
+  ctpoint:{label:'Take the Point!',sound:'ct_point',behavior:'attack'},
+  ctaffirm:{label:'Affirmative!',sound:'ct_affirm'}
  };
- const RADIO_CATEGORIES={z:[['cover','Cover Me'],['follow','Follow Me'],['hold','Hold Position']],x:[['attack','Attack!'],['backup','Need Backup'],['regroup','Regroup']],c:[['report','Report In'],['enemy','Enemy Spotted'],['roger','Roger']]};
+ const RADIO_CATEGORIES={
+  z:['cover','takepoint','hold','regroup','follow','takingfire','meetme','followcom','position'],
+  x:['go','fallback','stick','getinpos','attack','report','moveout','letsgo','circleback'],
+  c:['roger','enemy','backup','sectorclear','inpos','reporting','negative','enemydown','fireinhole'],
+  more:['imhit','locknload','matedown','getout','ctpoint','ctaffirm']
+ };
+ function selectRadio(index){const name=RADIO_CATEGORIES[radioMode]?.[index];if(name)command(name);return !!name}
  function showRadioText(message){const el=$('radioStatus');if(!el)return;el.textContent=message;el.classList.remove('hidden');const token=++showRadioText.token;setTimeout(()=>{if(token===showRadioText.token)el.classList.add('hidden')},2800)}
  showRadioText.token=0;
  function radioPlay(channel,stem,volume=.5){
@@ -203,39 +304,52 @@ const Phase10=(()=>{
  function roundEnd(winner){
   if(roundWinner||!['CT','T'].includes(winner))return;
   roundWinner=winner;
+  for(const rec of roster){creditBot(rec.bot,rec.team===winner?3250:1400,'ROUND PAYOUT')}
+  if(sbOpen)renderScoreboard();
   radioPlay('radio',winner==='CT'?'ctwin':'terwin',.72);
   showRadioText(winner==='CT'?'COUNTER-TERRORISTS WIN':'TERRORISTS WIN');
  }
  function closeRadio(){radioOpen=false;radioMode=null;$('radioOverlay')?.classList.add('hidden')}
  function openRadio(mode='z'){
   if(!running||inputBlocked())return;
-  if(radioOpen&&radioMode===mode){closeRadio();return}
+  if(!RADIO_CATEGORIES[mode])mode='z';
   radioOpen=true;radioMode=mode;const box=$('radioCommands');if(!box)return;
   box.replaceChildren();
-  for(const [i,[name,label]] of RADIO_CATEGORIES[mode].entries()){
-   const button=document.createElement('button');button.className='radio-option';button.textContent=`${i+1}   ${label}`;
-   button.addEventListener('click',e=>{e.stopPropagation();if(name==='report'||name==='enemy'||name==='roger'){radioPlay('radio',RADIO_COMMANDS[name].sound,.5);showRadioText('RADIO · '+RADIO_COMMANDS[name].label);closeRadio();return}command(name)});box.appendChild(button)
+  for(const [i,name] of RADIO_CATEGORIES[mode].entries()){
+   const spec=RADIO_COMMANDS[name];if(!spec)continue;
+   const button=document.createElement('button');button.className='radio-option';
+   button.textContent=`${(i+1)%10}   ${spec.label}`;
+   button.addEventListener('click',e=>{e.stopPropagation();selectRadio(i)});box.appendChild(button);
   }
-  $('radioTitle').textContent='RADIO '+mode.toUpperCase()+' · '+({z:'GROUP ORDERS',x:'TEAM ORDERS',c:'REPORTS'}[mode]);
+  $('radioTitle').textContent='RADIO '+mode.toUpperCase()+' · '+({z:'GROUP ORDERS',x:'TEAM ORDERS',c:'REPORTS',more:'EXTRA VOICES'}[mode]);
+  for(const [key,btn] of [['z','radioTabZ'],['x','radioTabX'],['c','radioTabC'],['more','radioTabMore']]){
+   $(btn)?.classList.toggle('selected',key===mode);
+  }
+  box.scrollTop=0;
   $('radioOverlay').classList.remove('hidden');
  }
  function setupRadio(){
-  for(const mode of ['z','x','c'])$('radioTab'+mode.toUpperCase())?.addEventListener('click',()=>openRadio(mode));
-  $('radioBtn')?.addEventListener('click',e=>{e.stopPropagation();openRadio(radioOpen?'x':'z')});
+  for(const mode of ['z','x','c','more'])$('radioTab'+(mode==='more'?'More':mode.toUpperCase()))?.addEventListener('click',()=>openRadio(mode));
+  $('radioBtn')?.addEventListener('click',e=>{e.stopPropagation();radioOpen?closeRadio():openRadio('z')});
   $('radioClose')?.addEventListener('click',closeRadio);
   $('radioOverlay')?.addEventListener('pointerdown',e=>e.stopPropagation());
+  $('radioOverlay')?.addEventListener('wheel',e=>e.stopPropagation(),{passive:true});
   addEventListener('keydown',e=>{
    if(radioOpen){
     if(e.code==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeRadio();return}
-    if(/^Digit[1-3]$/.test(e.code)){e.preventDefault();e.stopImmediatePropagation();const name=RADIO_CATEGORIES[radioMode][+e.code[5]-1]?.[0];if(!name)return;if(['report','enemy','roger'].includes(name)){radioPlay('radio',RADIO_COMMANDS[name].sound);showRadioText('RADIO · '+RADIO_COMMANDS[name].label);closeRadio()}else command(name);return}
-    if(e.code.startsWith('Key')&&['KeyZ','KeyX','KeyC'].includes(e.code)){e.preventDefault();e.stopImmediatePropagation();openRadio(e.code.slice(3).toLowerCase());return}
+    const match=/^(Digit|Numpad)([0-9])$/.exec(e.code);
+    if(match){e.preventDefault();e.stopImmediatePropagation();selectRadio(match[2]==='0'?9:Number(match[2])-1);return}
+    if(['KeyZ','KeyX','KeyC'].includes(e.code)){e.preventDefault();e.stopImmediatePropagation();openRadio(e.code.slice(3).toLowerCase());return}
+    // While the radio is open, block combat shortcuts to avoid accidental buys/firing.
+    if(['Space','KeyB','KeyO','KeyR','KeyG','KeyE'].includes(e.code)){e.preventDefault();e.stopImmediatePropagation();return}
    }
    if(!running||inputBlocked())return;
    const modes={KeyZ:'z',KeyX:'x',KeyC:'c'};
    if(modes[e.code]){e.preventDefault();e.stopImmediatePropagation();openRadio(modes[e.code])}
   },true);
   $('scoreBtn')?.addEventListener('click',e=>{e.stopPropagation();if(running)setScoreboard(!sbOpen)});
-  $('scoreboard')?.addEventListener('click',()=>{if(isT)setScoreboard(false)});
+  $('scoreboard')?.addEventListener('click',e=>{if(isT&&e.target===$('scoreboard'))setScoreboard(false)});
+  $('scoreClose')?.addEventListener('click',()=>setScoreboard(false));
  }
  function loadTexture(name){
   if(!textureCache.has(name)){textureCache.set(name,new THREE.TextureLoader().load('assets/phase10/fx/'+name+'.png'));}
@@ -255,7 +369,7 @@ const Phase10=(()=>{
   const tex=loadTexture('muzzleflash2');
   const m=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
   const forward=new THREE.Vector3(-Math.sin(b.g.rotation.y),0,-Math.cos(b.g.rotation.y));
-  m.position.copy(b.g.position).add(new THREE.Vector3(0,1.18,0)).addScaledVector(forward,.6);
+  m.position.copy(b.g.position).add(new THREE.Vector3(0,1.18-(b.crouching?.34:0),0)).addScaledVector(forward,.6);
   m.scale.set(.38,.38,1);S.add(m);addEffect(m,.11);limitEffects(36);
  }
  function bloodImpact(b,point){
@@ -273,6 +387,6 @@ const Phase10=(()=>{
  function clearFX(){for(const e of effects){e.sprite.parent?.remove(e.sprite);e.sprite.material.dispose()}effects.length=0}
  function init(){initMatchSettings();setupRadio()}
  init();
- return {get config(){return config},get profiles(){return PROFILES},counts,setConfig,preview,resetMatch,roundStart,registerBot,onBotDeath,onPlayerDeath,
-  renderBoard,seenEnemy,goal,command,maybeBotGrenade,botTalk,roundEnd,closeRadio,muzzlePlayer,muzzleBot,bloodImpact,updateFX,clearFX,getDebugState:()=>({players:config.players,difficulty:config.difficulty,roster:roster.length,orders:roster.filter(r=>r.bot.radioOrder).length,radioOpen,fx:effects.length})};
+ return {get config(){return config},get profiles(){return PROFILES},counts,setConfig,preview,resetMatch,roundStart,registerBot,prepareBotRound,creditBot,onBotDeath,onPlayerDeath,
+  renderBoard,seenEnemy,goal,command,radioCommands:RADIO_COMMANDS,radioCategories:RADIO_CATEGORIES,selectRadio,openRadio,maybeBotGrenade,botTalk,roundEnd,closeRadio,muzzlePlayer,muzzleBot,bloodImpact,updateFX,clearFX,getDebugState:()=>({players:config.players,difficulty:config.difficulty,roster:roster.length,orders:roster.filter(r=>r.bot.radioOrder).length,radioOpen,fx:effects.length})};
 })();

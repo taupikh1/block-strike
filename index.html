@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="css/classic.css">
 <link rel="stylesheet" href="css/tahap9.css">
 <link rel="stylesheet" href="css/tahap10.css">
+<link rel="stylesheet" href="css/tahap11.css">
 <link rel="icon" href="assets/ui/cross.svg" type="image/svg+xml">
 </head>
 <body>
@@ -32,9 +33,9 @@
 <div id="dmg" class="ui"></div><div id="flashEffect" class="ui" aria-hidden="true"></div><div id="modeStatus" class="ui" aria-live="off"></div>
 <div id="msg" class="ui"></div>
 <div id="killfeed" class="ui"></div>
-<div id="scoreboard" class="hidden" aria-hidden="true"><div class="sb-box"><div id="sbHead" class="sb-head"></div><div class="sb-cols"><span>PLAYER</span><span>K</span><span>D</span><span>STATUS</span><span>HP</span><span>TYPE</span></div><div id="sbBody"></div></div></div>
+<div id="scoreboard" class="hidden" aria-hidden="true"><div class="sb-box"><div class="sb-topline"><div id="sbHead" class="sb-head"></div><button id="scoreClose" aria-label="Close scoreboard">×</button></div><div class="sb-cols"><span>PLAYER</span><span>K</span><span>D</span><span>STATUS</span><span>HP</span><span>TYPE</span></div><div id="sbBody"></div></div></div>
 <div id="radioStatus" class="hidden" aria-live="polite"></div>
-<div id="radioOverlay" class="hidden" role="dialog" aria-label="Radio commands"><header><b id="radioTitle">RADIO COMMANDS</b><button id="radioClose" aria-label="Close radio">×</button></header><nav class="radio-tabs"><button id="radioTabZ">Z · ORDERS</button><button id="radioTabX">X · TEAM</button><button id="radioTabC">C · REPORT</button></nav><div id="radioCommands"></div></div>
+<div id="radioOverlay" class="hidden" role="dialog" aria-label="Radio commands"><header><b id="radioTitle">RADIO COMMANDS</b><button id="radioClose" aria-label="Close radio">×</button></header><nav class="radio-tabs"><button id="radioTabZ">Z · ORDERS</button><button id="radioTabX">X · TEAM</button><button id="radioTabC">C · REPORT</button><button id="radioTabMore">MORE</button></nav><div id="radioCommands" tabindex="0" aria-label="Daftar perintah radio, bisa digulir"></div></div>
 <button class="game-utility" id="radioBtn" type="button" aria-label="Open radio commands"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16v-4a7 7 0 0 1 14 0v4M7 20h10M8 11h8M12 4V1"/></svg></button>
 <button class="game-utility" id="scoreBtn" type="button" aria-label="Open scoreboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM4 10h16M10 10v10M14 10v10"/></svg></button>
 <div class="btn" id="buybtn">BUY</div><div class="btn" id="crouchBtn">CROUCH</div><div class="btn" id="nvgBtn">NVG</div><div class="btn" id="pickupBtn">TAKE</div><div class="btn" id="grenadeTypeBtn">TYPE</div><div class="btn" id="grenadeBtn">GREN</div><div class="btn" id="fire">TEMBAK</div><div class="btn" id="ads">BIDIK</div><div class="btn" id="jump">LOMPAT</div><div class="btn" id="rel">RELOAD</div><div class="btn" id="swap">GANTI</div>
@@ -62,7 +63,7 @@
   <button id="resumeBtn" class="hidden">5 &nbsp; RESUME MATCH</button>
   <small>WASD MOVE · Z/X/C RADIO · TAB SCORE · B BUY · ESC MENU</small>
  </div>
- <div class="menu-footer">BLOCK STRIKE <span>TAHAP 10 · SINGLE PLAYER</span><small>Weapon models &amp; sounds: <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html" target="_blank" rel="noopener noreferrer">CS16planet.ru</a></small></div>
+ <div class="menu-footer">BLOCK STRIKE <span>TAHAP 11 · SINGLE PLAYER</span><small>Weapon models &amp; sounds: <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html" target="_blank" rel="noopener noreferrer">CS16planet.ru</a></small></div>
 </div>
 <div id="settingsScreen" class="screen hidden"><section class="dialog"><h2>Settings</h2><div class="settings-row"><label for="q">Graphics</label><select id="q"><option value="0">Low</option><option value="1" selected>Medium</option><option value="2">High</option></select><label for="sn">Sensitivity</label><select id="sn"><option value="0.003">Low</option><option value="0.0045" selected>Medium</option><option value="0.007">High</option></select><label for="volume">Sound volume</label><input id="volume" type="range" min="0" max="1" step=".1" value=".8"></div><p>Desktop: WASD · mouse fire · right-click/V secondary action (scope/silencer/shield) · Ctrl crouch · Z/X/C radio · Tab scoreboard · N night vision · E pickup · G grenade · R reload · B buy.</p><label for="crouchMode">Mobile crouch</label><select id="crouchMode"><option value="toggle">Toggle</option><option value="hold">Hold</option></select><button id="controlLayoutBtn" type="button">CUSTOMIZE MOBILE CONTROL LAYOUT</button><button data-close="settingsScreen">0 &nbsp; BACK</button></section></div>
 <div id="creditsScreen" class="screen hidden"><section class="dialog"><h2>Credits &amp; asset notices</h2><p>BLOCK STRIKE · Three.js / WebGL. Model dan suara GoldSrc berasal dari paket yang disediakan pengguna, dengan atribusi <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html">CS16planet.ru</a>.</p><p>HUD: Armory Xtreme / CS16Forge. GUI: CSGO GUI 1.6 Fixed. Map, tekstur dan karakter dipertahankan dari Tahap 7. Hak aset pihak ketiga tetap milik pemiliknya; izin redistribusi publik belum terverifikasi.</p><p><a href="ASSET_NOTICES.md" target="_blank" rel="noopener">Baca catatan aset lengkap</a></p><button data-close="creditsScreen">0 &nbsp; BACK</button></section></div>
@@ -124,6 +125,7 @@
 <script src="js/game-systems8.js"></script>
 <script src="js/game-systems9.js"></script>
 <script src="js/game-systems10.js"></script>
+<script src="js/game-systems11.js"></script>
 <script src="js/classic-ui.js"></script>
 <script src="js/layout-nav.js"></script>
 </body>

@@ -1,0 +1,6 @@
+39/39 Phase11 targeted browser-simulated PASS
+51/51 Phase10 adapted regression PASS
+37/37 Phase9 adapted regression PASS
+58/58 Tahap10 static checks PASS
+GPU WebGL context: unavailable (NOT TESTED on real GPU)
+Safari iPhone physical: NOT TESTED

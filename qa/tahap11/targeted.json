@@ -1,0 +1,165 @@
+{
+  "environment": "Chromium headless, 844x390 iPhone landscape emulation, inline HTML, WebGL and GLTF loader STUBBED. Not actual Safari/3D.",
+  "pass": 39,
+  "total": 39,
+  "failed": [],
+  "errors": [],
+  "checks": [
+    {
+      "name": "Tahap 11 module loaded",
+      "pass": true
+    },
+    {
+      "name": "Round 1 has five bots",
+      "pass": true
+    },
+    {
+      "name": "All bots start with $800",
+      "pass": true
+    },
+    {
+      "name": "All first-round CT use USP and T use Glock",
+      "pass": true
+    },
+    {
+      "name": "Each bot has independent wallet and unique ID",
+      "pass": true
+    },
+    {
+      "name": "Bot accuracy scaled after equip for Easy",
+      "pass": true
+    },
+    {
+      "name": "Bot kill credits exactly $300 and records kill",
+      "pass": true
+    },
+    {
+      "name": "Round win pays $3250 and loss pays $1400 once",
+      "pass": true
+    },
+    {
+      "name": "Round 2 buys gear only if wallet permits",
+      "pass": true
+    },
+    {
+      "name": "Wallet and purchased weapon reflected in scoreboard",
+      "pass": true
+    },
+    {
+      "name": "Compact scoreboard actually two columns",
+      "pass": true
+    },
+    {
+      "name": "Both teams visible side-by-side in mobile landscape",
+      "pass": true
+    },
+    {
+      "name": "Expanded radio: Z X C each nine commands",
+      "pass": true
+    },
+    {
+      "name": "Extra radio category has six additional phrases",
+      "pass": true
+    },
+    {
+      "name": "Radio text labels + behavior map wired",
+      "pass": true
+    },
+    {
+      "name": "Radio opens nine entries in Z",
+      "pass": true
+    },
+    {
+      "name": "Radio panel has touch-scroll overflow",
+      "pass": true
+    },
+    {
+      "name": "Radio menu contents exceed viewport so user can scroll",
+      "pass": true
+    },
+    {
+      "name": "Radio options are reachable by scrolling to bottom",
+      "pass": true
+    },
+    {
+      "name": "Radio MORE button renders extra commands",
+      "pass": true
+    },
+    {
+      "name": "Radio report does not alter bot AI goal",
+      "pass": true
+    },
+    {
+      "name": "Keyboard Z opens radio",
+      "pass": true
+    },
+    {
+      "name": "Keyboard digit 5 invokes Follow Me",
+      "pass": true
+    },
+    {
+      "name": "Radio menu closes after valid behavior",
+      "pass": true
+    },
+    {
+      "name": "Bot crouch reduces model/head height",
+      "pass": true
+    },
+    {
+      "name": "Bot can stand after crouch is released",
+      "pass": true
+    },
+    {
+      "name": "Shield + Desert Eagle available in CT loadout",
+      "pass": true
+    },
+    {
+      "name": "Shield uses purchased Deagle for shots",
+      "pass": true
+    },
+    {
+      "name": "Shield blocks an attack in front",
+      "pass": true
+    },
+    {
+      "name": "Duel Elites not purchasable with shield",
+      "pass": true
+    },
+    {
+      "name": "Dropped Dual Elites cannot be picked up with shield",
+      "pass": true
+    },
+    {
+      "name": "Scoreboard shows all 32 players",
+      "pass": true
+    },
+    {
+      "name": "Both columns each contain 16 participants",
+      "pass": true
+    },
+    {
+      "name": "Scoreboard 32 stays within viewport height",
+      "pass": true
+    },
+    {
+      "name": "32-players are pistol only on a reset match",
+      "pass": true
+    },
+    {
+      "name": "Existing human Ctrl crouch remains available",
+      "pass": true
+    },
+    {
+      "name": "Different Arctic and Phoenix GLB bytes",
+      "pass": true
+    },
+    {
+      "name": "Different Arctic and Phoenix selection images",
+      "pass": true
+    },
+    {
+      "name": "Every menu radio phrase has packaged MP3",
+      "pass": true
+    }
+  ]
+}
