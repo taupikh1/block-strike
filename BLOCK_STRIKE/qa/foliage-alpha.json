@@ -1,0 +1,276 @@
+{
+  "count": 45,
+  "pass": true,
+  "textures": [
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_11.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_12.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_13.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_14.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_2.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_3.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_4.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_6.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_7.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_8.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_buzz_buzzer_kt_derevsew_mdl_9.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_man_bush_evergreen_group1_nl_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 27299
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_man_bush_evergreen_group1_nl_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 49488
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_man_bush_japan_group1_nl_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 52573
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_man_grasdw_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 44416
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree1_nl_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 48608
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree1_nl_mdl_2.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 52512
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree1_nl_mdl_3.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54556
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree1_nl_mdl_4.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 118949
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree2_nl_mdl_3.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 52512
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree2_nl_mdl_4.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 48608
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree2_nl_mdl_5.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54556
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_11.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_12.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_13.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_14.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_2.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_3.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_4.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_6.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55563
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_7.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 66008
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_8.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 54826
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree3_nl_mdl_9.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 3460
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_tree_nl_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 41570
+    },
+    {
+      "path": "assets/maps/bsp/as_kvartal/props/tex/models_props_pi_treeb_nl_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 41570
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_chernobyl_grasd_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 38409
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_evergreen_group1_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 45562
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_evergreen_group1_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 27299
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_evergreen_group1_mdl_2.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 49488
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_japan_group1_mdl_0.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 55290
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_japan_group1_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 37904
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_man_bush_japan_group1_mdl_2.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 53301
+    },
+    {
+      "path": "assets/maps/bsp/cs_kvartal/props/tex/models_props_topol_2_mdl_1.png",
+      "rgb_preserved": true,
+      "only_black_alpha_changed": true,
+      "corrected_pixels": 79732
+    }
+  ]
+}

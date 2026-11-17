@@ -1,0 +1,27 @@
+{
+  "baseline_root": "block-strike-checkpoint6/block-strike/",
+  "repository_commit": "96323c0d2ac578b82b05aef71dda5c3f7c2e1f1f",
+  "inputs": [
+    {
+      "name": "block-strike-tahap7.zip",
+      "bytes": 96843086,
+      "sha256": "99e8d407a76426837724d4f81648078030f3b7946e1c857c0aaf9f3f23185b34"
+    },
+    {
+      "name": "hud-armory-xtreme-cs16forge.zip",
+      "bytes": 600875,
+      "sha256": "ce38f1e303c690b3d55606092d86ad1a9fc9ea9f82a5f6c84ce9a89509f66a91"
+    },
+    {
+      "name": "CSGO_GUI1.6_Fixed.zip",
+      "bytes": 17212153,
+      "sha256": "ff6a404ca7a02e3d84ecc9d41090b7983f0aa122cd5ccfd08ec745210f1fb69a"
+    },
+    {
+      "name": "default-weapon-models.zip",
+      "bytes": 8726110,
+      "sha256": "cd6d009e2077938c1fc9503cfc0d373e4fe612ae700826654f2308093a49b35f"
+    }
+  ],
+  "nav_graph_unchanged": true
+}

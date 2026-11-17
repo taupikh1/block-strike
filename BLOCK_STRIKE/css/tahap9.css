@@ -1,0 +1,57 @@
+/* Tahap 9: gameplay HUD survives sniper overlay and iPhone safe area. */
+#scopeOverlay{z-index:5!important;pointer-events:none!important}
+#scopeOverlay.active{display:flex!important}
+#scopeOverlay .scope-ring{width:min(82dvh,72vw)!important;height:min(82dvh,72vw)!important;border-color:#101310!important;box-shadow:0 0 0 210vmax #050606,inset 0 0 0 1px #6667!important}
+body.playing>.ui:not(#flashEffect){z-index:10!important}
+body.playing>#radar,body.playing>#top,body.playing>#hpt,body.playing>#economy,body.playing>#roundclock,body.playing>#ammo,body.playing>#hp,body.playing>#armor,body.playing>#gear,body.playing>#chips{visibility:visible!important}
+#flashEffect{inset:0;position:fixed;background:#faffec;opacity:0;z-index:16!important;pointer-events:none;transition:opacity .06s linear}
+#modeStatus{top:max(90px,calc(env(safe-area-inset-top) + 77px));left:var(--safe-l,15px);font-size:10px;font-weight:850;color:#f6d47b;text-shadow:0 1px 3px #000;white-space:nowrap}
+#modeStatus.shield-impact{color:#fff}
+/* A compact PUBGM-inspired control cluster with vector, not text, buttons. */
+body.playing>.btn{z-index:11}
+.btn{touch-action:none;transition:background .1s,opacity .1s}
+.btn svg,#pauseBtn svg{width:25px;height:25px;display:block;pointer-events:none;filter:drop-shadow(0 1px 1px #000)}
+#fire svg{width:34px;height:34px}
+.btn.active{background:rgba(217,175,87,.52)!important;border-color:#f1d58e!important}
+.btn.unavailable{opacity:.33!important}
+#pauseBtn{width:38px;height:36px;display:grid;place-items:center;font-size:0!important}
+#pauseBtn svg{width:20px;height:20px}
+#crouchBtn,#nvgBtn,#pickupBtn,#grenadeTypeBtn{position:fixed;display:flex;align-items:center;justify-content:center;right:var(--safe-r);bottom:var(--safe-b);width:48px;height:48px;z-index:11}
+#crouchBtn{right:calc(var(--safe-r) + 90px);bottom:35px}
+#nvgBtn{right:calc(var(--safe-r) + 210px);bottom:36px}
+#pickupBtn{right:calc(var(--safe-r) + 146px);bottom:154px}
+#grenadeTypeBtn{right:calc(var(--safe-r) + 146px);bottom:210px}
+body.pc #crouchBtn,body.pc #nvgBtn,body.pc #pickupBtn,body.pc #grenadeTypeBtn{display:none}
+body.has-action:not(.pc) #ads{display:flex!important}
+body:not(.has-action):not(.has-scope) #ads{display:none!important}
+#pickupPrompt{position:fixed;z-index:18;bottom:max(12%,calc(env(safe-area-inset-bottom) + 20px));left:50%;transform:translateX(-50%);min-width:210px;max-width:min(76vw,320px);padding:10px 13px;border:1px solid #bfa16e;background:#111d17e8;box-shadow:0 6px 24px #0009;display:flex;flex-direction:column;gap:5px;text-align:center;pointer-events:auto}
+#pickupPrompt strong{font-size:13px;color:#f7dc8d}
+#pickupPrompt small{font-size:9px;color:#c1c5b7}
+#pickupPrompt div{display:flex;gap:8px;justify-content:center}
+#pickupPrompt button{background:#514b2b;border:1px solid #b8a978;padding:7px 12px;color:#fff;font-weight:800;font-size:11px;touch-action:manipulation}
+#pickupPrompt button:first-child{background:#877029}
+#controlEditor{position:fixed;z-index:60;inset:0;background:rgba(7,13,15,.62);display:block}
+.layout-toolbar{position:absolute;z-index:66;left:max(12px,env(safe-area-inset-left));top:max(8px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));padding:9px 12px;background:#14221fec;border:1px solid #d1a04d;display:flex;gap:4px;flex-direction:column;color:#efddad;max-height:45vh;overflow:auto;box-shadow:0 3px 15px #000a}
+.layout-toolbar strong{font-size:12px;letter-spacing:2px}
+.layout-toolbar span{font-size:10px;color:#b7c5bd}
+.layout-config{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+.layout-config button{font-size:10px;background:#394d43;color:#f7e6b7;border:1px solid #7d8569;padding:7px;touch-action:manipulation}
+.layout-config button.primary{background:#836222}
+.layout-config label{display:flex;align-items:center;gap:5px;font-size:9px}
+.layout-config input{width:70px;touch-action:pan-x}
+body.layout-edit>.btn{visibility:visible!important;display:flex!important;z-index:64!important;opacity:.85}
+body.layout-edit>.btn.layout-selected{outline:2px solid #fcce64;outline-offset:3px}
+body.layout-edit #pickupPrompt{display:none!important}
+body.layout-edit>.ui{visibility:hidden!important}
+body.layout-edit #pauseBtn{visibility:hidden!important}
+@media(orientation:landscape) and (max-height:500px){
+ #modeStatus{top:calc(env(safe-area-inset-top) + 72px);font-size:9px}
+ #crouchBtn{right:calc(var(--safe-r) + 85px);bottom:33px}
+ #nvgBtn{right:calc(var(--safe-r) + 197px);bottom:35px}
+ #pickupBtn{right:calc(var(--safe-r) + 138px);bottom:151px}
+ #grenadeTypeBtn{right:calc(var(--safe-r) + 140px);bottom:205px}
+ .layout-toolbar{max-height:42vh}
+ #pickupPrompt{bottom:11%}
+}
+
+#grenadeTypeBtn::after{content:attr(data-grenade);position:absolute;bottom:0;right:-3px;padding:1px 3px;background:#d7a758;color:#172016;font:bold 7px/1.3 system-ui,sans-serif;text-transform:uppercase;border-radius:3px}

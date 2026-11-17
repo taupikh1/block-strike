@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>BLOCK STRIKE</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/gui-theme.css">
+<link rel="stylesheet" href="css/mobile.css">
+<link rel="stylesheet" href="css/cs-hud.css">
+<link rel="stylesheet" href="css/classic.css">
+<link rel="stylesheet" href="css/tahap9.css">
+<link rel="stylesheet" href="css/tahap10.css">
+<link rel="icon" href="assets/ui/cross.svg" type="image/svg+xml">
+</head>
+<body>
+
+<canvas id="c"></canvas>
+<button id="pauseBtn" aria-label="Main menu">MENU</button><div id="pad"></div><div id="jb"></div><div id="jk"></div>
+<canvas id="radar" class="ui" width="96" height="96"></canvas>
+<div id="top" class="ui"></div>
+<div id="chips" class="ui"></div>
+<div id="cross" class="ui"><i></i><i></i><i></i><i></i></div>
+<div id="scopeOverlay" class="hidden" aria-hidden="true"><div class="scope-ring"><i></i><b></b></div></div>
+<div id="hp" class="ui"><span id="hpt">100</span><div id="hpbar"><div id="hpf"></div></div></div>
+<div id="armor" class="ui">ARMOR 0</div><div id="gear" class="ui">HE 0 · FLASH 0 · SMOKE 0</div>
+<div id="ammo" class="ui"></div>
+<div id="economy" class="ui">$800</div>
+<div id="roundclock" class="ui">BUY 15</div>
+<div id="dmg" class="ui"></div><div id="flashEffect" class="ui" aria-hidden="true"></div><div id="modeStatus" class="ui" aria-live="off"></div>
+<div id="msg" class="ui"></div>
+<div id="killfeed" class="ui"></div>
+<div id="scoreboard" class="hidden" aria-hidden="true"><div class="sb-box"><div id="sbHead" class="sb-head"></div><div class="sb-cols"><span>PLAYER</span><span>K</span><span>D</span><span>STATUS</span><span>HP</span><span>TYPE</span></div><div id="sbBody"></div></div></div>
+<div id="radioStatus" class="hidden" aria-live="polite"></div>
+<div id="radioOverlay" class="hidden" role="dialog" aria-label="Radio commands"><header><b id="radioTitle">RADIO COMMANDS</b><button id="radioClose" aria-label="Close radio">×</button></header><nav class="radio-tabs"><button id="radioTabZ">Z · ORDERS</button><button id="radioTabX">X · TEAM</button><button id="radioTabC">C · REPORT</button></nav><div id="radioCommands"></div></div>
+<button class="game-utility" id="radioBtn" type="button" aria-label="Open radio commands"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16v-4a7 7 0 0 1 14 0v4M7 20h10M8 11h8M12 4V1"/></svg></button>
+<button class="game-utility" id="scoreBtn" type="button" aria-label="Open scoreboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM4 10h16M10 10v10M14 10v10"/></svg></button>
+<div class="btn" id="buybtn">BUY</div><div class="btn" id="crouchBtn">CROUCH</div><div class="btn" id="nvgBtn">NVG</div><div class="btn" id="pickupBtn">TAKE</div><div class="btn" id="grenadeTypeBtn">TYPE</div><div class="btn" id="grenadeBtn">GREN</div><div class="btn" id="fire">TEMBAK</div><div class="btn" id="ads">BIDIK</div><div class="btn" id="jump">LOMPAT</div><div class="btn" id="rel">RELOAD</div><div class="btn" id="swap">GANTI</div>
+<div id="pickupPrompt" class="hidden" role="group" aria-label="Ambil senjata">
+ <strong id="pickupName">Weapon</strong><small id="pickupDesc"></small>
+ <div><button id="pickupAccept">AMBIL [E]</button><button id="pickupCancel">BATAL</button></div>
+</div>
+<div id="controlEditor" class="hidden" role="dialog" aria-label="Atur tombol mobile">
+ <div class="layout-toolbar"><strong>CUSTOM CONTROL LAYOUT</strong><span>Seret ikon untuk memindah · pilih preset 2/3/4 jari</span>
+  <div class="layout-config"><button data-preset="two">2 Jari</button><button data-preset="three">3 Jari</button><button data-preset="four">4 Jari</button>
+  <label>Dipilih: <b id="layoutCurrent">FIRE</b></label><label>Ukuran <input id="layoutSize" type="range" min="38" max="90" value="52"></label>
+  <label>Transparansi <input id="layoutOpacity" type="range" min=".35" max="1" step=".05" value=".8"></label>
+  <button id="layoutReset">RESET</button><button id="layoutCancel">BATAL</button><button id="layoutSave" class="primary">SIMPAN</button></div>
+ </div>
+</div>
+<div id="menu" class="screen">
+ <div class="menu-brand"><span class="brand-kicker">CLASSIC BOT COMBAT</span><h1>BLOCK<br><b>STRIKE</b></h1><p>TACTICAL FIRST-PERSON SHOOTER</p></div>
+ <img class="menu-soldier" src="assets/ui/classes/gign.png" alt="Counter-Terrorist">
+ <div class="menu-panel" id="mainPanel">
+  <div class="menu-copy"><strong>READY TO DEPLOY</strong><span>Pilih peta, tentukan tim, dan menangkan ronde.</span></div>
+  <button id="go" class="primary">1 &nbsp; NEW GAME</button>
+  <button id="selectMapBtn">2 &nbsp; SELECT MAP</button>
+  <button id="settingsBtn">3 &nbsp; SETTINGS</button>
+  <button id="creditsBtn">4 &nbsp; CREDITS / ASSET NOTICES</button>
+  <button id="resumeBtn" class="hidden">5 &nbsp; RESUME MATCH</button>
+  <small>WASD MOVE · Z/X/C RADIO · TAB SCORE · B BUY · ESC MENU</small>
+ </div>
+ <div class="menu-footer">BLOCK STRIKE <span>TAHAP 10 · SINGLE PLAYER</span><small>Weapon models &amp; sounds: <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html" target="_blank" rel="noopener noreferrer">CS16planet.ru</a></small></div>
+</div>
+<div id="settingsScreen" class="screen hidden"><section class="dialog"><h2>Settings</h2><div class="settings-row"><label for="q">Graphics</label><select id="q"><option value="0">Low</option><option value="1" selected>Medium</option><option value="2">High</option></select><label for="sn">Sensitivity</label><select id="sn"><option value="0.003">Low</option><option value="0.0045" selected>Medium</option><option value="0.007">High</option></select><label for="volume">Sound volume</label><input id="volume" type="range" min="0" max="1" step=".1" value=".8"></div><p>Desktop: WASD · mouse fire · right-click/V secondary action (scope/silencer/shield) · Ctrl crouch · Z/X/C radio · Tab scoreboard · N night vision · E pickup · G grenade · R reload · B buy.</p><label for="crouchMode">Mobile crouch</label><select id="crouchMode"><option value="toggle">Toggle</option><option value="hold">Hold</option></select><button id="controlLayoutBtn" type="button">CUSTOMIZE MOBILE CONTROL LAYOUT</button><button data-close="settingsScreen">0 &nbsp; BACK</button></section></div>
+<div id="creditsScreen" class="screen hidden"><section class="dialog"><h2>Credits &amp; asset notices</h2><p>BLOCK STRIKE · Three.js / WebGL. Model dan suara GoldSrc berasal dari paket yang disediakan pengguna, dengan atribusi <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html">CS16planet.ru</a>.</p><p>HUD: Armory Xtreme / CS16Forge. GUI: CSGO GUI 1.6 Fixed. Map, tekstur dan karakter dipertahankan dari Tahap 7. Hak aset pihak ketiga tetap milik pemiliknya; izin redistribusi publik belum terverifikasi.</p><p><a href="ASSET_NOTICES.md" target="_blank" rel="noopener">Baca catatan aset lengkap</a></p><button data-close="creditsScreen">0 &nbsp; BACK</button></section></div>
+<div id="mapScreen" class="screen hidden">
+ <div class="team-title"><small>NEW GAME / 01</small><h2>Select battlefield</h2></div>
+ <div id="mapOptions" class="map-options">
+  <button class="map-card selected" data-map="dust_block"><strong>DUST BLOCK</strong><span>Arena blok klasik · eliminasi tim</span><i>SELECTED</i></button>
+  <button class="map-card" data-map="cs_kvartal"><img class="map-preview" src="assets/ui/maps/cs_kvartal.png" alt="Overview cs_kvartal"><strong>CS KVARTAL</strong><span>BSP bertekstur · collision · pintu · navigasi A*</span><i>SELECT MAP</i></button>
+  <button class="map-card" data-map="as_kvartal"><img class="map-preview" src="assets/ui/maps/as_kvartal.png" alt="Overview as_kvartal"><strong>AS KVARTAL</strong><span>BSP bertekstur · collision · pintu</span><i>SELECT MAP</i></button>
+  <button class="map-card" data-map="es_kvartal"><img class="map-preview" src="assets/ui/maps/es_kvartal.png" alt="Overview es_kvartal"><strong>ES KVARTAL</strong><span>Layout blok sederhana dari BSP</span><i>SELECT MAP</i></button>
+ </div>
+ 
+<div class="map-actions"><button id="backMap">0 &nbsp; BACK / CANCEL</button><button id="continueMap" class="primary">CHOOSE TEAM →</button></div>
+ <small class="map-note">Mode semua peta: eliminasi tim. Objective hostage, VIP, dan escape belum tersedia.</small>
+</div>
+<div id="matchConfigScreen" class="screen hidden"><div class="team-title"><small>NEW GAME / 02</small><h2>Match configuration</h2></div>
+<section class="match-config" aria-label="Match configuration"><div class="match-config-title"><strong>MATCH SETTINGS</strong><small>Free player count · 1 human + bots</small></div>
+ <div class="match-config-row"><label for="matchPlayers">Max players</label><input id="matchPlayers" type="number" min="2" max="32" step="1" value="16" inputmode="numeric" aria-describedby="matchPerformanceHint"><div class="quick-players"><button data-players="2">2</button><button data-players="6">6</button><button data-players="12">12</button><button data-players="16">16</button><button data-players="24">24</button><button data-players="32">32</button></div></div>
+ <div class="match-config-row"><label for="matchDifficulty">Bot difficulty (both teams)</label><select id="matchDifficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option></select></div>
+ <div id="matchTeamPreview" class="match-preview">CT 8 · T 8 · 15 bots · Normal</div><small id="matchPerformanceHint">Jumlah termasuk 1 pemain manusia; sisanya bot.</small>
+</section>
+ <div class="map-actions"><button id="backMatchConfig">0 &nbsp; BACK TO MAP</button><button id="continueMatchConfig" class="primary">CHOOSE TEAM →</button></div>
+</div>
+<div id="teamScreen" class="screen hidden">
+ <div class="team-title"><small>NEW GAME / 03</small><h2>Choose a team</h2></div>
+ <div class="team-options">
+  <button class="team-card ct-card" data-team="CT"><img src="assets/ui/classes/gign.png" alt="GIGN"><div><strong>1 &nbsp; COUNTER-TERRORISTS</strong><small>USP · M4A1 · AUG</small><i>SELECT CT →</i></div></button>
+  <button class="team-card t-card" data-team="T"><img src="assets/ui/classes/leet.png" alt="Leet"><div><strong>2 &nbsp; TERRORISTS</strong><small>GLOCK 18 · AK-47 · SG-552</small><i>SELECT T →</i></div></button>
+ </div>
+ <button id="backMenu">0 &nbsp; BACK</button>
+</div>
+<div id="classScreen" class="screen hidden">
+ <div class="team-title"><small>NEW GAME / 04</small><h2 id="classTitle">Choose a class</h2></div>
+ <div id="classOptions"></div><p class="class-note">Pilih model pemain dan pemimpin regu pendamping.</p>
+ <div class="map-actions"><button id="classBack">0 &nbsp; BACK</button><button id="startMatch" class="primary">START MATCH →</button></div>
+</div>
+<div id="loadingScreen" class="screen hidden"><section class="dialog"><small>BLOCK STRIKE</small><h2>Loading battlefield</h2><p id="loadStatus" role="status"></p><button id="loadBack" class="hidden">BACK TO MENU</button></section></div>
+<div id="buyMenu" class="overlay hidden" role="dialog" aria-modal="true" aria-label="Buy menu">
+ <div class="buy-window">
+  <header><h2>Buy Menu</h2><span id="buyContext">BUY ZONE</span><div class="buy-cash" id="buyCash">$800</div><button id="closeBuy" class="close-button" aria-label="Close buy menu">×</button></header>
+  <div class="buy-layout"><nav id="buyTabs" aria-label="Shop by category">
+   <small>SHOP BY CATEGORY</small>
+   <button data-tab="pistols">1 &nbsp; PISTOLS</button><button data-tab="shotguns">2 &nbsp; SHOTGUNS</button><button data-tab="smgs">3 &nbsp; SMG</button><button data-tab="rifles">4 &nbsp; RIFLES</button><button data-tab="machineguns">5 &nbsp; MACHINE GUNS</button><button data-tab="primaryAmmo">6 &nbsp; PRIMARY AMMO</button><button data-tab="secondaryAmmo">7 &nbsp; SECONDARY AMMO</button><button data-tab="equipment">8 &nbsp; EQUIPMENT</button><button id="buyCancel">9 &nbsp; CANCEL</button>
+  </nav><section class="buy-content"><h3 id="buyCategory">SELECT A CATEGORY</h3><div id="buyItems" class="buy-items"></div></section></div>
+  <footer><span id="buyHint" role="status">Pilih kategori di sebelah kiri</span><button id="buyBack">BACK</button><button id="closeBuy2">CONTINUE</button></footer>
+ </div>
+</div>
+<div id="rot">Putar HP ke mode landscape 📱↔️</div>
+
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/GLTFLoader.js"></script>
+<script src="js/vendor/SkeletonUtils.js"></script>
+<script src="js/bsp-render.js"></script>
+<script src="js/bsp-physics.js"></script>
+<script src="js/bsp-doors.js"></script>
+<script>window.NAV_BOTS=true; /* Tahap 7B: aktifkan A* nav untuk bot (T→CT sudah jalan, CT→T masih fallback) */</script>
+<script src="js/nav-graph.js"></script>
+<script src="js/game-core.js"></script>
+<script src="js/game-systems8.js"></script>
+<script src="js/game-systems9.js"></script>
+<script src="js/game-systems10.js"></script>
+<script src="js/classic-ui.js"></script>
+<script src="js/layout-nav.js"></script>
+</body>
+</html>

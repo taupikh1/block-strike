@@ -1,0 +1,153 @@
+[
+  {
+    "name": "chromium",
+    "maps": [
+      {
+        "id": "cs_kvartal",
+        "spawn": [
+          20.10161498300929,
+          -11.759375,
+          41.0722908427915
+        ],
+        "graph": true,
+        "bsp": true,
+        "playerClass": "PLAYER_gign"
+      },
+      {
+        "id": "as_kvartal",
+        "spawn": [
+          -17.71624860803907,
+          1.225,
+          9.383737808472361
+        ],
+        "graph": false,
+        "bsp": true,
+        "playerClass": "PLAYER_gign"
+      },
+      {
+        "id": "es_kvartal",
+        "spawn": [
+          18,
+          0,
+          42
+        ],
+        "graph": false,
+        "bsp": false,
+        "playerClass": "PLAYER_gign",
+        "route": {
+          "start": [
+            21,
+            0,
+            -12
+          ],
+          "end": [
+            18.943946946988007,
+            0,
+            27.089511976895555
+          ],
+          "moved": 39.14354737052661,
+          "distanceToPlayer": 14.940337644306071
+        }
+      },
+      {
+        "id": "dust_block",
+        "spawn": [
+          0,
+          0,
+          26
+        ],
+        "graph": false,
+        "bsp": false,
+        "playerClass": "PLAYER_gign"
+      }
+    ],
+    "guards": {
+      "cap": true,
+      "owned": true,
+      "zone": true,
+      "unchanged": true,
+      "voices": true
+    },
+    "safe": true,
+    "fire": true,
+    "errors": [],
+    "diagnostics": {
+      "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+      "memory": {
+        "geometries": 67,
+        "textures": 35
+      },
+      "drawCalls": 10,
+      "heap": 39431337,
+      "audio": "running"
+    }
+  },
+  {
+    "name": "webkit",
+    "maps": [
+      {
+        "id": "cs_kvartal",
+        "spawn": [
+          20.10161498300929,
+          -11.759375,
+          41.07229084279151
+        ],
+        "graph": true,
+        "bsp": true,
+        "playerClass": "PLAYER_gign"
+      },
+      {
+        "id": "as_kvartal",
+        "spawn": [
+          -17.71624860803907,
+          1.2176080000000002,
+          9.383737808472361
+        ],
+        "graph": false,
+        "bsp": true,
+        "playerClass": "PLAYER_gign"
+      },
+      {
+        "id": "es_kvartal",
+        "spawn": [
+          18,
+          0,
+          42
+        ],
+        "graph": false,
+        "bsp": false,
+        "playerClass": "PLAYER_gign"
+      },
+      {
+        "id": "dust_block",
+        "spawn": [
+          0,
+          0,
+          26
+        ],
+        "graph": false,
+        "bsp": false,
+        "playerClass": "PLAYER_gign"
+      }
+    ],
+    "guards": {
+      "cap": true,
+      "owned": true,
+      "zone": true,
+      "unchanged": true,
+      "voices": true
+    },
+    "safe": true,
+    "fire": true,
+    "errors": [],
+    "diagnostics": {
+      "renderer": "Apple GPU",
+      "memory": {
+        "geometries": 70,
+        "textures": 35
+      },
+      "drawCalls": 11,
+      "audio": "running"
+    }
+  }
+]

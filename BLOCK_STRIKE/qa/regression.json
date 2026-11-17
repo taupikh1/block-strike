@@ -1,0 +1,339 @@
+{
+  "date": "2026-11-17T04:53:21.235Z",
+  "browser": "Chromium",
+  "checks": [
+    {
+      "name": "1366x768 boot / selected class",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 last rifle reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 overlay blocks aim/fire",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 purchase updates cash/inventory",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 AWP scope + hidden viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 reticle centered",
+      "status": "PASS",
+      "details": [
+        682.9921875,
+        383.9921875
+      ]
+    },
+    {
+      "name": "1366x768 second AWP zoom",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 scope reset on switch",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 AUG zoom preserves crosshair/viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 firing consumes ammunition",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 reload completes",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 round reset",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 resume",
+      "status": "PASS"
+    },
+    {
+      "name": "1366x768 touch controls inside viewport",
+      "status": "PASS",
+      "details": [
+        {
+          "id": "buybtn",
+          "x": 1306,
+          "y": 620,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "1366x768 no document scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 boot / selected class",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 real touch scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 last rifle reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 overlay blocks aim/fire",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 purchase updates cash/inventory",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 AWP scope + hidden viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 reticle centered",
+      "status": "PASS",
+      "details": [
+        422,
+        195
+      ]
+    },
+    {
+      "name": "844x390 second AWP zoom",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 scope reset on switch",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 AUG zoom preserves crosshair/viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 firing consumes ammunition",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 reload completes",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 round reset",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 resume",
+      "status": "PASS"
+    },
+    {
+      "name": "844x390 touch controls inside viewport",
+      "status": "PASS",
+      "details": [
+        {
+          "id": "buybtn",
+          "x": 639,
+          "y": 306,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "grenadeBtn",
+          "x": 639,
+          "y": 246,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "fire",
+          "x": 766,
+          "y": 228,
+          "w": 66,
+          "h": 66
+        },
+        {
+          "id": "ads",
+          "x": 699,
+          "y": 246,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "jump",
+          "x": 699,
+          "y": 306,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "rel",
+          "x": 699,
+          "y": 185,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "swap",
+          "x": 784,
+          "y": 167,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "844x390 touch controls do not overlap",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "844x390 no document scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 boot / selected class",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 real touch scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 last rifle reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 overlay blocks aim/fire",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 purchase updates cash/inventory",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 AWP scope + hidden viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 reticle centered",
+      "status": "PASS",
+      "details": [
+        369.9921875,
+        179.9921875
+      ]
+    },
+    {
+      "name": "740x360 second AWP zoom",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 scope reset on switch",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 AUG zoom preserves crosshair/viewmodel",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 firing consumes ammunition",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 reload completes",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 round reset",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 resume",
+      "status": "PASS"
+    },
+    {
+      "name": "740x360 touch controls inside viewport",
+      "status": "PASS",
+      "details": [
+        {
+          "id": "buybtn",
+          "x": 535,
+          "y": 276,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "grenadeBtn",
+          "x": 535,
+          "y": 216,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "fire",
+          "x": 662,
+          "y": 198,
+          "w": 66,
+          "h": 66
+        },
+        {
+          "id": "ads",
+          "x": 595,
+          "y": 216,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "jump",
+          "x": 595,
+          "y": 276,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "rel",
+          "x": 595,
+          "y": 155,
+          "w": 48,
+          "h": 48
+        },
+        {
+          "id": "swap",
+          "x": 680,
+          "y": 137,
+          "w": 48,
+          "h": 48
+        }
+      ]
+    },
+    {
+      "name": "740x360 touch controls do not overlap",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "740x360 no document scroll",
+      "status": "PASS"
+    },
+    {
+      "name": "No uncaught JavaScript errors",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "name": "No HTTP errors",
+      "status": "PASS",
+      "details": []
+    }
+  ],
+  "errors": [],
+  "httpErrors": []
+}
