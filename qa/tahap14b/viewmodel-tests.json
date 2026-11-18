@@ -1,0 +1,193 @@
+[
+  {
+    "name": "Native Five-SeveN hidden",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Shield rig not duplicated",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Position pulls shield behind camera",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Native shield animations preserved",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Shield plate no longer crosses camera near-plane",
+    "pass": true,
+    "detail": {
+      "shieldVerts": 306,
+      "behindNear": 0
+    }
+  },
+  {
+    "name": "Shield plate stays within camera framing",
+    "pass": true,
+    "detail": {
+      "shieldVerts": 306,
+      "shieldVisible": 306
+    }
+  },
+  {
+    "name": "usp correct rig",
+    "pass": true,
+    "detail": {
+      "pistol": "usp",
+      "hasRig": true,
+      "raised": false,
+      "nativePistolHidden": true,
+      "visibleGunMeshes": 4,
+      "extraHands": 0
+    }
+  },
+  {
+    "name": "usp no extra hands",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "usp no native pistol overlap",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "usp animation works",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "deagle correct rig",
+    "pass": true,
+    "detail": {
+      "pistol": "deagle",
+      "hasRig": true,
+      "raised": false,
+      "nativePistolHidden": true,
+      "visibleGunMeshes": 3,
+      "extraHands": 0
+    }
+  },
+  {
+    "name": "deagle no extra hands",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "deagle no native pistol overlap",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "deagle animation works",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "p228 correct rig",
+    "pass": true,
+    "detail": {
+      "pistol": "p228",
+      "hasRig": true,
+      "raised": false,
+      "nativePistolHidden": true,
+      "visibleGunMeshes": 3,
+      "extraHands": 0
+    }
+  },
+  {
+    "name": "p228 no extra hands",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "p228 no native pistol overlap",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "p228 animation works",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "glock18 correct rig",
+    "pass": true,
+    "detail": {
+      "pistol": "glock18",
+      "hasRig": true,
+      "raised": false,
+      "nativePistolHidden": true,
+      "visibleGunMeshes": 4,
+      "extraHands": 0
+    }
+  },
+  {
+    "name": "glock18 no extra hands",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "glock18 no native pistol overlap",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "glock18 animation works",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "fiveseven correct rig",
+    "pass": true,
+    "detail": {
+      "pistol": "fiveseven",
+      "hasRig": true,
+      "raised": false,
+      "nativePistolHidden": true,
+      "visibleGunMeshes": 2,
+      "extraHands": 0
+    }
+  },
+  {
+    "name": "fiveseven no extra hands",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "fiveseven no native pistol overlap",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "fiveseven animation works",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Raised shield hides gun",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Lowered shield shows gun",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "Left hand mirror applies to common group",
+    "pass": true,
+    "detail": null
+  },
+  {
+    "name": "No duplicate pistol rigs on refresh",
+    "pass": true,
+    "detail": null
+  }
+]

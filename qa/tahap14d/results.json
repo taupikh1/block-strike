@@ -1,0 +1,228 @@
+{
+  "environment": "Chromium mobile viewport 844x390, real Three math and DOM; WebGL and GLTFLoader stubbed; not real GPU or physical Safari",
+  "pass": 44,
+  "total": 44,
+  "checks": [
+    {
+      "name": "Deterministic throw, HE, flash, smoke and bounce helpers",
+      "pass": true,
+      "details": "PURE HELPERS PASS\n"
+    },
+    {
+      "name": "he original grenade draw/pin/throw clips",
+      "pass": true,
+      "details": "{'idle', 'pullpin', 'throw', 'deploy'}"
+    },
+    {
+      "name": "he world mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he held mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash original grenade draw/pin/throw clips",
+      "pass": true,
+      "details": "{'idle', 'pullpin', 'throw', 'deploy'}"
+    },
+    {
+      "name": "flash world mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash held mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke original grenade draw/pin/throw clips",
+      "pass": true,
+      "details": "{'idle', 'pullpin', 'throw', 'deploy'}"
+    },
+    {
+      "name": "smoke world mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke held mesh exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "pinpull.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "grenade_hit1.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "grenade_hit2.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "grenade_hit3.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "hegrenade-1.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flashbang-1.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "sg_explode.wav original audio exists",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Phase14D helper loaded before phase9",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "CT game boots with previous features intact",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he initiating never consumes grenade",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he progresses through pin and throw states",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he spawns exactly one world projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he does not allow duplicate throw during animation",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he projectile has expected physics state",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "he detonates and removes projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash initiating never consumes grenade",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash progresses through pin and throw states",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash spawns exactly one world projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash does not allow duplicate throw during animation",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash projectile has expected physics state",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "flash detonates and removes projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Flash produces white overlay or blind bot response",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke initiating never consumes grenade",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke progresses through pin and throw states",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke spawns exactly one world projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke does not allow duplicate throw during animation",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke projectile has expected physics state",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "smoke detonates and removes projectile",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Smoke persists as particles after deployment",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Smoke eventually fades and releases objects",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Death during pin-pull cancels grenade without spending stock",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "Reset clears all grenade resources",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "HUD still works after grenade tests",
+      "pass": true,
+      "details": ""
+    },
+    {
+      "name": "No uncaught JS errors",
+      "pass": true,
+      "details": "[]"
+    }
+  ],
+  "pageErrors": []
+}

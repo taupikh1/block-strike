@@ -1,0 +1,8 @@
+BLOCK STRIKE - CS16 EXTRA
+
+PATCH works only on CS16_GDRIVE checkpoint. Extract into its BLOCK_STRIKE folder and overwrite when requested.
+FULL RELEASE: unzip ALL numbered packages to same location. Contents must merge into a single BLOCK_STRIKE folder. Deploy contents of BLOCK_STRIKE to GitHub Pages root.
+
+CSS/menu refreshed; test Safari A2HS after reloading. No maps or cheats added.
+
+This archive contains Valve / third-party media from user-supplied files; do not publish without confirming your distribution rights.

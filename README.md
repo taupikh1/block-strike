@@ -1,6 +1,22 @@
-# BLOCK STRIKE — Tahap 13 (Dust Block Only)
+# BLOCK STRIKE — Tahap 14 Final (Dust Block Only)
 
-Versi ini melanjutkan Tahap 12 Final. Fokusnya kontrol FPS klasik, HUD ikon mobile, spectator, konfigurasi, dan pengurangan aset peta yang bermasalah. **QA: CONDITIONAL** karena rendering GPU/WebGL sungguhan dan Safari iPhone fisik belum teruji. Baca `QA_TAHAP13.md`.
+Versi ini melanjutkan Tahap 12 Final. Fokusnya kontrol FPS klasik, HUD ikon mobile, spectator, konfigurasi, dan pengurangan aset peta yang bermasalah. **QA: CONDITIONAL** karena rendering GPU/WebGL sungguhan dan Safari iPhone fisik belum teruji. Baca `QA_TAHAP14_FINAL.md`.
+
+## Tahap 14E–14G — Safari Input & Hold Fire
+
+Kontrol mobile kini menghindari native double-tap zoom dan menu salin pada area gameplay (tanpa menghalangi scroll Buy/Radio/Settings). FIRE dapat ditahan untuk mengulang pistol dan knife slash; ADS knife atau klik kanan PC dapat ditahan untuk stab berulang, tetap mengikuti cooldown masing-masing dan mendukung drag-to-aim. Perubahan diuji pada DOM/Pointers Chromium, tetapi **belum diuji di Safari fisik**. Detail: `QA_TAHAP14_FINAL.md` dan `CHANGELOG_TAHAP14_FINAL.md`.
+
+## Tahap 14D — Grenade Overhaul
+
+HE, Flashbang dan Smoke memakai animasi GoldSrc asli dari ZIP pengguna dan model dunia yang sudah dikonversi sebelumnya. Kode baru `js/grenade14d.js` menyediakan fisika/damage/flash/smoke yang konsisten, sementara `js/game-systems9.js` mengimplementasikan urutan deploy → tarik pin → lempar, projectile/grenade FX, occlusion AI, dan pembersihan resource. **Ini merupakan adaptasi visual gameplay Three.js, bukan port efek GoldSrc persis.** QA: `QA_TAHAP14D.md`. Tahap 14E–14G tercakup pada rilis final ini.
+
+## Tahap 14C — Tactical Shield Inventory & Weapon Switching
+
+Saat membawa shield, slot pilihan senjata hanya menampilkan **PISTOL + SHIELD** dan **KNIFE**; grenade tetap dipilih melalui kontrol grenade tersendiri. Memilih pistol dari inventory secara otomatis kembali ke viewmodel shield+pistol, bukan pistol tanpa shield. Wheel, hotkey angka, tombol GANTI mobile, serta menu pemilih senjata mengikuti aturan yang sama. Membeli atau mengambil pistol tunggal (USP, Glock18, P228, Desert Eagle, Five-SeveN) mengganti pistol aktif tanpa menghilangkan shield. **Dual Elites dan semua primary lain diblokir ketika shield dimiliki.** Pemain harus menjatuhkan shield terlebih dahulu sebelum membeli atau mengambil rifle/primary lainnya. Menjatuhkan shield meninggalkan pistol dan knife di inventory; pickup shield dari tanah menggantikan primary yang ada pada CT. Lihat `QA_TAHAP14C.md`. Batch 14D dikerjakan terpisah dan tercatat pada bagian di atas; 14E–14G tercakup pada rilis final ini.
+
+## Tahap 14B — Tactical Shield viewmodel
+
+Perbaikan viewmodel shield+pistol (USP/Glock/P228/Desert Eagle/Five-SeveN), animasi pistol yang tidak menduplikasi tangan, perbaikan framing shield dari near-plane kamera. Batch 14B hanya viewmodel; aturan inventory diimplementasikan pada 14C. Grenade dan input Safari masih berikutnya. Lihat `QA_TAHAP14B.md` untuk hasil tes dan keterbatasan WebGL/Safari fisik.
 
 ## Main game
 - `New Game` langsung membuka jumlah pemain (2–32; 32 eksperimental), difficulty Easy/Normal/Hard, lalu tim dan kelas. Arena tunggal **Dust Block**. Map `CS/AS/ES Kvartal` sengaja tidak disertakan.

@@ -1,0 +1,178 @@
+{
+  "environment": "Chromium mobile DOM with PointerEvents, real Three math, stubbed WebGL and GLTF model loader; not physical iPhone Safari",
+  "pass": 34,
+  "total": 34,
+  "checks": [
+    {
+      "name": "New 14E gesture policy exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "New 14F hold-fire policy exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Match boots with controls 14EFG",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Gameplay canvas gesture suppression",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Gameplay long-press context suppression",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Menu context selection is not suppressed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Settings input remains selectable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Radio list is scrollable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Buy menu is scrollable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Gameplay touch disables native action",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Overlay touch keeps scrolling",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Native mobile double-tap does not zoom page",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Primary bullet icon pointer accepted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Held pistol fires multiple timed shots",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pistol fire respects fire rate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Unrelated finger cannot release pistol fire",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Drag while firing moves camera",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Fire released on owner pointerup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Pistol stops firing after release",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Knife primary held repeats slash",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Cancelled primary hold clears state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Knife alternate held repeats stab",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Knife alternate drag-to-aim remains valid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Unrelated finger cannot release stab",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Knife stab stops after release",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Simultaneous primary and alt input safely prioritizes knife stab",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Releasing alternate thumb preserves primary hold",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Releasing both thumbs clears attack",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PC right click hold knife stabs repeatedly",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "PC right release clears hold",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Scope action only toggles once when held",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Window blur resets primary and secondary input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Shield inventory & weapon HUD still intact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No uncaught page JavaScript errors",
+      "passed": true,
+      "detail": "[]"
+    }
+  ],
+  "pageErrors": []
+}

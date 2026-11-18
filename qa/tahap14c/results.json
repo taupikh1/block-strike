@@ -1,0 +1,7 @@
+{
+  "environment": "Chromium emulated 844x390, real Three math/DOM; WebGL renderer and GLTF asset loading stubbed",
+  "total": 33,
+  "pass": 33,
+  "failed": [],
+  "pageErrors": []
+}

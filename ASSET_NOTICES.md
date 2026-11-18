@@ -60,3 +60,13 @@ Alpha 45 tekstur foliage map hasil ekspor Tahap 7 diperbaiki (palette key hitam 
 
 ### Tahap 11 character reskin
 `assets/models/t/arctic.glb` dan `assets/ui/classes/arctic.png` merupakan **reskin warna dari aset karakter pengguna yang telah tersedia pada Tahap 10**, bukan model geometri orisinal baru. Hak model/tekstur sumber mengikuti hak pemilik aslinya. Tidak ada model baru yang diunduh untuk Tahap 11.
+
+## CS 1.6 Google Drive source ZIPs (checkpoint)
+
+Converted VGUI icons and 29 effect WAV files were supplied via two Google Drive ZIPs. Publisher/rights: Valve and/or other rights holders; public redistribution rights have not been verified. The developer must verify licensing before public deployment. See CS16_GDRIVE_INTEGRATION.md.
+
+
+## CS 1.6 supplemental import (18 November 2026)
+From the two user-provided CS16.Weba.Ru archives, this checkpoint includes decoded GUI sprites, source VGUI cards, selected WAV effects, original CT/T character models, and original radio files.
+The source archives also contain copyrighted Valve / modder-created material. Possession of the files or access to the CS16.Weba site does not establish permission for republishing them on a public GitHub Pages website. Treat this package as a private testing build until asset redistribution rights are verified.
+Only inert source `.res`/`.txt` layout samples were retained. Server modules/plugins, cheat files, map textures and BSP content were not imported.

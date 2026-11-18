@@ -1,0 +1,8 @@
+BLOCK STRIKE TAHAP 14A
+
+PILIH SATU CARA:
+A. Rilis lengkap: ekstrak SEMUA ZIP PAKET ke lokasi SAMA; gabungkan isi folder BLOCK_STRIKE. Unggah ISI folder BLOCK_STRIKE ke root GitHub Pages.
+B. Patch: jika Tahap 13 sudah terpasang lengkap, ekstrak PATCH ke root induk dan timpa file yang sama. Tidak perlu unduh paket lengkap.
+
+Tidak ada perubahan maps. Tidak mengerjakan batch 14B-14G.
+Baca QA_TAHAP14A.md sebelum menganggap artefak visual sudah lulus tes iPhone.

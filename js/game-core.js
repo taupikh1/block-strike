@@ -195,11 +195,12 @@ function playWeaponAnimation(kind){
  }
  if(!chosen)chosen=idle;
  state.queue=queue;state.currentKind=kind;
+ if(k==='shield'&&typeof Phase14B!=='undefined')Phase14B.play(vm,kind);
  if(!playWeaponClip(state,chosen,kind==='idle'))return;
  if(kind==='idle')state.currentKind='idle';
 }
 function mkGun(k){
- if(weaponInstances[k]){flash=weaponInstances[k].userData.flash;if(k==='shield'&&typeof Phase11!=='undefined')Phase11.updateShieldView(weaponInstances[k]);return weaponInstances[k]}
+ if(weaponInstances[k]){flash=weaponInstances[k].userData.flash;if(k==='shield'&&typeof Phase14B!=='undefined'){Phase14B.sync(weaponInstances[k]);Phase14B.setRaised(weaponInstances[k],Phase9.shieldRaised)}return weaponInstances[k]}
  const g=new THREE.Group(),w=W[k];
  if(weaponModels[k]){
   const gltf=weaponModels[k],model=THREE.SkeletonUtils&&THREE.SkeletonUtils.clone?THREE.SkeletonUtils.clone(gltf.scene):gltf.scene.clone(true);
@@ -213,9 +214,9 @@ function mkGun(k){
   });
   g.userData.weaponAnimation=state;
   flash=new THREE.Mesh(new THREE.SphereGeometry(.035,6,6),new THREE.MeshBasicMaterial({color:0xffdd55}));flash.position.set(0,.02,-Math.max(.55,w.len+.15));flash.visible=false;g.add(flash);
-  g.userData.flash=flash;weaponInstances[k]=g;if(k==='shield'&&typeof Phase11!=='undefined')Phase11.updateShieldView(g);return g;
+  g.userData.flash=flash;weaponInstances[k]=g;if(k==='shield'&&typeof Phase14B!=='undefined')Phase14B.prepare(g,model);return g;
  }
- ensureWeaponModel(k).then(()=>{if(cur()===k&&viewScene){disposeFallback(vm);viewScene.remove(vm);vm=mkGun(k);viewScene.add(vm);playWeaponAnimation('draw')}}).catch(()=>say('MODEL '+w.n+' GAGAL DIMUAT'));
+ ensureWeaponModel(k).then(()=>{if(cur()===k&&viewScene){disposeFallback(vm);viewScene.remove(vm);vm=mkGun(k);Phase13.applyHand(vm);viewScene.add(vm);playWeaponAnimation('draw')}}).catch(()=>say('MODEL '+w.n+' GAGAL DIMUAT'));
  const bx=(a,b,c,x,y,z,col)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(a,b,c),new THREE.MeshLambertMaterial({color:col}));m.position.set(x,y,z);g.add(m);return m};
  if(k=='knife'){bx(.03,.09,.42,0,0,-.22,0xdddddd);bx(.05,.06,.14,0,-.02,.05,0x553311)}
  else{bx(.07,.1,w.len,0,0,-w.len/2,w.col);bx(.06,.15,.08,0,-.11,-.02,0x222222);if(k!='pistol')bx(.05,.14,.07,0,-.1,-w.len*.55,0x151515);bx(.035,.035,.12,0,.02,-w.len-.05,0x111111)}
@@ -224,22 +225,32 @@ function mkGun(k){
  return g;
 }
 function refreshWeaponChips(){
- const box=$('chips');box.innerHTML='';inventory.forEach((k,i)=>{const d=document.createElement('div');d.className='chip'+(i===wi?' on':'');d.textContent=(i+1)+' '+W[k].n;d.addEventListener('pointerdown',e=>{e.stopPropagation();setW(i)});box.appendChild(d)});
+ const box=$('chips');box.innerHTML='';const choices=Phase14C.allowedIndices(inventory,W);choices.forEach((i,slot)=>{const k=inventory[i],d=document.createElement('div');d.className='chip'+(i===wi?' on':'');d.textContent=(slot+1)+' '+(k==='shield'?W[Phase14C.pistol(inventory)||'usp'].n+' + SHIELD':W[k].n);d.addEventListener('pointerdown',e=>{e.stopPropagation();setW(i)});box.appendChild(d)});
 }
 function setW(i){
- reloadSfxToken++;if(!inventory.length||!viewScene)return;aiming=false;zoomIdx=0;wi=Math.max(0,Math.min(inventory.length-1,i));reloading=0;shotgunReload=null;cool=0;swapT=.25;
+ reloadSfxToken++;if(!inventory.length||!viewScene)return;fh=fl=secondaryHeld=mouseSecondaryHeld=false;fireAimPointer=fireAimLast=adsPointer=adsAimLast=null;firedLatch=false;aiming=false;zoomIdx=0;wi=Phase14C.selectIndex(inventory,i,W);reloading=0;shotgunReload=null;cool=0;swapT=.25;
  if(vm){disposeFallback(vm);if(vm.userData.weaponAnimation)vm.userData.weaponAnimation.mixer.stopAllAction();viewScene.remove(vm)}
  vm=mkGun(cur());Phase13.applyHand(vm);vm.position.set(0,0,0);vm.rotation.set(0,0,0);viewScene.add(vm);playWeaponAnimation('draw');syncAim();refreshWeaponChips();hud();
 }
 /* MODEL LOADING (CT) */
+let loadedClassicCharacterMode=null;
+function classicCharacterMode(){try{return localStorage.getItem('block-strike-classic-characters')!=='off'}catch(e){return true}}
 function preloadCT(done){
- if(ctState===2||!THREE.GLTFLoader||!THREE.SkeletonUtils){ctState=2;done();return}
+ const original=classicCharacterMode();
+ if(ctState===2&&loadedClassicCharacterMode===original){done();return}
+ if(!THREE.GLTFLoader||!THREE.SkeletonUtils){ctState=2;done();return}
+ if(ctState===2){ctState=0;Object.keys(CTC).forEach(k=>delete CTC[k]);Object.keys(TC).forEach(k=>delete TC[k])}
  (ctWait=ctWait||[]).push(done);
  if(ctState===1)return;
- ctState=1;
+ ctState=1;loadedClassicCharacterMode=original;
  const L=new THREE.GLTFLoader();const jobs=[...CTN.map(n=>['ct',n]),...TN.map(n=>['t',n])];let left=jobs.length;
  const fin=()=>{if(--left===0){ctState=2;const w=ctWait;ctWait=null;w.forEach(f=>f())}};
- jobs.forEach(([d,n])=>L.load('assets/models/'+d+'/'+n+'.glb?v=3',g=>{(d==='ct'?CTC:TC)[n]=g;fin()},undefined,()=>fin()));
+ jobs.forEach(([d,n])=>{
+  const fallback='assets/models/'+d+'/'+n+'.glb?v=3';
+  const target=(d==='ct'?CTC:TC);
+  const load=(url,retry)=>L.load(url,g=>{target[n]=g;fin()},undefined,()=>retry?load(fallback,false):fin());
+  load(original?'assets/models/cs16-classic/'+d+'/'+n+'.glb':fallback,original);
+ });
 }
 /* BOTS */
 function mkBot(x,z,i=0,team='T'){
@@ -268,30 +279,12 @@ function mkCT(x,z,n,team='CT'){
  root.position.set(x,0,z);S.add(root);bots.push(b);return b;
 }
 function attachCharacterGear(b,classId){
- // Original add-on geometry distinguishes silhouettes when a supplied skin is
- // the same MDL as another class. No false claim of a fourth unique MDL.
- const group=new THREE.Group();b.visualMount.add(group);b.gearGroup=group;b.gearMeshes=[];
- const cube=(x,y,z,w,h,d,color)=>{
-  const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshLambertMaterial({color}));
-  o.position.set(x,y,z);o.castShadow=true;group.add(o);b.gearMeshes.push(o);
- };
- if(classId==='terror'){
-  // Phoenix Connexion: backpack and frontal webbing/pouches.
-  cube(0,1.12,.28,.47,.65,.22,0x2d322a);
-  cube(-.21,1.2,-.25,.15,.37,.13,0x3c392a);
-  cube(.21,1.2,-.25,.15,.37,.13,0x3c392a);
-  cube(0,1.04,-.29,.27,.20,.12,0x574a32);
- }else if(classId==='arctic'){
-  // Arctic Avengers: pale winter shoulder protection and neck scarf.
-  cube(-.37,1.43,0,.17,.23,.46,0x8795a0);
-  cube(.37,1.43,0,.17,.23,.46,0x8795a0);
-  cube(0,1.53,-.16,.51,.17,.16,0xced5d7);
- }else if(classId==='urban'){
-  // CT Urban/Seal: compact radio pack, distinct from lighter GSG9 kit.
-  cube(0,1.12,.29,.48,.55,.24,0x2d3338);
-  cube(.33,1.42,.10,.12,.28,.16,0x434b4d);
- }
- if(!b.gearMeshes.length){b.visualMount.remove(group);b.gearGroup=null}
+ // Tahap 14A: original CT/T models already contain equipment and their own
+ // textures. Earlier overlay boxes (backpack / shoulder pads / chest pouches)
+ // appeared as floating grey-white slabs once their character animated.
+ // Do not create placeholder meshes. Class identity is supplied by the actual
+ // distinct model textures and selection portraits, never by blank cubes.
+ b.gearMeshes=[];b.gearGroup=null;
 }
 function mkModel(team,x,z,gl,classId=''){
  const root=new THREE.Group();
@@ -461,7 +454,7 @@ function hurt(d,source=null,kind='bullet',killer=null,hitgroup='chest',weaponId=
  if(kind==='bullet'&&source&&Phase9.blockShieldHit(source)){Phase9.shieldImpact();return}
  const result=Combat12.resolve({weaponId,raw:d,hitgroup,range:distance,armor,helmet,kind,
   silenced:weaponId==='usp'||weaponId==='m4a1'?!Phase9.unsilenced(weaponId):false});
- armor=Math.max(0,armor-result.armorUsed);P.hp-=result.hpDamage;dmgA=.7;hud();
+ armor=Math.max(0,armor-result.armorUsed);P.hp-=result.hpDamage;CS16SFX.hurt(result,P.hp,hitgroup);dmgA=.7;hud();
  if(P.hp<=0){P.hp=0;Phase10.onPlayerDeath(killer);Phase13.onDeath();resetInputs();reloadSfxToken++;if(document.pointerLockElement)document.exitPointerLock();}
 }
 /* FX */
@@ -471,7 +464,7 @@ function burst(p,col,n){for(let i=0;i<n;i++){const m=new THREE.Mesh(PG,new THREE
 function say(t){$('msg').textContent=t;$('msg').style.opacity=1;msgT=1.8}
 /* SHOOT */
 function shoot(knifeAction='slash'){
- const display=cur(),k=display==='shield'?Phase9.shieldPistol():display,w=W[k],st=A[k];if(reloading||cool>0||swapT>0||(display==='shield'&&Phase9.shieldRaised))return;
+ const display=cur(),k=display==='shield'?Phase9.shieldPistol():display,w=W[k],st=A[k];if(inputBlocked()||!w||reloading||cool>0||swapT>0||(display==='shield'&&Phase9.shieldRaised))return;
  cool=w.rate;
  if(k==='knife'){
   const stab=knifeAction==='stab';cool=stab?1.0:.48;kick=1.5;playWeaponAnimation(stab?'stab':'attack');
@@ -526,7 +519,7 @@ function damageBot(b,d,part,pt,byPlayer=true,attacker=null,weaponId='',distance=
  if(byPlayer&&head)playOriginalSound('headshot2.wav',.42,.1,1600);else if(byPlayer&&cur()==='knife')playOriginalSound('knife_hit1.wav',.32,.1,1200);else snd(.2,.08,600);
  if(b.hp<=0&&!b.dead){
   b.dead=.001;Phase9.dropBotWeapon(b);Phase10.onBotDeath(b,attacker);
-  if(byPlayer){kills++;money=Math.min(16000,money+300);say(head?'HEADSHOT!':'KILL');killFeed(b,head)}
+  if(byPlayer){kills++;money=Math.min(16000,money+300);say(head?'HEADSHOT!':'KILL');killFeed(b,head);CS16SFX.play('events/enemy_died.wav',.11)}
   const enemyTeam=playerTeam==='CT'?'T':'CT';if(b.team===enemyTeam&&bots.filter(x=>x.team===enemyTeam).every(x=>x.dead)){Phase10.roundEnd(playerTeam);roundWait=3}
   hud();
  }
@@ -587,12 +580,9 @@ addEventListener('wheel',e=>{
  if(!running||!$('buyMenu').classList.contains('hidden')||!inventory.length||Phase13.isSpectating())return;
  const dir=e.deltaY>0?1:-1;
  if(aiming&&scopeLevels(cur())){zoomStep(-dir);return}
- setW((wi+dir+inventory.length)%inventory.length);
+ setW(Phase14C.cycleIndex(inventory,wi,dir,W));
 },{passive:true});
-$('ads').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();Phase9.secondaryAction()});
-$('ads').addEventListener('contextmenu',e=>e.preventDefault());
-addEventListener('contextmenu',e=>e.preventDefault());
-addEventListener('pointerdown',e=>{if(e.target===$('pad')&&e.pointerType==='mouse'&&e.button===2)Phase9.secondaryAction()});
+// Secondary button is bound below with pointer capture. Knife supports sustained stab.
 
 addEventListener('keydown',e=>{if(e.code==='KeyV')Phase9.secondaryAction()});
 /* UPDATE */
@@ -606,10 +596,11 @@ function update(dt){
  else{
  P.pos.x+=(-s*mz+c*mx)*sp*dt;P.pos.z+=(-c*mz-s*mx)*sp*dt;
  collide(P.pos,.4);const lim=worldLim();P.pos.x=Math.max(-lim,Math.min(lim,P.pos.x));P.pos.z=Math.max(-lim,Math.min(lim,P.pos.z));
- const g=ground(P.pos,.4);if(jmp&&P.on&&!Phase9.crouching){P.vy=7.6;P.on=false}
+ const g=ground(P.pos,.4);if(jmp&&P.on&&!Phase9.crouching){P.vy=7.6;P.on=false;CS16SFX.jump()}
  P.vy-=22*dt;P.pos.y+=P.vy*dt;if(P.pos.y<=g){P.pos.y=g;P.vy=0;P.on=true}else P.on=false;
  }
  P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch));
+ CS16SFX.step(dt,l,P.on,isWalking(),Phase9.crouching,builtMapId==='dust_block'?'dirt':'generic');
  bobT+=l*sp*dt*1.6*(P.on?1:0);
  cam.position.set(P.pos.x,P.pos.y+(window.bspCol?.56:1.6)-Phase9.crouchBlend*(window.bspCol?.25:.63)+Math.sin(bobT)*.03*l,P.pos.z);if(window.bspSky)window.bspSky.position.set(cam.position.x,cam.position.y,cam.position.z);cam.rotation.set(P.pitch,P.yaw,0,'YXZ');
  const targetFov=aiming&&scopeZoom(cur())?scopeZoom(cur()):baseFov;if(Math.abs(cam.fov-targetFov)>.1){cam.fov+=(targetFov-cam.fov)*Math.min(1,dt*12);cam.updateProjectionMatrix()}
@@ -617,9 +608,16 @@ function update(dt){
  cool-=dt;swapT-=dt;kick=Math.max(0,kick-dt*8);
  {const moving=Math.hypot(jx,jy)>.3||K.w||K.a||K.s||K.d;const target=(aiming&&scopeZoom(cur()))?0:4+(moving?5:0)+Math.min(kick,3)*2+(cool>0?1.5:0);crossSpread+=(target-crossSpread)*Math.min(1,dt*10);document.documentElement.style.setProperty('--spread',crossSpread.toFixed(1)+'px')}
  updateReload(dt);
- if((fh||fl)&&(W[cur()].auto||!firedLatch)){shoot();firedLatch=true}
+ // Tahap 14F: repeat knife slash/stab and single-handed pistol shots while held.
+ // Each actual attack still passes the weapon's cooldown, ammo, animation and shield checks.
+ if(secondaryHeld&&cur()==='knife')shoot('stab');
+ else if(fh||fl){
+  const id=cur()==='shield'?Phase9.shieldPistol():cur();
+  if(Attack14F.repeatable(id,W[id]))shoot('slash');
+  else if(!firedLatch){shoot('slash');firedLatch=true}
+ }
  if(!(fh||fl))firedLatch=false;
- if(vm&&vm.userData.weaponAnimation)vm.userData.weaponAnimation.mixer.update(dt);
+ if(vm&&vm.userData.weaponAnimation){vm.userData.weaponAnimation.mixer.update(dt);if(cur()==='shield'&&typeof Phase14B!=='undefined')Phase14B.update(vm,dt)}
  vm.position.set(Math.sin(bobT*.5)*.005*l,Math.abs(Math.sin(bobT))*.006*l,0);
  vm.rotation.set(0,0,0);
  }
@@ -637,7 +635,7 @@ function update(dt){
 }
 let firedLatch=false;
 // Tahap 13: Shift walk (CS 1.6), no sprint speed bonus.
-let walkHeld=false,mobileWalk=false,fireAimPointer=null,fireAimLast=null;
+let walkHeld=false,mobileWalk=false,fireAimPointer=null,fireAimLast=null,secondaryHeld=false,adsPointer=null,adsAimLast=null,mouseSecondaryHeld=false;
 function isWalking(){
  return walkHeld||mobileWalk;
 }
@@ -698,8 +696,25 @@ function inBuyZone(){if(window.bspCol&&bspCol.buyzones&&bspCol.buyzones.length)r
 function throwGrenade(){return Phase9.throwGrenade()}
 $('grenadeBtn').addEventListener('click',throwGrenade);
 /* INPUT */
-const hold=(id,on,off)=>{const e=$(id);e.addEventListener('pointerdown',ev=>{ev.preventDefault();ev.stopPropagation();if(inputBlocked())return;e.setPointerCapture(ev.pointerId);on()});['pointerup','pointercancel'].forEach(t=>e.addEventListener(t,()=>off&&off()))};
-hold('fire',()=>{fh=true;shoot();firedLatch=true},()=>{fh=false;fireAimPointer=null;fireAimLast=null});
+// Bind one owned pointer per control. A different finger must never release a held attack.
+const hold=(id,on,off)=>{
+ const el=$(id);let owner=null;
+ el.addEventListener('pointerdown',ev=>{
+  if(inputBlocked()||owner!==null)return;
+  ev.preventDefault();ev.stopPropagation();owner=ev.pointerId;
+  try{el.setPointerCapture(owner)}catch(_){}
+  on(ev)
+ });
+ for(const kind of ['pointerup','pointercancel','lostpointercapture'])el.addEventListener(kind,ev=>{
+  if(owner!==ev.pointerId)return;
+  owner=null;off?.(ev);
+ });
+ document.addEventListener('blockstrike:reset-controls',()=>{
+  const old=owner;owner=null;
+  if(old!==null&&el.hasPointerCapture?.(old))try{el.releasePointerCapture(old)}catch(_){}
+ });
+};
+hold('fire',()=>{fh=true;shoot('slash');firedLatch=true},()=>{fh=false;fireAimPointer=null;fireAimLast=null});
 // Holding the bullet icon both fires and steers the camera, as in mobile FPS.
 // Pointer capture in hold() lets the same finger drag outside the circle.
 const fireBtn=$('fire');
@@ -716,14 +731,33 @@ fireBtn.addEventListener('pointermove',e=>{if(e.pointerId!==fireAimPointer||!fir
 for(const evt of ['pointerup','pointercancel','lostpointercapture'])fireBtn.addEventListener(evt,e=>{
  if(e.pointerId===fireAimPointer){fireAimPointer=null;fireAimLast=null;fh=false}
 });
+// Mobile alternate-fire: knife stab repeats while pressed, others toggle once.
+const adsBtn=$('ads');
+hold('ads',e=>{
+ if(cur()==='knife'){
+  secondaryHeld=true;adsPointer=e.pointerId;adsAimLast={x:e.clientX,y:e.clientY};shoot('stab');
+ }else Phase9.secondaryAction();
+},e=>{if(e.pointerId===adsPointer){secondaryHeld=false;adsPointer=null;adsAimLast=null}});
+adsBtn.addEventListener('pointermove',e=>{
+ if(e.pointerId!==adsPointer||!adsAimLast||inputBlocked())return;
+ e.preventDefault();
+ P.yaw-=Math.max(-80,Math.min(80,e.clientX-adsAimLast.x))*SENS;
+ P.pitch=Math.max(-1.45,Math.min(1.45,P.pitch-Math.max(-80,Math.min(80,e.clientY-adsAimLast.y))*SENS));
+ adsAimLast={x:e.clientX,y:e.clientY};
+});
+
 $('walkBtn').addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();
  if(inputBlocked())return;mobileWalk=!mobileWalk;$('walkBtn').classList.toggle('active',mobileWalk);
 });
-hold('jump' ,()=>jmp=true,()=>jmp=false);hold('rel',reload);hold('swap',()=>setW((wi+1)%inventory.length));
+hold('jump' ,()=>jmp=true,()=>jmp=false);hold('rel',reload);hold('swap',()=>setW(Phase14C.cycleIndex(inventory,wi,1,W))); 
 const pad=$('pad'),jb=$('jb'),jk=$('jk');let jid=null,jo,lid=null,lp;
 pad.addEventListener('pointerdown',e=>{
  if(inputBlocked())return;
- if(e.pointerType=='mouse'){if(e.button!==0)return;fl=true;shoot();firedLatch=true;if(!document.pointerLockElement)requestLock();return}
+ if(e.pointerType==='mouse'){
+  if(e.button===2){if(cur()==='knife'){secondaryHeld=mouseSecondaryHeld=true;shoot('stab')}else Phase9.secondaryAction();return}
+  if(e.button!==0)return;
+  fl=true;shoot('slash');firedLatch=true;if(!document.pointerLockElement)requestLock();return
+ }
  pad.setPointerCapture(e.pointerId);
  if(e.clientX<innerWidth*.42&&jid===null){jid=e.pointerId;jo={x:e.clientX,y:e.clientY};jb.style.display=jk.style.display='block';jb.style.left=jo.x-55+'px';jb.style.top=jo.y-55+'px';jk.style.left=jo.x-25+'px';jk.style.top=jo.y-25+'px'}
  else if(lid===null){lid=e.pointerId;lp={x:e.clientX,y:e.clientY}}
@@ -732,12 +766,18 @@ pad.addEventListener('pointermove',e=>{
  if(e.pointerId===jid){let dx=e.clientX-jo.x,dy=e.clientY-jo.y;const l=Math.hypot(dx,dy),m=55;if(l>m){dx*=m/l;dy*=m/l}jx=dx/m;jy=dy/m;jk.style.left=jo.x+dx-25+'px';jk.style.top=jo.y+dy-25+'px'}
  else if(e.pointerId===lid){P.yaw-=(e.clientX-lp.x)*SENS;P.pitch-=(e.clientY-lp.y)*SENS;lp={x:e.clientX,y:e.clientY}}
 });
-const up=e=>{if(e.pointerType=='mouse')fl=false;if(e.pointerId===jid){jid=null;jx=jy=0;jb.style.display=jk.style.display='none'}if(e.pointerId===lid)lid=null};
+const up=e=>{if(e.pointerType==='mouse'){if(e.button===0)fl=false;if(e.button===2){mouseSecondaryHeld=false;secondaryHeld=false}}if(e.pointerId===jid){jid=null;jx=jy=0;jb.style.display=jk.style.display='none'}if(e.pointerId===lid)lid=null};
 pad.addEventListener('pointerup',up);pad.addEventListener('pointercancel',up);
+// A captured mouse can release on window/document instead of the canvas.
+addEventListener('pointerup',e=>{if(e.pointerType==='mouse'){
+ if(e.button===0)fl=false;
+ if(e.button===2){mouseSecondaryHeld=false;secondaryHeld=false}
+}});
+addEventListener('pointercancel',e=>{if(e.pointerType==='mouse'){fl=false;mouseSecondaryHeld=false;secondaryHeld=false}});
 document.addEventListener('mousemove',e=>{if(document.pointerLockElement&&!inputBlocked()){P.yaw-=e.movementX*SENS*.5;P.pitch-=e.movementY*SENS*.5}});
 const kmap={KeyW:'w',KeyA:'a',KeyS:'s',KeyD:'d',ArrowUp:'w',ArrowLeft:'a',ArrowDown:'s',ArrowRight:'d'};
-addEventListener('keydown',e=>{if(e.code==='Escape'){if(Phase13.visibleOverlay()||Phase13.isSpectating())return;if(!$('buyMenu').classList.contains('hidden'))closeBuyMenu();else if(running){pauseToMenu();$('resumeBtn').classList.toggle('hidden',over)}return}if(inputBlocked())return;if(kmap[e.code])K[kmap[e.code]]=1;if(e.code==='Space')jmp=true;if(e.code==='ShiftLeft'||e.code==='ShiftRight')walkHeld=true;if(e.code==='KeyR')reload();if(e.code==='KeyB')openBuyMenu();if(e.code==='KeyG')throwGrenade();if(e.code==='KeyN')Phase9.toggleNightVision();if(e.code==='KeyE')Phase9.pickupNearest();if(e.code==='ControlLeft'||e.code==='ControlRight')Phase9.setCrouchInput(true);if(e.code==='KeyO'){openBuyMenu();renderBuyTab('equipment')}if(/^Digit[1-5]$/.test(e.code))setW(+e.code[5]-1)});
+addEventListener('keydown',e=>{if(e.code==='Escape'){if(Phase13.visibleOverlay()||Phase13.isSpectating())return;if(!$('buyMenu').classList.contains('hidden'))closeBuyMenu();else if(running){pauseToMenu();$('resumeBtn').classList.toggle('hidden',over)}return}if(inputBlocked())return;if(kmap[e.code])K[kmap[e.code]]=1;if(e.code==='Space')jmp=true;if(e.code==='ShiftLeft'||e.code==='ShiftRight')walkHeld=true;if(e.code==='KeyR')reload();if(e.code==='KeyB')openBuyMenu();if(e.code==='KeyG')throwGrenade();if(e.code==='KeyN')Phase9.toggleNightVision();if(e.code==='KeyE')Phase9.pickupNearest();if(e.code==='ControlLeft'||e.code==='ControlRight')Phase9.setCrouchInput(true);if(e.code==='KeyO'){openBuyMenu();renderBuyTab('equipment')}if(/^Digit[1-5]$/.test(e.code)){const target=Phase14C.keyIndex(inventory,+e.code[5],W);if(target>=0)setW(target)}});
 addEventListener('keyup',e=>{if(kmap[e.code])K[kmap[e.code]]=0;if(e.code==='Space')jmp=false;if(e.code==='ShiftLeft'||e.code==='ShiftRight')walkHeld=false;if(e.code==='ControlLeft'||e.code==='ControlRight')Phase9.setCrouchInput(false)});
-document.addEventListener('contextmenu',e=>e.preventDefault());
-document.addEventListener('visibilitychange',()=>{if(document.hidden){fh=fl=false;jx=jy=0}});
+Phase14E.install(document);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){fh=fl=secondaryHeld=mouseSecondaryHeld=false;adsPointer=adsAimLast=null;jx=jy=0}});
 requestAnimationFrame(loop);

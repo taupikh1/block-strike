@@ -1,0 +1,68 @@
+{
+  "summary": "CS16 source-supplied visual/audio checkpoint; Chromium real DOM/assets, WebGL not verified",
+  "pass": 15,
+  "total": 15,
+  "failed": [],
+  "checks": [
+    {
+      "check": "Google Drive archive 01 CRC",
+      "pass": true
+    },
+    {
+      "check": "Google Drive archive 02 CRC",
+      "pass": true
+    },
+    {
+      "check": "Failed files consist of 19 server Linux libraries",
+      "pass": true
+    },
+    {
+      "check": "56 source VGUI cards converted",
+      "pass": true
+    },
+    {
+      "check": "Every converted VGUI PNG decodes",
+      "pass": true
+    },
+    {
+      "check": "29 source sound assets integrated",
+      "pass": true
+    },
+    {
+      "check": "Original game WAVs parse and contain audio samples",
+      "pass": true
+    },
+    {
+      "check": "No source BSP or server DLL added",
+      "pass": true
+    },
+    {
+      "check": "All scripts and CSS resolve",
+      "pass": true
+    },
+    {
+      "check": "Modules initialized in correct order",
+      "pass": true
+    },
+    {
+      "check": "All imported class portraits resolve",
+      "pass": true
+    },
+    {
+      "check": "All game JavaScript syntax valid",
+      "pass": true
+    },
+    {
+      "check": "Chromium decodes original GoldSrc VGUI PNG bytes",
+      "pass": true
+    },
+    {
+      "check": "Source UI path and SFX modules exposed",
+      "pass": true
+    },
+    {
+      "check": "Browser has no uncaught JS error",
+      "pass": true
+    }
+  ]
+}

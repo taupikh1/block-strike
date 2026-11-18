@@ -1,0 +1,20 @@
+BLOCK STRIKE TAHAP 14 FINAL — PETUNJUK
+
+OPSI A — GAME LENGKAP
+1. Unduh SEMUA ZIP yang bernama BLOCK_STRIKE_TAHAP14_FINAL_PAKET_*.
+2. Ekstrak semuanya ke folder induk yang SAMA; pilih merge/gabung folder, bukan mengganti folder yang lama satu per satu.
+3. Hasilnya: satu folder BLOCK_STRIKE/ yang berisi index.html, js/, css/, assets/, tools/, qa/, dokumentasi, dan .nojekyll.
+4. Untuk GitHub Pages, unggah ISI BLOCK_STRIKE/ ke root repo. Serve lewat HTTPS/HTTP, jangan buka index.html sebagai file://.
+
+OPSI B — PATCH
+Kalau dan hanya kalau Tahap 14D sudah terpasang lengkap: ekstrak BLOCK_STRIKE_TAHAP14_FINAL_PATCH_DARI_TAHAP14D.zip ke direktori induk yang sama. Timpa file lama sesuai struktur folder.
+Patch bukan standalone game.
+
+FITUR KHUSUS
+- FIRE mobile: tahan untuk pistol / slash pisau berulang; seret untuk membidik sambil menembak.
+- ADS mobile ketika memegang KNIFE: tahan untuk stab berulang, seret untuk membidik.
+- PC mouse kiri: hold; mouse kanan saat knife: hold untuk stab. Scope/silencer tetap toggle satu kali per tekan.
+- Pencegahan Safari native zoom dan menu Salin ditargetkan ke area game saja; menu lain tetap scroll.
+
+QA: CONDITIONAL — renderer WebGL & iPhone Safari fisik belum dapat diverifikasi di lingkungan pembuat build.
+Lihat QA_TAHAP14_FINAL.md dan CHANGELOG_TAHAP14_FINAL.md.

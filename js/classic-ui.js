@@ -8,6 +8,7 @@ let activeBuyTab='',playerClass='gign',playerAvatar;
 function getItem(id){if(id==='helmet')return {id,name:'VEST + HELMET',price:Combat12.armorPrice(id,armor,helmet),desc:armor>0&&!helmet?'HELMET UPGRADE':'Armor 100 + helmet'};if(W[id])return {id,name:W[id].n,price:W[id].price,desc:id==='shield'?'CT · Perisai + pistol':' '+W[id].mag+' rounds · '+(W[id].team||'ALL TEAMS')};return Object.values(BUY).flat().find(x=>typeof x==='object'&&x.id===id)}
 function buyReason(item){
  const id=item.id,w=W[id];if(!running||buyTime<=0||!inBuyZone())return 'BUY ZONE CLOSED';
+ const shieldRule=Phase14C.guardPurchase(id,inventory,W,playerTeam);if(shieldRule)return shieldRule;
  if(w?.team&&w.team!==playerTeam)return w.team+' ONLY';
  if(w&&inventory.includes(id))return 'OWNED';
  if((id==='elite'&&inventory.includes('shield'))||(id==='shield'&&inventory.includes('elite')))return 'DUAL ELITES NOT COMPATIBLE WITH SHIELD';
@@ -26,12 +27,13 @@ function renderBuyTab(tab){
  activeBuyTab=tab;const box=$('buyItems');box.replaceChildren();
  document.querySelectorAll('#buyTabs [data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
  $('buyCategory').textContent=tab?document.querySelector('#buyTabs [data-tab="'+tab+'"]').textContent.replace(/^\d\s*/,''):'SELECT A CATEGORY';
- if(!tab){box.innerHTML='<div class="armory-intro"><img src="assets/ui/icons/ak47.png" alt="AK-47"><strong>PREPARE TO FIGHT</strong><p>Pilih kategori, lalu senjata atau perlengkapan. Pembelian hanya tersedia di buy zone.</p><small>1–8 CATEGORY · 9 CANCEL · ESC CLOSE</small></div>'}
+ if(!tab){box.innerHTML='<div class="armory-intro"><img src="assets/ui/cs16/ak47.png" alt="AK-47"><strong>PREPARE TO FIGHT</strong><p>Pilih kategori, lalu senjata atau perlengkapan. Pembelian hanya tersedia di buy zone.</p><small>1–8 CATEGORY · 9 CANCEL · ESC CLOSE</small></div>'}
  (BUY[tab]||[]).forEach(entry=>{
   const item=getItem(typeof entry==='string'?entry:entry.id),reason=buyReason(item),b=document.createElement('button');
   b.className='buy-item';b.dataset.item=item.id;b.disabled=!!reason;
   const icon=item.id==='nightvision'?'nightvision.svg':item.id.endsWith('Ammo')?'ammo.svg':item.id==='defuse'?'defuse.png':item.id+'.png';
-  b.innerHTML='<img class="buy-icon" src="assets/ui/icons/'+icon+'" alt="'+item.name+'"><div><strong>'+item.name+'</strong><span>'+item.desc+'</span><small>'+(reason||'BUY')+'</small></div><b>$'+item.price+'</b>';
+  const cs16Icon=CS16VGUI.icon(item.id);
+  b.innerHTML='<img class="buy-icon" src="'+(cs16Icon||'assets/ui/icons/'+icon)+'" alt="'+item.name+'"><div><strong>'+item.name+'</strong><span>'+item.desc+'</span><small>'+(reason||'BUY')+'</small></div><b>$'+item.price+'</b>';
   b.onclick=()=>purchase(item.id);box.appendChild(b);
  });
  $('buyCash').textContent='$'+money;$('buyContext').textContent=playerTeam+' · BUY '+Math.ceil(buyTime);$('buyHint').textContent=tab?'Pilih item untuk membeli':'Pilih kategori di sebelah kiri';
@@ -45,7 +47,7 @@ function purchase(id){
  else if(['flash','he','smoke'].includes(id))grenades[id]++;
  else if(id==='nightvision'){nightVision=true;Phase9.updateHud()}
  else if(id.endsWith('Ammo')){const k=inventory.find(k=>W[k].slot===(id==='primaryAmmo'?'primary':'pistol'));A[k].res=W[k].res}
- money-=item.price;Phase9.updateHud();const scroll=$('buyItems').scrollTop;renderBuyTab(activeBuyTab);$('buyItems').scrollTop=scroll;$('buyHint').textContent='PURCHASED · '+item.name;hud();return true;
+ money-=item.price;CS16SFX.purchase(item.id);Phase9.updateHud();const scroll=$('buyItems').scrollTop;renderBuyTab(activeBuyTab);$('buyItems').scrollTop=scroll;$('buyHint').textContent='PURCHASED · '+item.name;hud();return true;
 }
 document.querySelectorAll('#buyTabs [data-tab]').forEach(b=>b.onclick=()=>renderBuyTab(b.dataset.tab));
 $('closeBuy').onclick=$('closeBuy2').onclick=$('buyCancel').onclick=closeBuyMenu;
@@ -60,7 +62,7 @@ const CLASS_NAMES={gign:'GIGN',gsg9:'GSG-9',sas:'SAS',urban:'SEAL TEAM 6',arctic
 function showClasses(){
  $('teamScreen').classList.add('hidden');$('classScreen').classList.remove('hidden');$('classTitle').textContent=playerTeam==='CT'?'CT Forces / Choose a class':'Terrorists / Choose a class';
  const names=playerTeam==='CT'?CTN:TN;if(!names.includes(playerClass))playerClass=names[0];
- $('classOptions').replaceChildren();names.forEach((id,i)=>{const b=document.createElement('button');b.dataset.class=id;b.className='class-card'+(playerClass===id?' selected':'');b.innerHTML='<img src="assets/ui/classes/'+id+'.png" alt="'+CLASS_NAMES[id]+'"><strong>'+(i+1)+' &nbsp; '+CLASS_NAMES[id]+'</strong>';b.onclick=()=>{playerClass=id;document.querySelectorAll('.class-card').forEach(c=>c.classList.toggle('selected',c.dataset.class===id))};$('classOptions').appendChild(b)});
+ $('classOptions').replaceChildren();names.forEach((id,i)=>{const b=document.createElement('button');b.dataset.class=id;b.className='class-card'+(playerClass===id?' selected':'');b.innerHTML='<img src="assets/ui/cs16/'+id+'.png" alt="'+CLASS_NAMES[id]+'"><strong>'+(i+1)+' &nbsp; '+CLASS_NAMES[id]+'</strong>';b.onclick=()=>{playerClass=id;document.querySelectorAll('.class-card').forEach(c=>c.classList.toggle('selected',c.dataset.class===id))};$('classOptions').appendChild(b)});
 }
 function createPlayerClass(){
  if(playerAvatar){S.remove(playerAvatar);playerAvatar.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()})}
@@ -80,3 +82,8 @@ document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$(b.dataset.c
 $('pauseBtn').onclick=()=>{pauseToMenu();$('resumeBtn').classList.toggle('hidden',over)};
 $('resumeBtn').onclick=()=>{if(!R||over)return;$('menu').classList.add('hidden');document.body.classList.add('playing');running=true;t0=performance.now();resetInputs()};
 $('volume').oninput=e=>masterVolume=+e.target.value;
+const classicModelsField=$('classicModels');
+if(classicModelsField){
+ try{classicModelsField.value=localStorage.getItem('block-strike-classic-characters')==='off'?'off':'on'}catch(e){classicModelsField.value='on'}
+ classicModelsField.addEventListener('change',()=>{try{localStorage.setItem('block-strike-classic-characters',classicModelsField.value)}catch(e){}});
+}

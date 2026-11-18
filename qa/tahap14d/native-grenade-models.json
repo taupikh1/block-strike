@@ -1,0 +1,80 @@
+{
+  "passed": 18,
+  "total": 18,
+  "checks": [
+    {
+      "name": "hegrenade has 4 original clips",
+      "pass": true
+    },
+    {
+      "name": "hegrenade clip durations valid",
+      "pass": true
+    },
+    {
+      "name": "hegrenade real deploy anim runs",
+      "pass": true
+    },
+    {
+      "name": "hegrenade real pullpin anim runs",
+      "pass": true
+    },
+    {
+      "name": "hegrenade real throw anim runs",
+      "pass": true
+    },
+    {
+      "name": "hegrenade contains geometry",
+      "pass": true
+    },
+    {
+      "name": "flashbang has 4 original clips",
+      "pass": true
+    },
+    {
+      "name": "flashbang clip durations valid",
+      "pass": true
+    },
+    {
+      "name": "flashbang real deploy anim runs",
+      "pass": true
+    },
+    {
+      "name": "flashbang real pullpin anim runs",
+      "pass": true
+    },
+    {
+      "name": "flashbang real throw anim runs",
+      "pass": true
+    },
+    {
+      "name": "flashbang contains geometry",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade has 4 original clips",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade clip durations valid",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade real deploy anim runs",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade real pullpin anim runs",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade real throw anim runs",
+      "pass": true
+    },
+    {
+      "name": "smokegrenade contains geometry",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "environment": "Actual GLTFLoader + Three AnimationMixer in Chromium; no WebGL render"
+}

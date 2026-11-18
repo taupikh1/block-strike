@@ -1,0 +1,14 @@
+/* Phase 14E/14F: iPhone Safari controls; menus retain scroll and text inputs. */
+html,body{overscroll-behavior:none;-webkit-text-size-adjust:100%}
+body.playing #pad,body.playing #c,body.playing #fire,body.playing #ads,
+body.playing #jump,body.playing #rel,body.playing #swap,body.playing #crouchBtn,
+body.playing #walkBtn,body.playing #grenadeBtn,body.playing #grenadeTypeBtn,
+body.playing #pickupBtn,body.playing #nvgBtn{
+ touch-action:none!important;-webkit-user-select:none!important;user-select:none!important;
+ -webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;
+}
+/* Restore selection and Safari-native vertical scrolling to non-gameplay dialogs. */
+input,textarea,select,[contenteditable]{-webkit-user-select:text!important;user-select:text!important;-webkit-touch-callout:default!important}
+#radioCommands,.buy-items,#buyTabs,.sb-team-rows,#settingsScreen,.dialog,
+#weaponItems,#teamOverlay,#weaponOverlay,#controlEditor{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y}
+#radioCommands button,.buy-item,.dialog button{touch-action:manipulation}

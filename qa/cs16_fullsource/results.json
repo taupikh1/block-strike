@@ -1,0 +1,107 @@
+{
+  "passed": 20,
+  "total": 20,
+  "checks": [
+    {
+      "name": "ZIP sprite conversion yielded 71 valid GoldSrc sprites",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "71 sprites + animated atlas images decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "All 119 extra WAVs have RIFF/WAVE headers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "All menu/scope PNGs decode",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Classic 800 x 600 menu complete",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Eight classic player characters exported",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Eight GLBs retain 16 clips, right hand and valid scales",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Character style selection and scripts loaded",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Original animations are optional with fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No new maps or cheats in addition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Radio original WAV mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader ct/gign.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader ct/gsg9.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader ct/sas.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader ct/urban.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader t/arctic.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader t/guerilla.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader t/leet.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Chromium GLTFLoader t/terror.glb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Original weapon models deduplicated",
+      "passed": true,
+      "detail": "96 exact duplicates"
+    }
+  ],
+  "note": "Browser test parses real GLB assets without rendering GPU; Safari physical QA unavailable."
+}

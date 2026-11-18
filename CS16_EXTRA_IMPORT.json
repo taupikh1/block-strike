@@ -1,0 +1,705 @@
+{
+  "stats": {
+    "sprite_converted": 71,
+    "ui_image_converted": 17,
+    "scope_art_converted": 4,
+    "map_or_music_sound_skipped": 69,
+    "sound_imported": 119,
+    "sound_already_present": 194,
+    "bot_text_imported": 4,
+    "layout_data_imported": 60
+  },
+  "errors": [],
+  "source_count": 275,
+  "sprite_metadata": {
+    "rass_01": {
+      "frames": 1,
+      "width": 128,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/models/grass_01.spr"
+    },
+    "3dmflaora": {
+      "frames": 1,
+      "width": 64,
+      "height": 64,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/3dmflaora.spr"
+    },
+    "3dmflared": {
+      "frames": 1,
+      "width": 64,
+      "height": 64,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/3dmflared.spr"
+    },
+    "640hud1": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud1.spr"
+    },
+    "640hud10": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud10.spr"
+    },
+    "640hud11": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud11.spr"
+    },
+    "640hud12": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud12.spr"
+    },
+    "640hud13": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud13.spr"
+    },
+    "640hud14": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud14.spr"
+    },
+    "640hud15": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud15.spr"
+    },
+    "640hud16": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud16.spr"
+    },
+    "640hud17": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud17.spr"
+    },
+    "640hud18": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud18.spr"
+    },
+    "640hud19": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud19.spr"
+    },
+    "640hud2": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud2.spr"
+    },
+    "640hud20": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud20.spr"
+    },
+    "640hud3": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud3.spr"
+    },
+    "640hud4": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud4.spr"
+    },
+    "640hud5": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud5.spr"
+    },
+    "640hud6": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud6.spr"
+    },
+    "640hud7": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/640hud7.spr"
+    },
+    "black_smoke1": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 2,
+      "atlas": true,
+      "source": "cs16_files/sprites/black_smoke1.spr"
+    },
+    "black_smoke2": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 2,
+      "atlas": true,
+      "source": "cs16_files/sprites/black_smoke2.spr"
+    },
+    "black_smoke3": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 2,
+      "atlas": true,
+      "source": "cs16_files/sprites/black_smoke3.spr"
+    },
+    "black_smoke4": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 2,
+      "atlas": true,
+      "source": "cs16_files/sprites/black_smoke4.spr"
+    },
+    "c4": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/c4.spr"
+    },
+    "ch_sniper": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ch_sniper.spr"
+    },
+    "ch_sniper2": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ch_sniper2.spr"
+    },
+    "defuser": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/defuser.spr"
+    },
+    "effects/rain": {
+      "frames": 1,
+      "width": 8,
+      "height": 128,
+      "mode": 2,
+      "atlas": false,
+      "source": "cs16_files/sprites/effects/rain.spr"
+    },
+    "effects/rainsplash": {
+      "frames": 12,
+      "width": 128,
+      "height": 128,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/effects/rainsplash.spr"
+    },
+    "effects/ripple": {
+      "frames": 15,
+      "width": 64,
+      "height": 64,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/effects/ripple.spr"
+    },
+    "effects/snowflake": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/effects/snowflake.spr"
+    },
+    "fast_wallpuff1": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 3,
+      "atlas": true,
+      "source": "cs16_files/sprites/fast_wallpuff1.spr"
+    },
+    "gas_puff_01": {
+      "frames": 2,
+      "width": 64,
+      "height": 64,
+      "mode": 2,
+      "atlas": true,
+      "source": "cs16_files/sprites/gas_puff_01.spr"
+    },
+    "grass_01": {
+      "frames": 1,
+      "width": 128,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/grass_01.spr"
+    },
+    "grass_03": {
+      "frames": 1,
+      "width": 256,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/grass_03.spr"
+    },
+    "ibackpack": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ibackpack.spr"
+    },
+    "ic4": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ic4.spr"
+    },
+    "ihostage": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ihostage.spr"
+    },
+    "ikgrass1": {
+      "frames": 1,
+      "width": 64,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ikgrass1.spr"
+    },
+    "ikgrass2": {
+      "frames": 1,
+      "width": 64,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ikgrass2.spr"
+    },
+    "ikgrass3": {
+      "frames": 1,
+      "width": 64,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ikgrass3.spr"
+    },
+    "ikgrass4": {
+      "frames": 1,
+      "width": 64,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ikgrass4.spr"
+    },
+    "ikgrass5": {
+      "frames": 1,
+      "width": 64,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/ikgrass5.spr"
+    },
+    "iplayerc4": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/iplayerc4.spr"
+    },
+    "iplayervip": {
+      "frames": 1,
+      "width": 32,
+      "height": 32,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/iplayervip.spr"
+    },
+    "ledglow": {
+      "frames": 2,
+      "width": 64,
+      "height": 64,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/ledglow.spr"
+    },
+    "left": {
+      "frames": 1,
+      "width": 192,
+      "height": 256,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/left.spr"
+    },
+    "left2": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/left2.spr"
+    },
+    "muzzleflash1": {
+      "frames": 1,
+      "width": 48,
+      "height": 48,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/muzzleflash1.spr"
+    },
+    "muzzleflash2": {
+      "frames": 3,
+      "width": 64,
+      "height": 64,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/muzzleflash2.spr"
+    },
+    "muzzleflash3": {
+      "frames": 3,
+      "width": 72,
+      "height": 72,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/muzzleflash3.spr"
+    },
+    "muzzleflash4": {
+      "frames": 1,
+      "width": 48,
+      "height": 48,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/muzzleflash4.spr"
+    },
+    "pistol_smoke1": {
+      "frames": 30,
+      "width": 128,
+      "height": 96,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/pistol_smoke1.spr"
+    },
+    "pistol_smoke2": {
+      "frames": 30,
+      "width": 128,
+      "height": 96,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/pistol_smoke2.spr"
+    },
+    "radar320": {
+      "frames": 1,
+      "width": 64,
+      "height": 64,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/radar320.spr"
+    },
+    "radar640": {
+      "frames": 1,
+      "width": 128,
+      "height": 128,
+      "mode": 1,
+      "atlas": false,
+      "source": "cs16_files/sprites/radar640.spr"
+    },
+    "radaropaque640": {
+      "frames": 1,
+      "width": 128,
+      "height": 128,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/radaropaque640.spr"
+    },
+    "radio": {
+      "frames": 1,
+      "width": 8,
+      "height": 8,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/radio.spr"
+    },
+    "rifle_smoke1": {
+      "frames": 30,
+      "width": 128,
+      "height": 96,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/rifle_smoke1.spr"
+    },
+    "rifle_smoke2": {
+      "frames": 30,
+      "width": 128,
+      "height": 96,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/rifle_smoke2.spr"
+    },
+    "rifle_smoke3": {
+      "frames": 30,
+      "width": 128,
+      "height": 96,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/rifle_smoke3.spr"
+    },
+    "shadow_circle": {
+      "frames": 1,
+      "width": 64,
+      "height": 64,
+      "mode": 2,
+      "atlas": false,
+      "source": "cs16_files/sprites/shadow_circle.spr"
+    },
+    "smokepuff": {
+      "frames": 10,
+      "width": 32,
+      "height": 32,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/smokepuff.spr"
+    },
+    "sniper_scope": {
+      "frames": 1,
+      "width": 256,
+      "height": 256,
+      "mode": 3,
+      "atlas": false,
+      "source": "cs16_files/sprites/sniper_scope.spr"
+    },
+    "snow": {
+      "frames": 16,
+      "width": 96,
+      "height": 96,
+      "mode": 3,
+      "atlas": true,
+      "source": "cs16_files/sprites/snow.spr"
+    },
+    "wall_puff1": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/wall_puff1.spr"
+    },
+    "wall_puff2": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/wall_puff2.spr"
+    },
+    "wall_puff3": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/wall_puff3.spr"
+    },
+    "wall_puff4": {
+      "frames": 30,
+      "width": 72,
+      "height": 72,
+      "mode": 1,
+      "atlas": true,
+      "source": "cs16_files/sprites/wall_puff4.spr"
+    }
+  },
+  "sound_files": [
+    "events/enemy_died.wav",
+    "events/friend_died.wav",
+    "events/task_complete.wav",
+    "events/tutor_msg.wav",
+    "hostage/hos1.wav",
+    "hostage/hos2.wav",
+    "hostage/hos3.wav",
+    "hostage/hos4.wav",
+    "hostage/hos5.wav",
+    "misc/cow.wav",
+    "misc/killChicken.wav",
+    "misc/plane_drone.wav",
+    "misc/sheep.wav",
+    "misc/talk.wav",
+    "plats/vehicle1.wav",
+    "plats/vehicle2.wav",
+    "plats/vehicle3.wav",
+    "plats/vehicle4.wav",
+    "plats/vehicle6.wav",
+    "plats/vehicle7.wav",
+    "plats/vehicle_brake1.wav",
+    "plats/vehicle_ignition.wav",
+    "plats/vehicle_start1.wav",
+    "player/bhit_flesh-3.wav",
+    "player/breathe1.wav",
+    "player/breathe2.wav",
+    "player/death6.wav",
+    "player/die3.wav",
+    "player/headshot2.wav",
+    "player/headshot3.wav",
+    "player/pl_die1.wav",
+    "player/pl_dirt3.wav",
+    "player/pl_dirt4.wav",
+    "player/pl_duct1.wav",
+    "player/pl_duct2.wav",
+    "player/pl_duct3.wav",
+    "player/pl_duct4.wav",
+    "player/pl_fallpain2.wav",
+    "player/pl_fallpain3.wav",
+    "player/pl_grate1.wav",
+    "player/pl_grate2.wav",
+    "player/pl_grate3.wav",
+    "player/pl_grate4.wav",
+    "player/pl_ladder1.wav",
+    "player/pl_ladder2.wav",
+    "player/pl_ladder3.wav",
+    "player/pl_ladder4.wav",
+    "player/pl_metal3.wav",
+    "player/pl_metal4.wav",
+    "player/pl_pain5.wav",
+    "player/pl_pain6.wav",
+    "player/pl_pain7.wav",
+    "player/pl_shell1.wav",
+    "player/pl_shot1.wav",
+    "player/pl_slosh1.wav",
+    "player/pl_slosh2.wav",
+    "player/pl_slosh3.wav",
+    "player/pl_slosh4.wav",
+    "player/pl_snow1.wav",
+    "player/pl_snow2.wav",
+    "player/pl_snow3.wav",
+    "player/pl_snow4.wav",
+    "player/pl_snow5.wav",
+    "player/pl_snow6.wav",
+    "player/pl_swim1.wav",
+    "player/pl_swim2.wav",
+    "player/pl_swim3.wav",
+    "player/pl_swim4.wav",
+    "player/pl_tile5.wav",
+    "player/pl_wade1.wav",
+    "player/pl_wade2.wav",
+    "player/pl_wade3.wav",
+    "player/pl_wade4.wav",
+    "player/sprayer.wav",
+    "radio/blow.wav",
+    "radio/bombdef.wav",
+    "radio/bombpl.wav",
+    "radio/circleback.wav",
+    "radio/clear.wav",
+    "radio/com_followcom.wav",
+    "radio/com_getinpos.wav",
+    "radio/com_go.wav",
+    "radio/com_reportin.wav",
+    "radio/ct_affirm.wav",
+    "radio/ct_backup.wav",
+    "radio/ct_coverme.wav",
+    "radio/ct_enemys.wav",
+    "radio/ct_fireinhole.wav",
+    "radio/ct_imhit.wav",
+    "radio/ct_inpos.wav",
+    "radio/ct_point.wav",
+    "radio/ct_reportingin.wav",
+    "radio/ctwin.wav",
+    "radio/elim.wav",
+    "radio/enemydown.wav",
+    "radio/fallback.wav",
+    "radio/fireassis.wav",
+    "radio/flankthem.wav",
+    "radio/followme.wav",
+    "radio/getout.wav",
+    "radio/go.wav",
+    "radio/hitassist.wav",
+    "radio/hosdown.wav",
+    "radio/letsgo.wav",
+    "radio/locknload.wav",
+    "radio/matedown.wav",
+    "radio/meetme.wav",
+    "radio/moveout.wav",
+    "radio/negative.wav",
+    "radio/position.wav",
+    "radio/regroup.wav",
+    "radio/rescued.wav",
+    "radio/roger.wav",
+    "radio/rounddraw.wav",
+    "radio/sticktog.wav",
+    "radio/stormfront.wav",
+    "radio/takepoint.wav",
+    "radio/terwin.wav",
+    "radio/vip.wav"
+  ]
+}

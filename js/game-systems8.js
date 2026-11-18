@@ -21,7 +21,21 @@ function equipBot(b,i,preferredId=null){
   g.scene.traverse(o=>{if(!o.isMesh)return;
    const boneName=(o.userData.attachBone||'').replace(/\s/g,'_');
    const bone=b.body.getObjectByName(boneName)||b.body.getObjectByName(o.userData.attachBone||'');if(!bone){console.warn('Missing weapon attachment bone',boneName);return}
-   const mesh=o.clone();mesh.frustumCulled=false;bone.add(mesh);b.weaponModel.push(mesh);
+   // p_*.glb is authored in GoldSrc bind-pose hand-local units. The
+   // animated player bone inherits the armature's ~0.028 scale. Do NOT
+   // duplicate a source root transform or use raw world-sized cubes here.
+   // Guard against corrupt/incorrectly scaled future asset conversions.
+   if(!o.geometry?.attributes?.position)return;
+   if(!o.geometry.boundingBox)o.geometry.computeBoundingBox();
+   const localSize=o.geometry.boundingBox.getSize(new THREE.Vector3());
+   bone.updateWorldMatrix(true,false);
+   const worldScale=bone.getWorldScale(new THREE.Vector3());
+   const extent=Math.max(localSize.x*Math.abs(worldScale.x),localSize.y*Math.abs(worldScale.y),localSize.z*Math.abs(worldScale.z));
+   if(!Number.isFinite(extent)||extent<.005||extent>1.7){
+    console.warn('Tahap14A: rejected invalid held model scale',id,boneName,extent);return;
+   }
+   const mesh=o.clone();mesh.frustumCulled=false;mesh.castShadow=true;
+   bone.add(mesh);b.weaponModel.push(mesh);
   });
  }).catch(e=>console.warn('Held model failed',id,e));
 }
@@ -32,8 +46,8 @@ function disposeBot(b){
  b.g.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()});S.remove(b.g);
 }
 function resetInputs(){
- fh=fl=jmp=firedLatch=false;walkHeld=mobileWalk=false;fireAimPointer=fireAimLast=null;$('walkBtn')?.classList.remove('active');jx=jy=0;Object.keys(K).forEach(k=>K[k]=0);
- jid=lid=null;jb.style.display=jk.style.display='none';if(typeof Phase9!=='undefined')Phase9.releaseControls();
+ fh=fl=jmp=firedLatch=secondaryHeld=mouseSecondaryHeld=false;walkHeld=mobileWalk=false;fireAimPointer=fireAimLast=adsPointer=adsAimLast=null;$('walkBtn')?.classList.remove('active');jx=jy=0;Object.keys(K).forEach(k=>K[k]=0);
+ jid=lid=null;jb.style.display=jk.style.display='none';document.dispatchEvent(new Event('blockstrike:reset-controls'));if(typeof Phase9!=='undefined')Phase9.releaseControls();
 }
 function requestLock(){try{const p=$('pad').requestPointerLock?.();p?.catch?.(()=>{})}catch(e){}}
 function inputBlocked(){return !running||!$('buyMenu').classList.contains('hidden')||!$('menu').classList.contains('hidden')||(typeof Phase13!=='undefined'&&(Phase13.isSpectating()||Phase13.visibleOverlay()))}

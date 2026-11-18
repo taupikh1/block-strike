@@ -13,6 +13,8 @@ const Phase10=(()=>{
  let config={players:16,difficulty:'normal'},roster=[],statCache=new Map(),playerDeaths=0,roundWinner=null;
  let matchStart=0,grenadeBudget={CT:0,T:0},radioMode=null,radioOpen=false,radioLast=-100,botVoiceLast=-100,radioSeq=0;
  const voiceCache=new Map(),textureCache=new Map(),effects=[];
+ const CS16_RADIO_WAV=new Set(["blow", "bombdef", "bombpl", "circleback", "clear", "com_followcom", "com_getinpos", "com_go", "com_reportin", "ct_affirm", "ct_backup", "ct_coverme", "ct_enemys", "ct_fireinhole", "ct_imhit", "ct_inpos", "ct_point", "ct_reportingin", "ctwin", "elim", "enemydown", "fallback", "fireassis", "flankthem", "followme", "getout", "go", "hitassist", "hosdown", "letsgo", "locknload", "matedown", "meetme", "moveout", "negative", "position", "regroup", "rescued", "roger", "rounddraw", "sticktog", "stormfront", "takepoint", "terwin", "vip"]);
+
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const now=()=>performance.now()/1000;
  const safeNum=n=>Number.isFinite(+n)?Math.floor(+n):16;
@@ -46,7 +48,7 @@ const Phase10=(()=>{
  function registerBot(b,sideIndex){
   const id=`${b.team}-${sideIndex}`,prev=statCache.get(id)||{kills:0,deaths:0,money:800};
   b.botId=id;b.teamIndex=sideIndex;
-  b.name=`${b.team} ${String(sideIndex+1).padStart(2,'0')} · ${(b.name||'BOT').toUpperCase()}`;
+  b.name=`${b.team} ${String(sideIndex+1).padStart(2,'0')} · ${(window.CS16BotData?.nameFor(b.team,sideIndex)||b.name||'BOT').toUpperCase()}`;
   b.skill=PROFILES[config.difficulty];
   b.accuracy=clamp((b.accuracy||.42)*b.skill.aim,.10,.72);
   b.effectiveRange=(b.effectiveRange||42)*b.skill.range;
@@ -306,7 +308,7 @@ const Phase10=(()=>{
  function radioPlay(channel,stem,volume=.5){
   if(!AC||!stem)return;
   const key=channel+'/'+stem;let task=voiceCache.get(key);
-  if(!task){task=fetch('assets/phase10/audio/'+key+'.mp3').then(r=>{if(!r.ok)throw Error('radio asset '+r.status);return r.arrayBuffer()}).then(bytes=>AC.decodeAudioData(bytes)).catch(e=>{voiceCache.delete(key);console.warn(e.message);return null});voiceCache.set(key,task)}
+  if(!task){task=fetch(channel==='radio'&&CS16_RADIO_WAV.has(stem)?'assets/cs16-extra-sounds/radio/'+stem+'.wav':'assets/phase10/audio/'+key+'.mp3').then(r=>{if(!r.ok)throw Error('radio asset '+r.status);return r.arrayBuffer()}).then(bytes=>AC.decodeAudioData(bytes)).catch(e=>{voiceCache.delete(key);console.warn(e.message);return null});voiceCache.set(key,task)}
   task.then(buffer=>{if(!buffer||!AC||(!running&&!over))return;
    const s=AC.createBufferSource(),g=AC.createGain();s.buffer=buffer;g.gain.value=clamp(volume*masterVolume,0,.9);s.connect(g);g.connect(AC.destination);s.onended=()=>{s.disconnect();g.disconnect()};
    try{s.start()}catch(e){}});
@@ -371,7 +373,7 @@ const Phase10=(()=>{
   $('scoreClose')?.addEventListener('click',()=>setScoreboard(false));
  }
  function loadTexture(name){
-  if(!textureCache.has(name)){textureCache.set(name,new THREE.TextureLoader().load('assets/phase10/fx/'+name+'.png'));}
+  if(!textureCache.has(name)){textureCache.set(name,new THREE.TextureLoader().load((name.startsWith('muzzleflash')?'assets/cs16-sprites/':'assets/phase10/fx/')+name+'.png'));}
   return textureCache.get(name);
  }
  function addEffect(sprite,lifetime){effects.push({sprite,lifetime,age:0});}

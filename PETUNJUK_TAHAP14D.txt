@@ -1,0 +1,15 @@
+BLOCK STRIKE Tahap 14D — Grenade Overhaul
+
+OPSI A (Tahap 14C sudah terpasang):
+1. Ekstrak BLOCK_STRIKE_TAHAP14D_PATCH_DARI_TAHAP14C.zip.
+2. Salin isi folder BLOCK_STRIKE/ di dalam patch ke folder game BLOCK_STRIKE/ milikmu. Izinkan overwrite file yang berubah.
+3. Pastikan index.html, js/grenade14d.js, dan js/game-systems9.js sudah ikut di-update.
+4. Deploy ulang ke GitHub Pages. Refresh Safari dan bersihkan cache situs jika script lama masih tersimpan.
+
+OPSI B (game lengkap):
+1. Ekstrak SEMUA paket BLOCK_STRIKE_TAHAP14D_PAKET_*_DARI_*.zip pada folder induk YANG SAMA.
+2. Gabungkan isi folder BLOCK_STRIKE/ dari setiap paket; jangan mengganti paket sebelumnya.
+3. Upload ISI folder BLOCK_STRIKE/ (index.html sejajar dengan js/, css/, assets/) ke root repo GitHub Pages.
+4. Buka lewat HTTPS / local HTTP, bukan file://.
+
+Ukuran maksimum tiap ZIP 24.900.000 byte. Batch 14E–14G belum termasuk. Baca QA_TAHAP14D.md.

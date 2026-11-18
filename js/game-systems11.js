@@ -56,27 +56,10 @@ const Phase11=(()=>{
    bone.quaternion.multiply(mod);entry.prevPost=bone.quaternion.clone();entry.prevMod=mod;
   }
  }
+ // Kept for callers from older batches. The native Five-SeveN replacement
+ // now lives in 14B; never attach third-person p_ geometry to first-person bones.
  function updateShieldView(group){
-  if(!group||!group.userData?.weaponAnimation)return;
-  const pistol=Phase9.shieldPistol();
-  if(group.userData.shieldPistolId===pistol)return;
-  const token=group.userData.shieldSyncToken=(group.userData.shieldSyncToken||0)+1;
-  const root=group.children.find(child=>(child.getObjectByName?.('Bip01 R Hand')||child.getObjectByName?.('Bip01_R_Hand')));
-  if(!root)return;
-  if(group.userData.shieldAttachments){for(const obj of group.userData.shieldAttachments)obj.parent?.remove(obj)}
-  group.userData.shieldAttachments=[];group.userData.shieldPistolId=pistol;
-  root.traverse(obj=>{if(obj.isMesh&&/^(FN[ _]FiveSeven|slide$|mag$|trig$)/i.test(obj.name))obj.visible=pistol==='fiveseven'});
-  if(pistol==='fiveseven')return;
-  loadHeld(pistol).then(gl=>{
-   if(group.userData.shieldSyncToken!==token)return;
-   gl.scene.traverse(o=>{
-    if(!o.isMesh)return;
-    const name=(o.userData.attachBone||'').replace(/\s/g,'_');
-    const bone=root.getObjectByName(name)||root.getObjectByName(o.userData.attachBone||'');
-    if(!bone)return;
-    const mesh=o.clone();mesh.frustumCulled=false;bone.add(mesh);group.userData.shieldAttachments.push(mesh);
-   });
-  }).catch(e=>console.warn('Shield pistol attachment unavailable',pistol,e));
+  if(typeof Phase14B!=='undefined')Phase14B.sync(group);
  }
  return {initBotPose,decideBotCrouch,updateBotPose,updateShieldView};
 })();

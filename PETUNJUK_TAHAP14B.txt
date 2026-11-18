@@ -1,0 +1,10 @@
+BLOCK STRIKE TAHAP 14B — CARA PASANG
+
+PILIH SALAH SATU:
+A. Dari Tahap 14A lengkap: ekstrak BLOCK_STRIKE_TAHAP14B_PATCH_DARI_TAHAP14A.zip, lalu timpa isi folder BLOCK_STRIKE pada proyek Tahap 14A. Jangan pasang patch langsung ke Tahap 13.
+B. Dari nol: unduh seluruh BLOCK_STRIKE_TAHAP14B_PAKET_N_DARI_M.zip, ekstrak ke lokasi induk SAMA. Gabungkan folder BLOCK_STRIKE dari tiap paket, bukan mengganti folder dengan folder ZIP berikutnya.
+
+Untuk GitHub Pages, unggah isi folder BLOCK_STRIKE ke root repository, beserta index.html, css, js, assets, dan .nojekyll.
+
+QA: CONDiTIONAL. Pengujian GLTFLoader dan regresi lulus, WebGL asli/Safari fisik belum diuji.
+Selanjutnya: Tahap 14C tentang kepemilikan shield, weapon switch, drop/pickup. Belum dikerjakan pada batch ini.

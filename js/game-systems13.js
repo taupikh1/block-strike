@@ -22,12 +22,12 @@ const Phase13=(()=>{
   if(flashlight)flashlight.visible=lightEnabled;
   $('flashBtn').classList.toggle('active',lightEnabled);say(lightEnabled?'FLASHLIGHT ON':'FLASHLIGHT OFF');return true}
  function renderWeaponSelector(){const host=$('weaponItems');host.replaceChildren();
-  const cats=[['PRIMARY',inventory.filter(k=>W[k]?.slot==='primary')],['SECONDARY',inventory.filter(k=>W[k]?.slot==='pistol')],['KNIFE',inventory.filter(k=>k==='knife')],['EQUIPMENT',inventory.filter(k=>k==='shield')]];
+  const shield=Phase14C.hasShield(inventory),cats=shield?[[ 'PISTOL + SHIELD',['shield']],['KNIFE',inventory.filter(k=>k==='knife')]]:[['PRIMARY',inventory.filter(k=>W[k]?.slot==='primary')],['SECONDARY',inventory.filter(k=>W[k]?.slot==='pistol')],['KNIFE',inventory.filter(k=>k==='knife')]];
   for(const [label,weapons] of cats){if(!weapons.length)continue;
    const title=document.createElement('b');title.textContent=label;host.appendChild(title);
    for(const k of weapons){const button=document.createElement('button');button.className='weapon-choice';button.type='button';button.dataset.weapon=k;
-    const img=document.createElement('img');img.src='assets/ui/icons/'+k+'.png';img.alt='';img.onerror=()=>{img.hidden=true};button.append(img);
-    const text=document.createElement('span');text.textContent=W[k].n;button.append(text);
+    const img=document.createElement('img');img.src=CS16VGUI.icon(k)||'assets/ui/icons/'+k+'.png';img.alt='';img.onerror=()=>{img.hidden=true};button.append(img);
+    const text=document.createElement('span');text.textContent=k==='shield'?W[Phase14C.pistol(inventory)||'usp'].n+' + SHIELD':W[k].n;button.append(text);
     if(k===cur())button.classList.add('active');button.addEventListener('click',()=>{const i=inventory.indexOf(k);if(i>=0)setW(i);closeWeaponSelector()});host.appendChild(button)
    }
   }

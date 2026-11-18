@@ -1,0 +1,10 @@
+/* Source-supplied CS 1.6 era graphical styling; gameplay touch behavior unchanged. */
+#menu{background:linear-gradient(90deg,rgba(9,15,21,.93) 0%,rgba(12,20,24,.82) 45%,rgba(7,13,17,.54) 100%),url('../assets/cs16-extra-ui/cs16-menu-background.jpg') center center/cover no-repeat}
+#menu .menu-panel button:focus-visible,#buyMenu button:focus-visible{outline:2px solid #e4c875;outline-offset:2px}
+#buyMenu .buy-window{background:linear-gradient(135deg,rgba(17,24,19,.98),rgba(19,23,18,.94));border-color:#ad9254}
+#buyMenu .buy-item:hover:not(:disabled){background-color:#2a3822}
+#teamScreen,.screen#classScreen{background:linear-gradient(110deg,rgba(9,18,16,.92),rgba(12,20,18,.88)),url('../assets/cs16-extra-ui/cs16-menu-background.jpg') center/cover}
+/* Real GoldSrc radio indicator sprite, used as decoration on the already accessible button. */
+#radioBtn::after{content:'';display:block;position:absolute;right:-2px;top:-2px;background:url('../assets/cs16-sprites/radio.png') center/contain no-repeat;width:10px;height:12px;pointer-events:none}
+/* Keep native scroll and safe-area constraints from earlier fixes. */
+#buyItems,.buy-items,#radioCommands,#weaponItems{touch-action:pan-y;-webkit-overflow-scrolling:touch}

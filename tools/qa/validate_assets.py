@@ -36,7 +36,7 @@ for p in [root/'index.html',*list((root/'css').glob('*.css'))]:
   if u.startswith(('http:','https:','#','data:')):continue
   if not (p.parent/u).exists():report['missing'].append(str(p.relative_to(root))+':'+u)
 for f in set(re.findall(r"[\w-]+\.wav",(root/'js/game-core.js').read_text())):
- if not (root/'assets/sounds/weapons'/f).exists():report['missing'].append(f)
+ if not (root/'assets/sounds/weapons'/f).exists() and not (root/'assets/cs16-extra-sounds/events'/f).exists():report['missing'].append(f)
 assert not report['missing'],report['missing']
 (root/'qa/assets.json').write_text(json.dumps(report,indent=2))
 print('PASS',len(report['models']),'animated GLBs;',report['sounds'],'WAVs;',report['icons'],'transparent icons; local paths valid')

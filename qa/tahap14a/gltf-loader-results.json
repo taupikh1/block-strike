@@ -1,0 +1,104 @@
+{
+  "checks": [
+    {
+      "name": "ct/gign.glb",
+      "pass": true,
+      "stats": {
+        "file": "ct/gign.glb",
+        "meshes": 1,
+        "vertices": 1158,
+        "textures": 1,
+        "rootScale": [
+          0.028,
+          0.028,
+          0.028
+        ],
+        "hand": true,
+        "bones": 0
+      }
+    },
+    {
+      "name": "t/terror.glb",
+      "pass": true,
+      "stats": {
+        "file": "t/terror.glb",
+        "meshes": 1,
+        "vertices": 1078,
+        "textures": 1,
+        "rootScale": [
+          0.028,
+          0.028,
+          0.028
+        ],
+        "hand": true,
+        "bones": 0
+      }
+    },
+    {
+      "name": "held/usp.glb",
+      "pass": true,
+      "stats": {
+        "file": "held/usp.glb",
+        "meshes": 1,
+        "vertices": 300,
+        "textures": 1,
+        "rootScale": null,
+        "hand": false,
+        "bones": 0
+      }
+    },
+    {
+      "name": "held/glock18.glb",
+      "pass": true,
+      "stats": {
+        "file": "held/glock18.glb",
+        "meshes": 1,
+        "vertices": 234,
+        "textures": 1,
+        "rootScale": null,
+        "hand": false,
+        "bones": 0
+      }
+    },
+    {
+      "name": "held/ak47.glb",
+      "pass": true,
+      "stats": {
+        "file": "held/ak47.glb",
+        "meshes": 1,
+        "vertices": 348,
+        "textures": 1,
+        "rootScale": null,
+        "hand": false,
+        "bones": 0
+      }
+    },
+    {
+      "name": "held/elite.glb",
+      "pass": true,
+      "stats": {
+        "file": "held/elite.glb",
+        "meshes": 2,
+        "vertices": 624,
+        "textures": 2,
+        "rootScale": null,
+        "hand": false,
+        "bones": 0
+      }
+    },
+    {
+      "name": "held/shield.glb",
+      "pass": true,
+      "stats": {
+        "file": "held/shield.glb",
+        "meshes": 4,
+        "vertices": 528,
+        "textures": 4,
+        "rootScale": null,
+        "hand": false,
+        "bones": 0
+      }
+    }
+  ],
+  "errors": []
+}

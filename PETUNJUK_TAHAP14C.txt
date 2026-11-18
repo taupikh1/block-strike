@@ -1,0 +1,7 @@
+BLOCK STRIKE TAHAP 14C — PETUNJUK
+
+PILIH SATU:
+A) Jika Tahap 14B sudah terpasang: ekstrak BLOCK_STRIKE_TAHAP14C_PATCH_DARI_TAHAP14B.zip, salin isi BLOCK_STRIKE/ ke root game dan timpa file lama. Tidak perlu 3 paket penuh.
+B) Instal game lengkap: unduh SEMUA tiga arsip BLOCK_STRIKE_TAHAP14C_PAKET_[1-3]_DARI_3.zip, ekstrak semuanya ke folder yang SAMA, gabungkan isi BLOCK_STRIKE/ (jangan timpa seluruh folder dengan satu paket saja). Unggah ISI folder BLOCK_STRIKE/ ke root GitHub Pages, bukan berkas ZIP-nya.
+
+RILIS 14C hanya perbaikan aturan inventory dan switch Tactical Shield. 14D–14G BELUM diterapkan. WebGL asli/iPhone Safari belum teruji. GitHub tidak di-push oleh sesi ini.

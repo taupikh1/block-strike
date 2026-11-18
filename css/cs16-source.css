@@ -1,0 +1,9 @@
+/* Additive original VGUI art; do not touch gameplay touch events. */
+.buy-item .buy-icon{object-fit:contain;filter:drop-shadow(0 1px 2px #0009);image-rendering:auto}
+.buy-item:focus-visible{outline:2px solid #d0ac6a;outline-offset:2px}
+#classOptions .class-card img,.team-card img,.menu-soldier{object-fit:contain}
+@media (orientation:landscape) and (max-height:450px){
+ .buy-item .buy-icon{max-height:48px}
+ .team-card img{max-height:38dvh}
+ #classOptions .class-card img{max-height:29dvh}
+}

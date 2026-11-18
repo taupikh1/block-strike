@@ -5,8 +5,8 @@
 const Phase9=(()=>{
  'use strict';
  const silenced={usp:true,m4a1:true};
- const dropped=[],projectiles=[],smokeClouds=[],worldLoads={};
- const SIGHT_RADIUS=3.5;
+ const dropped=[],projectiles=[],smokeClouds=[],worldLoads={},explosionFX=[];
+ const SIGHT_RADIUS=Grenade14D.TYPES.smoke.radius;
  const STORAGE='block-strike-tahap9-controls-v1';
  const controls=['fire','ads','jump','rel','swap','buybtn','grenadeBtn','grenadeTypeBtn','crouchBtn','walkBtn','pickupBtn','nvgBtn','radioBtn','scoreBtn','dropBtn','flashBtn','teamBtn','settingsGameBtn','weaponBtn'];
  const icons={
@@ -35,12 +35,14 @@ const Phase9=(()=>{
  let nightVisionActive=false,shieldRaised=false,activeFlash=0,flashStart=0;
  let pickupCandidate=null,dismissedDrop=null,editor=false,crouchMode='toggle',selectedControl='fire',dragging=null,config={};
  let grenadeView=null,grenadeViewToken=0,pendingThrow=null,smokeTexture=null,famasBurst=false;
+ const thrownNames={he:'hegrenade',flash:'flashbang',smoke:'smokegrenade'};
+ const gspec=Grenade14D.TYPES;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  function sound(name,vol=.35){playOriginalSound(name,vol,.2,1350)}
  function blocked(){return inputBlocked()||over}
  function unsilenced(k){return Object.prototype.hasOwnProperty.call(silenced,k)&&!silenced[k]}
  function firingSound(k){if(k==='usp')return silenced.usp?'usp1.wav':'usp_unsil-1.wav';if(k==='m4a1')return silenced.m4a1?'m4a1-1.wav':'m4a1_unsil-1.wav';return W[k].sound}
- function shieldPistol(){return inventory.find(x=>W[x]?.slot==='pistol')||'usp'}
+ function shieldPistol(){return Phase14C.pistol(inventory)||(playerTeam==='T'?'glock18':'usp')}
  function secondaryAction(){
   if(blocked()||reloading>0)return false;
   const k=cur();
@@ -51,6 +53,7 @@ const Phase9=(()=>{
    shieldRaised=!shieldRaised;
    const a=vm?.userData.weaponAnimation;
    if(a){a.currentKind='shield';playWeaponClip(a,shieldRaised?'shield_up':'shield_down',false)}
+   if(typeof Phase14B!=='undefined')Phase14B.setRaised(vm,shieldRaised);
    sound('grenade_hit1.wav',.14);updateHud();return true;
   }
   if(k==='usp'||k==='m4a1'){
@@ -72,13 +75,14 @@ const Phase9=(()=>{
   if(!nightVision){say('BUY NIGHT VISION FIRST');return false}
   nightVisionActive=!nightVisionActive;
   document.body.classList.toggle('night-vision',nightVisionActive);
-  snd(.08,.1,1500);say(nightVisionActive?'NIGHT VISION ON':'NIGHT VISION OFF');updateHud();return true;
+  CS16SFX.nightVision(nightVisionActive);say(nightVisionActive?'NIGHT VISION ON':'NIGHT VISION OFF');updateHud();return true;
  }
  function updateHud(){
+  if(!pendingThrow&&grenades[selectedGrenade]<=0){const owned=['he','flash','smoke'].find(x=>grenades[x]>0);if(owned)selectedGrenade=owned}
   const action=$('ads'),k=cur(),supported=scopeLevels(k)>0||k==='usp'||k==='m4a1'||k==='shield'||k==='knife'||k==='famas';
   document.body.classList.toggle('has-action',supported);
   if(action){const on=k==='shield'?shieldRaised:k==='usp'||k==='m4a1'?silenced[k]:aiming;action.classList.toggle('active',!!on);
-    const label=k==='usp'||k==='m4a1'?'PEREDAM':k==='shield'?'TAMENG':k==='knife'?'STAB':k==='famas'?'BURST':'BIDIK';action.setAttribute('aria-label',label)}
+    const label=k==='usp'||k==='m4a1'?'PEREDAM':k==='shield'?'TAMENG':k==='knife'?'TAHAN STAB':k==='famas'?'BURST':'BIDIK';action.setAttribute('aria-label',label)}
   const nv=$('nvgBtn');if(nv){nv.classList.toggle('active',nightVisionActive);nv.classList.toggle('unavailable',!nightVision);nv.title=nightVision?'Night vision (N)':'Beli night vision dahulu'}
   const cr=$('crouchBtn');if(cr)cr.classList.toggle('active',crouching);
   const gd=$('grenadeTypeBtn');if(gd){gd.dataset.grenade=selectedGrenade;gd.title='Pilih '+selectedGrenade.toUpperCase()+' (tap untuk ganti)'}
@@ -132,7 +136,8 @@ const Phase9=(()=>{
   const k=cur();if(k==='knife'||!W[k]||!inventory.includes(k)){say('KNIFE CANNOT BE DROPPED');return false}
   const dropped=makeDrop(k,P.pos.clone().add(new THREE.Vector3(-Math.sin(P.yaw)*1.3,0,-Math.cos(P.yaw)*1.3)),A[k]?.mag||0,A[k]?.res||0);
   if(!dropped)return false;
-  inventory=inventory.filter(id=>id!==k);if(!inventory.length)inventory=['knife'];wi=0;setW(wi);say('DROPPED '+W[k].n);return true;
+  inventory=inventory.filter(id=>id!==k);if(k==='shield'){shieldRaised=false;if(typeof Phase14B!=='undefined'&&weaponInstances.shield)Phase14B.setRaised(weaponInstances.shield,false)}
+  if(!inventory.length)inventory=['knife'];wi=0;setW(wi);say('DROPPED '+W[k].n);return true;
  }
  function removeDrop(d){if(!d||!d.alive)return;d.alive=false;S?.remove(d.mesh);dropped.splice(dropped.indexOf(d),1);d.marker.geometry.dispose();d.marker.material.dispose();if(pickupCandidate===d){pickupCandidate=null;$('pickupPrompt').classList.add('hidden')}}
  function nearestDrop(){
@@ -143,16 +148,16 @@ const Phase9=(()=>{
  function syncPickup(){
   const visibleDrop=nearestDrop(),d=visibleDrop===dismissedDrop?null:visibleDrop;if(visibleDrop!==dismissedDrop)dismissedDrop=null;if(d!==pickupCandidate){pickupCandidate=d;
    const panel=$('pickupPrompt');panel.classList.toggle('hidden',!d);
-   if(d){$('pickupName').textContent=W[d.id].n+' · Ambil senjata?';$('pickupDesc').textContent='Slot '+(W[d.id].slot==='pistol'?'pistol':'utama')+' · otomatis tukar senjata lama'}
+   if(d){$('pickupName').textContent=W[d.id].n+' · Ambil senjata?';const rule=Phase14C.guardPickup(d.id,inventory,W,playerTeam);$('pickupDesc').textContent=rule||'Slot '+(W[d.id].slot==='pistol'?'pistol':'utama')+' · otomatis tukar senjata lama'}
   }
   $('pickupBtn').classList.toggle('unavailable',!d);
  }
  function pickupNearest(){
   if(blocked())return false;
   const d=nearestDrop();if(!d)return false;
-  if((d.id==='elite'&&inventory.includes('shield'))||(d.id==='shield'&&inventory.includes('elite'))){say('DUAL ELITES CANNOT BE USED WITH SHIELD');return false}
+  const rule=Phase14C.guardPickup(d.id,inventory,W,playerTeam);if(rule){say(rule);return false}
   const slot=W[d.id].slot,old=inventory.find(k=>W[k].slot===slot);
-  if(old){const state=A[old];makeDrop(old,P.pos.clone().add(new THREE.Vector3(.45,0,.35)),state?.mag,state?.res);inventory=inventory.filter(k=>k!==old)}
+  if(old){const state=A[old];const swapDrop=makeDrop(old,P.pos.clone().add(new THREE.Vector3(.45,0,.35)),state?.mag,state?.res);if(!swapDrop){say('TOO MANY DROPPED WEAPONS');return false}inventory=inventory.filter(k=>k!==old)}
   inventory.splice(slot==='pistol'?0:Math.min(1,inventory.length),0,d.id);
   A[d.id]={mag:d.mag,res:d.res};removeDrop(d);setW(inventory.indexOf(d.id));say('PICKED UP '+W[d.id].n);syncPickup();return true;
  }
@@ -164,8 +169,10 @@ const Phase9=(()=>{
  }
  function blocksSight(start,end){
   if(!smokeClouds.length)return false;
-  const a=start.clone();a.y+=.8;const b=end.clone();b.y+=.8;
-  return smokeClouds.some(c=>c.age>1.1&&segmentSphere(a,b,c.mesh.position,c.radius*.76));
+  const a=start.clone();a.y+=.9;const b=end.clone();b.y+=.9;
+  // A ray has to cross the dense core of an active smoke cloud; skimming a
+  // fading edge does not incorrectly blind the AI.
+  return smokeClouds.some(c=>Grenade14D.segmentSmokeOpacity(a,b,c.mesh.position,c.radius,c.age,c.duration)>.36);
  }
  function worldSegment(a,b){
   const diff=b.clone().sub(a),length=diff.length();if(length<1e-5)return {hit:false};
@@ -187,98 +194,115 @@ const Phase9=(()=>{
  }
 
  function playGrenadeClip(name){
-  const g=grenadeView;if(!g)return;
-  const clip=g.clips.find(c=>c.name===name);if(!clip)return;
-  if(g.action){g.action.fadeOut(.06)}
+  const g=grenadeView;if(!g)return .25;
+  const clip=g.clips.find(c=>c.name.replace(/__\d+$/,'')===name);
+  if(!clip)return .25;
+  if(g.action)g.action.fadeOut(.035);
   const action=g.mixer.clipAction(clip);action.reset();action.setLoop(THREE.LoopOnce,1);
-  action.clampWhenFinished=true;action.fadeIn(.06).play();g.action=action;
+  action.clampWhenFinished=true;action.fadeIn(.035).play();g.action=action;
+  return Math.max(.08,clip.duration);
  }
  function showGrenadeView(type){
-  const name={he:'hegrenade',flash:'flashbang',smoke:'smokegrenade'}[type];
-  if(!name||!viewScene||!vm)return;
+  const name=thrownNames[type];if(!name||!viewScene||!vm)return;
   clearGrenadeView();const token=++grenadeViewToken;
+  // Keep the normal gun hidden only while grenade handling is active.
   vm.visible=false;
   ensureWeaponModel(name).then(g=>{
    if(token!==grenadeViewToken||!running)return;
    const model=THREE.SkeletonUtils?.clone?THREE.SkeletonUtils.clone(g.scene):g.scene.clone(true);
    const group=new THREE.Group();group.add(model);viewScene.add(group);
    grenadeView={group,mixer:new THREE.AnimationMixer(model),clips:g.animations,age:0,token,action:null};
-   playGrenadeClip('deploy');
-  }).catch(e=>console.warn('Grenade viewmodel unavailable',name,e));
+   const duration=playGrenadeClip('deploy');
+   if(pendingThrow?.type===type&&pendingThrow.stage==='loading'){
+    pendingThrow.stage='deploy';pendingThrow.age=0;pendingThrow.duration=Math.min(.30,duration*.62);
+   }
+  }).catch(e=>{
+   console.warn('Grenade viewmodel unavailable',name,e);
+   if(pendingThrow?.type===type&&pendingThrow.stage==='loading'){
+    pendingThrow.stage='deploy';pendingThrow.age=0;pendingThrow.duration=.16;
+   }
+  });
  }
  function clearGrenadeView(){
   grenadeViewToken++;
   if(grenadeView){viewScene?.remove(grenadeView.group);grenadeView.mixer.stopAllAction();grenadeView=null}
   if(vm&&!aiming)vm.visible=true;
  }
+ function makeGrenadeProjectile(type,origin,velocity,owner='player'){
+  const group=new THREE.Group();group.position.copy(origin);group.userData.active=true;
+  const fallback=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,.26,10),new THREE.MeshStandardMaterial({color:type==='he'?0x4e6847:type==='flash'?0xc3c7c2:0x738a79,roughness:.7}));
+  group.userData.fallback=fallback;group.add(fallback);S.add(group);thrownModel(type,group);
+  const cfg=gspec[type];const p={type,mesh:group,v:velocity,age:0,bounces:0,fuse:cfg.fuse,owner,settled:false,releaseTime:performance.now()};
+  projectiles.push(p);return p;
+ }
  function releaseGrenade(type){
   if(!running||!pendingThrow||pendingThrow.type!==type)return false;
   const direction=cam.getWorldDirection(new THREE.Vector3());
-  const origin=cam.position.clone().addScaledVector(direction,.62);
-  const holder=new THREE.Group();holder.position.copy(origin);holder.userData.active=true;
-  const fallback=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.3,8),new THREE.MeshStandardMaterial({color:type==='he'?0x4d6548:type==='flash'?0xc6cbbd:0x73878a}));
-  holder.userData.fallback=fallback;holder.add(fallback);S.add(holder);thrownModel(type,holder);
-  projectiles.push({type,mesh:holder,v:direction.multiplyScalar(15).add(new THREE.Vector3(0,4.4,0)),age:0,bounces:0,
-   fuse:type==='smoke'?2.7:1.85,owner:'player',settled:false});
-  grenades[type]--;selectedGrenade=type;pendingThrow=null;
-  playGrenadeClip('throw');say(type.toUpperCase()+' THROWN');hud();return true;
+  // The grenade leaves in front of the camera rather than inside the player.
+  const origin=cam.position.clone().addScaledVector(direction,.65);
+  const velocity=Grenade14D.throwVelocity(direction,{playerVertical:P.vy});
+  makeGrenadeProjectile(type,origin,new THREE.Vector3(velocity.x,velocity.y,velocity.z));
+  grenades[type]--;selectedGrenade=type;pendingThrow.stage='released';pendingThrow.age=0;
+  say(type.toUpperCase()+' THROWN');hud();return true;
  }
  function throwGrenade(){
   if(blocked()||pendingThrow||reloading>0)return false;
   const type=grenades[selectedGrenade]>0?selectedGrenade:['he','flash','smoke'].find(x=>grenades[x]>0);
   if(!type){say('NO GRENADES');return false}
-  aiming=false;zoomIdx=0;syncAim();showGrenadeView(type);
-  pendingThrow={type,age:0,stage:'deploy'};return true;
+  aiming=false;zoomIdx=0;syncAim();
+  pendingThrow={type,age:0,stage:'loading',duration:.16};
+  showGrenadeView(type);return true;
  }
  function throwBotGrenade(b,target){
   if(!running||!b||b.dead||!target||!S)return false;
   const origin=b.g.position.clone().add(new THREE.Vector3(0,1.15,0));
   const delta=target.clone().sub(origin),ground=new THREE.Vector3(delta.x,0,delta.z);
-  const d=ground.length();if(d<6||d>22)return false;
-  const h=Math.max(.3,d/17.5),vel=ground.normalize().multiplyScalar(17.5);
-  vel.y=Math.max(3,Math.min(12,(delta.y+9.5*h*h)/h));
-  const group=new THREE.Group();group.position.copy(origin);group.userData.active=true;
-  const fallback=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,.28,8),new THREE.MeshStandardMaterial({color:0x526247}));
-  group.userData.fallback=fallback;group.add(fallback);S.add(group);thrownModel('he',group);
-  if(b.mixer&&b.acts.ref_shoot_rifle){setAnim(b,'ref_shoot_rifle',true);b.animHoldUntil=performance.now()/1000+.5}
-  projectiles.push({type:'he',owner:b,mesh:group,v:vel,age:0,bounces:0,fuse:1.85});
-  return true;
+  const dist=ground.length();if(dist<6||dist>22)return false;
+  const time=Math.max(.35,dist/15.5),vel=ground.normalize().multiplyScalar(15.5);
+  vel.y=Grenade14D.clamp((delta.y+9.5*time*time)/time,3,12);
+  if(b.mixer){
+   const key=b.acts?.ref_shoot_rifle?'ref_shoot_rifle':b.acts?.ref_shoot_onehanded?'ref_shoot_onehanded':null;
+   if(key){setAnim(b,key,true);b.animHoldUntil=performance.now()/1000+.5}
+  }
+  makeGrenadeProjectile('he',origin,vel,b);return true;
  }
  function removeProjectile(p){p.mesh.userData.active=false;S.remove(p.mesh);const i=projectiles.indexOf(p);if(i>=0)projectiles.splice(i,1);
   p.mesh.userData.fallback.geometry.dispose();p.mesh.userData.fallback.material.dispose();}
  function effectHE(pos,owner='player'){
-  sound('hegrenade-1.wav',.7);burst(pos,0xff9a31,28);
+  sound('hegrenade-1.wav',.72);burst(pos,0xff8f3c,32);
+  // Short expanding explosion flash, then dust; very short-lived objects.
+  const flashMaterial=new THREE.MeshBasicMaterial({color:0xffce74,transparent:true,opacity:.65,depthWrite:false});
+  const flashMesh=new THREE.Mesh(new THREE.SphereGeometry(.5,12,8),flashMaterial);
+  flashMesh.position.copy(pos);S.add(flashMesh);
+  explosionFX.push({mesh:flashMesh,age:0,duration:.3});
   const team=owner==='player'?playerTeam:owner?.team||playerTeam;
   for(const b of bots){if(b.dead)continue;
    if(b.team===team&&!window.GAME_FRIENDLY_FIRE)continue;
    const center=b.g.position.clone().add(new THREE.Vector3(0,.8,0)),dist=center.distanceTo(pos);
-   if(dist<8&&sightClear(pos,center)){
-    const dmg=Math.max(0,105*(1-dist/8));
-    if(dmg>1)damageBot(b,dmg,'chest',center,owner==='player',owner==='player'?null:owner,'hegrenade',0,'explosion');
-   }
+   const damage=Grenade14D.heDamage(dist,!sightClear(pos,center));
+   if(damage>1)damageBot(b,damage,'chest',center,owner==='player',owner==='player'?null:owner,'hegrenade',0,'explosion');
   }
-  const pd=cam.position.distanceTo(pos);
-  // The player can hurt themselves; friendly bot grenades do not hurt their leader
-  // when friendly fire is disabled.
-  if((owner==='player'||team!==playerTeam||window.GAME_FRIENDLY_FIRE)&&pd<8&&sightClear(pos,cam.position))
-   hurt(Math.max(0,105*(1-pd/8)),pos,'explosion',null,'chest','hegrenade');
+  const d=cam.position.distanceTo(pos);
+  if((owner==='player'||team!==playerTeam||window.GAME_FRIENDLY_FIRE)){
+   const damage=Grenade14D.heDamage(d,!sightClear(pos,cam.position));
+   if(damage>1)hurt(damage,pos,'explosion',null,'chest','hegrenade');
+  }
  }
-
  function effectFlash(pos){
-  sound('flashbang-1.wav',.65);burst(pos,0xf8fff0,14);
+  sound('flashbang-1.wav',.85);burst(pos,0xf8ffff,10);
   for(const b of bots){if(b.dead)continue;
-   const eye=b.g.position.clone().add(new THREE.Vector3(0,1.1,0));const dist=eye.distanceTo(pos);
-   if(dist>17||!sightClear(pos,eye))continue;
+   const eye=b.g.position.clone().add(new THREE.Vector3(0,1.1,0));
    const facing=new THREE.Vector3(-Math.sin(b.g.rotation.y),0,-Math.cos(b.g.rotation.y));
-   const to=pos.clone().sub(eye).normalize();const angular=clamp((facing.dot(to)+.25)/1.25,.1,1);
-   b.blinded=Math.max(b.blinded||0,(2.6*(1-dist/17)*angular));
+   const to=pos.clone().sub(eye).normalize();
+   const data=Grenade14D.flashExposure(eye.distanceTo(pos),facing.dot(to),!sightClear(pos,eye));
+   b.blinded=Math.max(b.blinded||0,data.duration);
+   if(data.duration>.25){b.visibleEnemy=null;b.los=false;b.memory=null;b.cd=Math.max(b.cd,.4)}
   }
   const eye=cam.position,dist=eye.distanceTo(pos);
-  if(dist<19&&sightClear(pos,eye)){
-   const dir=pos.clone().sub(eye).normalize(),facing=cam.getWorldDirection(new THREE.Vector3());
-   const angular=clamp((facing.dot(dir)+.35)/1.35,.08,1);
-   activeFlash=Math.max(activeFlash,clamp((1-dist/19)*angular,0,1));flashStart=3.4;
-  }
+  const facing=cam.getWorldDirection(new THREE.Vector3());
+  const data=Grenade14D.flashExposure(dist,facing.dot(pos.clone().sub(eye).normalize()),!sightClear(pos,eye));
+  // Strong nearby flashes are actually white at first, then slowly recover.
+  if(data.strength>.015){activeFlash=Math.max(activeFlash,data.strength);flashStart=Math.max(flashStart,data.duration)}
  }
  function getSmokeTexture(){
   if(smokeTexture)return smokeTexture;
@@ -287,78 +311,132 @@ const Phase9=(()=>{
    const c=document.createElement('canvas');c.width=c.height=96;const ctx=c.getContext('2d');if(!ctx)return null;
    const rad=ctx.createRadialGradient(48,48,5,48,48,47);
    rad.addColorStop(0,'rgba(225,231,226,0.75)');rad.addColorStop(.5,'rgba(177,192,180,0.48)');rad.addColorStop(1,'rgba(151,166,155,0)');
-   ctx.fillStyle=rad;ctx.fillRect(0,0,96,96);smokeTexture=new THREE.CanvasTexture(c);return smokeTexture;
+   ctx.fillStyle=rad;ctx.fillRect(0,0,96,96);smokeTexture=new THREE.CanvasTexture(c);
+   // Source-supplied GoldSrc sprite upgrades the fallback only after decode.
+   // Preserve this canvas texture if Safari blocks an image fetch.
+   if(typeof Image!=='undefined'){
+    const original=new Image();original.onload=()=>{if(!smokeTexture)return;try{ctx.clearRect(0,0,96,96);ctx.drawImage(original,0,0,96,96);smokeTexture.needsUpdate=true}catch(_){}};
+    original.src='assets/cs16-sprites/black_smoke1.png';
+   }
+   return smokeTexture;
   }catch(e){return null}
  }
  function effectSmoke(pos){
-  // Proper smoke detonation sound from the supplied GoldSrc WAV collection.
-  sound('sg_explode.wav',.5);
-  const obj=new THREE.Group();obj.position.copy(pos);S.add(obj);
+  sound('sg_explode.wav',.58);
+  // Layered soft-alpha sprites approximate the dense irregular smoke from
+  // GoldSrc. All particles share one small texture and are explicitly freed.
+  const obj=new THREE.Group();obj.position.copy(pos);obj.position.y=Math.max(.05,pos.y);S.add(obj);
   const texture=getSmokeTexture(),geom=texture?null:new THREE.SphereGeometry(1,8,6),particles=[];
-  for(let i=0;i<16;i++){
-   const mat=texture?new THREE.SpriteMaterial({map:texture,color:0xadb5ac,transparent:true,opacity:0,depthWrite:false}):
-    new THREE.MeshBasicMaterial({color:0xa0aaa1,transparent:true,opacity:0,depthWrite:false});
+  const count=texture?32:16;
+  for(let i=0;i<count;i++){
+   const mat=texture?new THREE.SpriteMaterial({map:texture,color:0xc0c3bf,transparent:true,opacity:0,depthWrite:false,depthTest:true}):
+    new THREE.MeshBasicMaterial({color:0xabb2ac,transparent:true,opacity:0,depthWrite:false});
    const m=texture?new THREE.Sprite(mat):new THREE.Mesh(geom,mat);
-   const phase=i*2.39996323,radius=Math.sqrt((i+.5)/16);
-   m.userData.smoke={dx:Math.cos(phase)*radius,dz:Math.sin(phase)*radius,dy:.35+((i*7)%11)/12};
-   m.position.set(m.userData.smoke.dx*.5,m.userData.smoke.dy*.55,m.userData.smoke.dz*.5);
-   obj.add(m);particles.push(m)
+   const phase=i*2.39996323,radius=Math.sqrt((i+.5)/count);
+   m.userData.smoke={dx:Math.cos(phase)*radius,dz:Math.sin(phase)*radius,dy:.1+((i*7)%13)/13,
+    variant:((i*11)%17)/17};
+   m.position.set(0,.2,0);obj.add(m);particles.push(m);
   }
-  smokeClouds.push({mesh:obj,geom,particles,radius:0,age:0,duration:15});say('SMOKE DEPLOYED');
+  smokeClouds.push({mesh:obj,geom,particles,radius:0,age:0,duration:gspec.smoke.duration});say('SMOKE DEPLOYED');
  }
  function explode(p){
   const type=p.type,point=p.mesh.position.clone();removeProjectile(p);
   if(type==='he')effectHE(point,p.owner||'player');else if(type==='flash')effectFlash(point);else effectSmoke(point);
  }
  function updateProjectile(p,dt){
-  // Substeps stop fast grenades tunneling through narrow crates at low FPS.
-  const steps=Math.max(1,Math.ceil(dt/.016)),step=dt/steps;
+  const steps=Math.max(1,Math.ceil(dt/.012)),step=dt/steps;
   for(let i=0;i<steps;i++){
-   p.age+=step;const old=p.mesh.position.clone();p.v.y-=19*step;
+   if(!projectiles.includes(p))break;
+   p.age+=step;
+   const old=p.mesh.position.clone();p.v.y-=19*step;
    const next=old.clone().addScaledVector(p.v,step);
    const hit=worldSegment(old,next);
-   if(hit.hit){
-    p.mesh.position.copy(old.clone().lerp(next,Math.max(0,(hit.frac||0)-.01)));
-    const n=(hit.normal||new THREE.Vector3(0,1,0)).normalize();
-    const impact=p.v.dot(n);if(impact<0)p.v.addScaledVector(n,-1.55*impact);
-    p.v.multiplyScalar(.65);p.bounces++;
-    if(n.y>.65){p.v.x*=.77;p.v.z*=.77;if(Math.abs(p.v.y)<1.3)p.v.y=0}
-    if(p.bounces<6)sound('grenade_hit1.wav',.075);
-   }else p.mesh.position.copy(next);
-   if(!window.bspCol&&p.mesh.position.y<.14){p.mesh.position.y=.14;p.v.y=Math.abs(p.v.y)*.27;p.v.x*=.7;p.v.z*=.7;p.bounces++}
-   if(p.mesh.position.y<.2&&p.age>.8){p.v.x*=.982;p.v.z*=.982}
+   let collision=hit.hit,normal=hit.normal||new THREE.Vector3(0,1,0);
+   if(collision)p.mesh.position.copy(old.clone().lerp(next,Math.max(0,(hit.frac??0)-.008)));
+   else p.mesh.position.copy(next);
+   // Floor and elevated crates use the engine's existing collision primitives.
+   // Never repeatedly bounce a resting grenade or fall through Dust Block.
+   const floor=window.bspCol?floorY(p.mesh.position.x,p.mesh.position.z,0):ground(p.mesh.position,.1);
+   if(p.mesh.position.y<floor+.11){p.mesh.position.y=floor+.11;normal=new THREE.Vector3(0,1,0);collision=true}
+   if(collision){
+    const velocity=Grenade14D.bounce(p.v,normal,normal.y>.6?'ground':'hard');
+    const speed=p.v.length();p.v.set(velocity.x,velocity.y,velocity.z);
+    if(speed>1.1){p.bounces++;if(p.bounces<=5)sound('grenade_hit'+(p.bounces%3+1)+'.wav',.09)}
+   }
+   if(p.mesh.position.y<=floor+.115){p.v.x*=.991;p.v.z*=.991;
+    if(Math.hypot(p.v.x,p.v.z)<.28&&Math.abs(p.v.y)<.3)p.v.set(0,0,0);
+   }
+   // HE and flash have a fixed fuse; smoke starts to emit after coming to rest.
+   if(p.age>=p.fuse&&(p.type!=='smoke'||p.v.length()<1.3||p.age>=gspec.smoke.maxWait)){
+    explode(p);break;
+   }
   }
-  p.mesh.rotation.x+=dt*6;p.mesh.rotation.z+=dt*5;
-  if(p.age>=p.fuse&&(p.type!=='smoke'||p.v.length()<2.5||p.age>=5.5))explode(p);
+  if(projectiles.includes(p)){
+   p.mesh.rotation.x+=dt*Math.min(12,p.v.length()*.55);
+   p.mesh.rotation.z+=dt*Math.min(8,p.v.length()*.42);
+  }
  }
  function update(dt){
-  if(pendingThrow){pendingThrow.age+=dt;
-   if(pendingThrow.stage==='deploy'&&pendingThrow.age>=.18){pendingThrow.stage='pin';playGrenadeClip('pullpin');sound('pinpull.wav',.25)}
-   if(pendingThrow.age>=.72)releaseGrenade(pendingThrow.type);
+  if(pendingThrow&&(!running||P.hp<=0)){
+   // Death during pin-pull cancels the throw without consuming ammunition.
+   pendingThrow=null;clearGrenadeView();
   }
-  if(grenadeView){grenadeView.mixer.update(dt);grenadeView.age+=dt;
-   if(!pendingThrow&&grenadeView.age>1.4)clearGrenadeView()}
+  if(pendingThrow){
+   pendingThrow.age+=dt;
+   if(pendingThrow.stage==='loading'&&pendingThrow.age>.9){
+    // If an asset cannot load, gameplay remains functional without a viewmodel.
+    pendingThrow.stage='deploy';pendingThrow.age=0;pendingThrow.duration=.18;
+   }
+   else if(pendingThrow.stage==='deploy'&&pendingThrow.age>=pendingThrow.duration){
+    pendingThrow.stage='pin';pendingThrow.age=0;
+    pendingThrow.duration=Grenade14D.clamp(playGrenadeClip('pullpin')*.65,.22,.37);
+    sound('pinpull.wav',.35);
+   }else if(pendingThrow.stage==='pin'&&pendingThrow.age>=pendingThrow.duration){
+    pendingThrow.stage='throw';pendingThrow.age=0;
+    pendingThrow.duration=Grenade14D.clamp(playGrenadeClip('throw')*.40,.15,.32);
+   }else if(pendingThrow.stage==='throw'&&pendingThrow.age>=pendingThrow.duration){
+    releaseGrenade(pendingThrow.type);
+   }else if(pendingThrow.stage==='released'&&pendingThrow.age>.55){
+    pendingThrow=null;clearGrenadeView();updateHud();
+   }
+  }
+  if(grenadeView){grenadeView.mixer.update(dt);grenadeView.age+=dt}
+  // syncAim() runs each frame and otherwise unhides the gun over the grenade.
+  if(vm&&(pendingThrow||grenadeView))vm.visible=false;
   for(const p of projectiles.slice())updateProjectile(p,dt);
   for(const c of smokeClouds.slice()){
-   c.age+=dt;c.radius=Math.min(SIGHT_RADIUS,c.age*1.3);
-   const fade=clamp((c.duration-c.age)/3,0,1)*clamp(c.age/1.8,0,1);
+   c.age+=dt;c.radius=Math.min(SIGHT_RADIUS,c.age*1.75);
+   const alpha=Grenade14D.smokeOpacity(c.age,c.duration);
    for(let i=0;i<c.particles.length;i++){
-    const m=c.particles[i],p=m.userData.smoke,spread=c.radius*(.85+.18*p.dy);
-    m.position.set(p.dx*spread,p.dy*.6+c.radius*(.25+p.dy*.23),p.dz*spread);
-    const size=c.radius*(1.3+p.dy*.36);m.scale.set(size,size,size);
-    m.material.opacity=fade*(c.geom?.12:.42);
+    const m=c.particles[i],p=m.userData.smoke;
+    const width=c.radius*(.86+.25*p.variant);
+    m.position.set(p.dx*width,p.dy*.5+c.radius*(.2+p.dy*.22),p.dz*width);
+    const size=c.radius*(.74+.34*p.variant);m.scale.set(size,size,size);
+    m.material.opacity=alpha*(c.geom?.18:.36);
    }
    if(c.age>=c.duration){S.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom?.dispose();smokeClouds.splice(smokeClouds.indexOf(c),1)}
   }
-  if(flashStart>0){flashStart=Math.max(0,flashStart-dt);
-   const fade=clamp(flashStart/3.4,0,1);$('flashEffect').style.opacity=String(clamp(activeFlash*fade*fade,0,.96));if(flashStart<=0)activeFlash=0}
+  for(const e of explosionFX.slice()){
+   e.age+=dt;const t=Math.min(1,e.age/e.duration);e.mesh.scale.setScalar(.7+4*t);e.mesh.material.opacity=.65*(1-t);
+   if(t>=1){S.remove(e.mesh);e.mesh.geometry.dispose();e.mesh.material.dispose();explosionFX.splice(explosionFX.indexOf(e),1)}
+  }
+  if(flashStart>0){
+   flashStart=Math.max(0,flashStart-dt);
+   const duration=Math.max(1,4.2*activeFlash),hold=.22*activeFlash;
+   const progress=flashStart/duration;
+   const alpha=progress>.7?activeFlash:activeFlash*Grenade14D.clamp(progress/.7,0,1);
+   $('flashEffect').style.opacity=String(Grenade14D.clamp(alpha,0,1));
+   if(flashStart<=0)activeFlash=0;
+  }
   syncPickup();
  }
  function resetRound(){
   pendingThrow=null;clearGrenadeView();for(const d of dropped.slice())removeDrop(d);
   for(const p of projectiles.slice())removeProjectile(p);
   for(const c of smokeClouds.slice()){S?.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom?.dispose()}
-  smokeClouds.length=0;shieldRaised=false;crouchRequested=mobileCrouch=crouching=false;crouchBlend=0;
+  smokeClouds.length=0;
+  for(const e of explosionFX){S?.remove(e.mesh);e.mesh.geometry.dispose();e.mesh.material.dispose()}
+  explosionFX.length=0;shieldRaised=false;if(typeof Phase14B!=='undefined'&&weaponInstances.shield)Phase14B.setRaised(weaponInstances.shield,false);crouchRequested=mobileCrouch=crouching=false;crouchBlend=0;
   activeFlash=flashStart=0;$('flashEffect').style.opacity=0;closePickup();dismissedDrop=null;
  }
  function resetMatch(){resetRound();nightVisionActive=false;silenced.usp=true;silenced.m4a1=true;document.body.classList.remove('night-vision')}
@@ -437,7 +515,7 @@ const Phase9=(()=>{
   for(const type of ['pointerup','pointercancel'])crouchButton.addEventListener(type,e=>{if(crouchMode==='hold'){e.preventDefault();e.stopPropagation();mobileCrouch=false;updateCrouch()}});
   
   $('nvgBtn').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleNightVision()});
-  $('grenadeTypeBtn').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(blocked())return;const types=['he','flash','smoke'];selectedGrenade=types[(types.indexOf(selectedGrenade)+1)%3];say('SELECT '+selectedGrenade.toUpperCase());updateHud()});
+  $('grenadeTypeBtn').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();if(blocked()||pendingThrow)return;const owned=['he','flash','smoke'].filter(type=>grenades[type]>0);const types=owned.length?owned:['he','flash','smoke'];selectedGrenade=types[(types.indexOf(selectedGrenade)+1+types.length)%types.length];say('SELECT '+selectedGrenade.toUpperCase());updateHud()});
   $('pickupBtn').addEventListener('click',e=>{e.preventDefault();e.stopPropagation();pickupNearest()});
   $('pickupAccept').addEventListener('click',pickupNearest);$('pickupCancel').addEventListener('click',()=>closePickup());
   updateHud();
@@ -447,5 +525,7 @@ const Phase9=(()=>{
   unsilenced,firingSound,shieldPistol,secondaryAction,toggleNightVision,updateHud,
   setCrouchInput,updateCrouch,releaseControls,blockShieldHit,shieldImpact,
   dropBotWeapon,dropPlayerWeapon,pickupNearest,blocksSight,throwGrenade,throwBotGrenade,resetRound,resetMatch,update,
-  getDebugState:()=>({projectiles:projectiles.length,smoke:smokeClouds.length,pendingThrow:pendingThrow?.stage||null,dropped:dropped.length,nightVisionActive,shieldRaised,crouching})};
+  getDebugState:()=>({projectiles:projectiles.length,smoke:smokeClouds.length,pendingThrow:pendingThrow?.stage||null,
+   grenadeTypes:projectiles.map(p=>p.type),grenadeBounces:projectiles.map(p=>p.bounces),smokeRadii:smokeClouds.map(c=>c.radius),
+   flashStrength:activeFlash,flashTimer:flashStart,dropped:dropped.length,nightVisionActive,shieldRaised,crouching})};
 })();

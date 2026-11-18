@@ -1,0 +1,7 @@
+/* CS-style quick purchase, touch-safe compact footer. */
+#autoBuyBtn,#rebuyBtn{white-space:nowrap;background:#283321;color:#e5c77e;border-color:#918056;}
+#autoBuyBtn:active,#rebuyBtn:active{background:#51441e;}
+.buy-window footer{flex-wrap:wrap;gap:6px;}
+#buyHint{min-width:110px;}
+@media(max-width:900px){#autoBuyBtn,#rebuyBtn{font-size:9px;padding:8px 10px;}.buy-window footer{padding:5px 9px;}.buy-window footer button{padding:8px 10px;}}
+@media(max-height:430px){.buy-window footer button{padding:5px 8px;font-size:9px;}.buy-window footer span{font-size:9px;}}

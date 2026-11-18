@@ -1,0 +1,109 @@
+# CS 1.6 source-supplied integration checkpoint
+
+## Source
+- Google Drive ZIP 01: `cs16_files-01.zip` (98,907,239 bytes)
+- Google Drive ZIP 02: `cs16_files-02.zip` (94,723,791 bytes)
+- Both were inspected as ZIP and passed CRC validation.
+- `file-gagal.txt`: 19 failed `HTTP 404` downloads, all Linux server-side shared objects (`.so`), not needed for Three.js.
+
+## Integrated
+- 56 VGUI `.tga` textures from ZIP 01 converted to `.png`, used by Buy Menu, weapon picker, CT/T and class-selection menus.
+- 29 WAV clips from ZIP 02 (footsteps, jumps, hits, death and NVG/armor) loaded lazily via Web Audio and wired to movement, hits, purchases and night vision.
+- Existing weapon models, weapon firing/reloading sounds, radio voices, HUD sprites and bot audio from the previous batches are **preserved rather than duplicated**.
+- Auto Buy / Rebuy from the previous quickbuy checkpoint remains in place.
+- Maps, cheat DLLs, server addons and binaries were deliberately omitted.
+
+## Intentional exclusions / limitations
+- This is NOT a full GoldSrc engine port: `.mdl`, `.spr` and `.res` are not directly compatible with Three.js.
+- Existing 3D weapon models, classic menus, shield, grenade and bot AI are preserved; no new 3D models were rebuilt in this checkpoint.
+- Footsteps use generic surface sounds; physical material detection is not asserted.
+- Audio requires a user gesture and honors the existing in-game sound slider.
+- Needs real iPhone Safari WebGL/visual QA; unit/syntax tests do not prove render correctness.
+- Ownership / license of the source CS 1.6 media and public GitHub Pages redistribution rights have **not** been verified. Keep this build private unless you have appropriate permission.
+
+## Source manifest
+- `cs16_files/gfx/vgui/CS_logo.tga` → `assets/ui/cs16/CS_logo.png`
+- `cs16_files/gfx/vgui/ak47.tga` → `assets/ui/cs16/ak47.png`
+- `cs16_files/gfx/vgui/arctic.tga` → `assets/ui/cs16/arctic.png`
+- `cs16_files/gfx/vgui/aug.tga` → `assets/ui/cs16/aug.png`
+- `cs16_files/gfx/vgui/awp.tga` → `assets/ui/cs16/awp.png`
+- `cs16_files/gfx/vgui/crosshair.tga` → `assets/ui/cs16/crosshair.png`
+- `cs16_files/gfx/vgui/ct_random.tga` → `assets/ui/cs16/ct_random.png`
+- `cs16_files/gfx/vgui/defuser.tga` → `assets/ui/cs16/defuser.png`
+- `cs16_files/gfx/vgui/deserteagle.tga` → `assets/ui/cs16/deserteagle.png`
+- `cs16_files/gfx/vgui/elites.tga` → `assets/ui/cs16/elites.png`
+- `cs16_files/gfx/vgui/famas.tga` → `assets/ui/cs16/famas.png`
+- `cs16_files/gfx/vgui/fiveseven.tga` → `assets/ui/cs16/fiveseven.png`
+- `cs16_files/gfx/vgui/flashbang.tga` → `assets/ui/cs16/flashbang.png`
+- `cs16_files/gfx/vgui/g3sg1.tga` → `assets/ui/cs16/g3sg1.png`
+- `cs16_files/gfx/vgui/galil.tga` → `assets/ui/cs16/galil.png`
+- `cs16_files/gfx/vgui/gign.tga` → `assets/ui/cs16/gign.png`
+- `cs16_files/gfx/vgui/glock18.tga` → `assets/ui/cs16/glock18.png`
+- `cs16_files/gfx/vgui/gsg9.tga` → `assets/ui/cs16/gsg9.png`
+- `cs16_files/gfx/vgui/guerilla.tga` → `assets/ui/cs16/guerilla.png`
+- `cs16_files/gfx/vgui/hegrenade.tga` → `assets/ui/cs16/hegrenade.png`
+- `cs16_files/gfx/vgui/icon_!-bigger.tga` → `assets/ui/cs16/icon_!-bigger.png`
+- `cs16_files/gfx/vgui/icon_!.tga` → `assets/ui/cs16/icon_!.png`
+- `cs16_files/gfx/vgui/kevlar.tga` → `assets/ui/cs16/kevlar.png`
+- `cs16_files/gfx/vgui/kevlar_helmet.tga` → `assets/ui/cs16/kevlar_helmet.png`
+- `cs16_files/gfx/vgui/leet.tga` → `assets/ui/cs16/leet.png`
+- `cs16_files/gfx/vgui/m249.tga` → `assets/ui/cs16/m249.png`
+- `cs16_files/gfx/vgui/m3.tga` → `assets/ui/cs16/m3.png`
+- `cs16_files/gfx/vgui/m4a1.tga` → `assets/ui/cs16/m4a1.png`
+- `cs16_files/gfx/vgui/mac10.tga` → `assets/ui/cs16/mac10.png`
+- `cs16_files/gfx/vgui/mp5.tga` → `assets/ui/cs16/mp5.png`
+- `cs16_files/gfx/vgui/nightvision.tga` → `assets/ui/cs16/nightvision.png`
+- `cs16_files/gfx/vgui/not_available.tga` → `assets/ui/cs16/not_available.png`
+- `cs16_files/gfx/vgui/p228.tga` → `assets/ui/cs16/p228.png`
+- `cs16_files/gfx/vgui/p90.tga` → `assets/ui/cs16/p90.png`
+- `cs16_files/gfx/vgui/round_corner_ne.tga` → `assets/ui/cs16/round_corner_ne.png`
+- `cs16_files/gfx/vgui/round_corner_nw.tga` → `assets/ui/cs16/round_corner_nw.png`
+- `cs16_files/gfx/vgui/round_corner_se.tga` → `assets/ui/cs16/round_corner_se.png`
+- `cs16_files/gfx/vgui/round_corner_small_ne.tga` → `assets/ui/cs16/round_corner_small_ne.png`
+- `cs16_files/gfx/vgui/round_corner_small_nw.tga` → `assets/ui/cs16/round_corner_small_nw.png`
+- `cs16_files/gfx/vgui/round_corner_small_se.tga` → `assets/ui/cs16/round_corner_small_se.png`
+- `cs16_files/gfx/vgui/round_corner_small_sw.tga` → `assets/ui/cs16/round_corner_small_sw.png`
+- `cs16_files/gfx/vgui/round_corner_sw.tga` → `assets/ui/cs16/round_corner_sw.png`
+- `cs16_files/gfx/vgui/sas.tga` → `assets/ui/cs16/sas.png`
+- `cs16_files/gfx/vgui/scout.tga` → `assets/ui/cs16/scout.png`
+- `cs16_files/gfx/vgui/sg550.tga` → `assets/ui/cs16/sg550.png`
+- `cs16_files/gfx/vgui/sg552.tga` → `assets/ui/cs16/sg552.png`
+- `cs16_files/gfx/vgui/shield.tga` → `assets/ui/cs16/shield.png`
+- `cs16_files/gfx/vgui/smokegrenade.tga` → `assets/ui/cs16/smokegrenade.png`
+- `cs16_files/gfx/vgui/t_random.tga` → `assets/ui/cs16/t_random.png`
+- `cs16_files/gfx/vgui/terror.tga` → `assets/ui/cs16/terror.png`
+- `cs16_files/gfx/vgui/tmp.tga` → `assets/ui/cs16/tmp.png`
+- `cs16_files/gfx/vgui/ump45.tga` → `assets/ui/cs16/ump45.png`
+- `cs16_files/gfx/vgui/urban.tga` → `assets/ui/cs16/urban.png`
+- `cs16_files/gfx/vgui/usp45.tga` → `assets/ui/cs16/usp45.png`
+- `cs16_files/gfx/vgui/vip.tga` → `assets/ui/cs16/vip.png`
+- `cs16_files/gfx/vgui/xm1014.tga` → `assets/ui/cs16/xm1014.png`
+- `cs16_files/sound/player/pl_step1.wav` → `assets/cs16-sfx/sound/player/pl_step1.wav`
+- `cs16_files/sound/player/pl_step2.wav` → `assets/cs16-sfx/sound/player/pl_step2.wav`
+- `cs16_files/sound/player/pl_step3.wav` → `assets/cs16-sfx/sound/player/pl_step3.wav`
+- `cs16_files/sound/player/pl_step4.wav` → `assets/cs16-sfx/sound/player/pl_step4.wav`
+- `cs16_files/sound/player/pl_tile1.wav` → `assets/cs16-sfx/sound/player/pl_tile1.wav`
+- `cs16_files/sound/player/pl_tile2.wav` → `assets/cs16-sfx/sound/player/pl_tile2.wav`
+- `cs16_files/sound/player/pl_tile3.wav` → `assets/cs16-sfx/sound/player/pl_tile3.wav`
+- `cs16_files/sound/player/pl_tile4.wav` → `assets/cs16-sfx/sound/player/pl_tile4.wav`
+- `cs16_files/sound/player/pl_metal1.wav` → `assets/cs16-sfx/sound/player/pl_metal1.wav`
+- `cs16_files/sound/player/pl_metal2.wav` → `assets/cs16-sfx/sound/player/pl_metal2.wav`
+- `cs16_files/sound/player/pl_dirt1.wav` → `assets/cs16-sfx/sound/player/pl_dirt1.wav`
+- `cs16_files/sound/player/pl_dirt2.wav` → `assets/cs16-sfx/sound/player/pl_dirt2.wav`
+- `cs16_files/sound/player/pl_jump1.wav` → `assets/cs16-sfx/sound/player/pl_jump1.wav`
+- `cs16_files/sound/player/pl_jump2.wav` → `assets/cs16-sfx/sound/player/pl_jump2.wav`
+- `cs16_files/sound/player/pl_fallpain1.wav` → `assets/cs16-sfx/sound/player/pl_fallpain1.wav`
+- `cs16_files/sound/player/pl_pain2.wav` → `assets/cs16-sfx/sound/player/pl_pain2.wav`
+- `cs16_files/sound/player/pl_pain4.wav` → `assets/cs16-sfx/sound/player/pl_pain4.wav`
+- `cs16_files/sound/player/bhit_flesh-1.wav` → `assets/cs16-sfx/sound/player/bhit_flesh-1.wav`
+- `cs16_files/sound/player/bhit_flesh-2.wav` → `assets/cs16-sfx/sound/player/bhit_flesh-2.wav`
+- `cs16_files/sound/player/bhit_helmet-1.wav` → `assets/cs16-sfx/sound/player/bhit_helmet-1.wav`
+- `cs16_files/sound/player/bhit_kevlar-1.wav` → `assets/cs16-sfx/sound/player/bhit_kevlar-1.wav`
+- `cs16_files/sound/player/headshot1.wav` → `assets/cs16-sfx/sound/player/headshot1.wav`
+- `cs16_files/sound/player/die1.wav` → `assets/cs16-sfx/sound/player/die1.wav`
+- `cs16_files/sound/player/die2.wav` → `assets/cs16-sfx/sound/player/die2.wav`
+- `cs16_files/sound/items/kevlar.wav` → `assets/cs16-sfx/sound/items/kevlar.wav`
+- `cs16_files/sound/items/tr_kevlar.wav` → `assets/cs16-sfx/sound/items/tr_kevlar.wav`
+- `cs16_files/sound/items/equip_nvg.wav` → `assets/cs16-sfx/sound/items/equip_nvg.wav`
+- `cs16_files/sound/items/nvg_on.wav` → `assets/cs16-sfx/sound/items/nvg_on.wav`
+- `cs16_files/sound/items/nvg_off.wav` → `assets/cs16-sfx/sound/items/nvg_off.wav`

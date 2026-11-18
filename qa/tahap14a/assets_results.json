@@ -1,0 +1,573 @@
+{
+  "status": "PASS",
+  "passed": 113,
+  "total": 113,
+  "checks": [
+    {
+      "name": "Eight character models are present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gsg9.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gsg9.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sas.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sas.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gign.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "gign.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "urban.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "urban.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "guerilla.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "guerilla.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leet.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "leet.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "arctic.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "arctic.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "terror.glb: right-hand bone on player skeleton",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "terror.glb: player rig scale correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "31 hand-held models available",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ak47.glb full triangle coverage",
+      "pass": true,
+      "detail": "116/116"
+    },
+    {
+      "name": "ak47.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ak47.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.016m"
+    },
+    {
+      "name": "aug.glb full triangle coverage",
+      "pass": true,
+      "detail": "142/142"
+    },
+    {
+      "name": "aug.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "aug.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.964m"
+    },
+    {
+      "name": "awp.glb full triangle coverage",
+      "pass": true,
+      "detail": "144/144"
+    },
+    {
+      "name": "awp.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "awp.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.126m"
+    },
+    {
+      "name": "c4.glb full triangle coverage",
+      "pass": true,
+      "detail": "128/128"
+    },
+    {
+      "name": "c4.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "c4.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.260m"
+    },
+    {
+      "name": "deagle.glb full triangle coverage",
+      "pass": true,
+      "detail": "88/88"
+    },
+    {
+      "name": "deagle.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deagle.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.271m"
+    },
+    {
+      "name": "elite.glb full triangle coverage",
+      "pass": true,
+      "detail": "208/208"
+    },
+    {
+      "name": "elite.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "elite.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.292m"
+    },
+    {
+      "name": "famas.glb full triangle coverage",
+      "pass": true,
+      "detail": "164/164"
+    },
+    {
+      "name": "famas.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "famas.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.950m"
+    },
+    {
+      "name": "fiveseven.glb full triangle coverage",
+      "pass": true,
+      "detail": "58/58"
+    },
+    {
+      "name": "fiveseven.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fiveseven.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.224m"
+    },
+    {
+      "name": "flashbang.glb full triangle coverage",
+      "pass": true,
+      "detail": "52/52"
+    },
+    {
+      "name": "flashbang.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "flashbang.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.206m"
+    },
+    {
+      "name": "g3sg1.glb full triangle coverage",
+      "pass": true,
+      "detail": "158/158"
+    },
+    {
+      "name": "g3sg1.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "g3sg1.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.175m"
+    },
+    {
+      "name": "galil.glb full triangle coverage",
+      "pass": true,
+      "detail": "182/182"
+    },
+    {
+      "name": "galil.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "galil.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.114m"
+    },
+    {
+      "name": "glock18.glb full triangle coverage",
+      "pass": true,
+      "detail": "78/78"
+    },
+    {
+      "name": "glock18.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "glock18.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.235m"
+    },
+    {
+      "name": "hegrenade.glb full triangle coverage",
+      "pass": true,
+      "detail": "52/52"
+    },
+    {
+      "name": "hegrenade.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "hegrenade.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.206m"
+    },
+    {
+      "name": "knife.glb full triangle coverage",
+      "pass": true,
+      "detail": "112/112"
+    },
+    {
+      "name": "knife.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knife.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.387m"
+    },
+    {
+      "name": "m249.glb full triangle coverage",
+      "pass": true,
+      "detail": "128/128"
+    },
+    {
+      "name": "m249.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "m249.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.952m"
+    },
+    {
+      "name": "m3.glb full triangle coverage",
+      "pass": true,
+      "detail": "120/120"
+    },
+    {
+      "name": "m3.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "m3.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.010m"
+    },
+    {
+      "name": "m3super90.glb full triangle coverage",
+      "pass": true,
+      "detail": "120/120"
+    },
+    {
+      "name": "m3super90.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "m3super90.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.953m"
+    },
+    {
+      "name": "m4a1.glb full triangle coverage",
+      "pass": true,
+      "detail": "140/140"
+    },
+    {
+      "name": "m4a1.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "m4a1.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.119m"
+    },
+    {
+      "name": "mac10.glb full triangle coverage",
+      "pass": true,
+      "detail": "122/122"
+    },
+    {
+      "name": "mac10.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mac10.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.349m"
+    },
+    {
+      "name": "mp5.glb full triangle coverage",
+      "pass": true,
+      "detail": "148/148"
+    },
+    {
+      "name": "mp5.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mp5.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.664m"
+    },
+    {
+      "name": "p228.glb full triangle coverage",
+      "pass": true,
+      "detail": "80/80"
+    },
+    {
+      "name": "p228.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "p228.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.240m"
+    },
+    {
+      "name": "p90.glb full triangle coverage",
+      "pass": true,
+      "detail": "108/108"
+    },
+    {
+      "name": "p90.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "p90.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.632m"
+    },
+    {
+      "name": "scout.glb full triangle coverage",
+      "pass": true,
+      "detail": "92/92"
+    },
+    {
+      "name": "scout.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "scout.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.159m"
+    },
+    {
+      "name": "sg550.glb full triangle coverage",
+      "pass": true,
+      "detail": "162/162"
+    },
+    {
+      "name": "sg550.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sg550.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.146m"
+    },
+    {
+      "name": "sg552.glb full triangle coverage",
+      "pass": true,
+      "detail": "160/160"
+    },
+    {
+      "name": "sg552.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "sg552.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.858m"
+    },
+    {
+      "name": "shield.glb full triangle coverage",
+      "pass": true,
+      "detail": "176/176"
+    },
+    {
+      "name": "shield.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shield.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "1.393m"
+    },
+    {
+      "name": "smokegrenade.glb full triangle coverage",
+      "pass": true,
+      "detail": "52/52"
+    },
+    {
+      "name": "smokegrenade.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "smokegrenade.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.206m"
+    },
+    {
+      "name": "tmp.glb full triangle coverage",
+      "pass": true,
+      "detail": "104/104"
+    },
+    {
+      "name": "tmp.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "tmp.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.465m"
+    },
+    {
+      "name": "ump45.glb full triangle coverage",
+      "pass": true,
+      "detail": "139/139"
+    },
+    {
+      "name": "ump45.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ump45.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.628m"
+    },
+    {
+      "name": "usp.glb full triangle coverage",
+      "pass": true,
+      "detail": "100/100"
+    },
+    {
+      "name": "usp.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "usp.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.410m"
+    },
+    {
+      "name": "xm1014.glb full triangle coverage",
+      "pass": true,
+      "detail": "136/136"
+    },
+    {
+      "name": "xm1014.glb valid materials and hand bones",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "xm1014.glb scaled weapon bounds sane",
+      "pass": true,
+      "detail": "0.941m"
+    },
+    {
+      "name": "No primitive character-gear cubes created",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Equipped held models reject invalid scale",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "note": "Static+geometric checks; no WebGL frame rendering tested."
+}
