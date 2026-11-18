@@ -26,7 +26,7 @@ THREE.WebGLRenderer=class {constructor(o){this.domElement=o.canvas;this.info={re
 THREE.GLTFLoader.prototype.load=function(path,onLoad,onProgress,onError){const group=new THREE.Group(),bone=new THREE.Group();bone.name='Spine';group.add(bone);queueMicrotask(()=>onLoad({scene:group,animations:[]}));return {}};
 </script>'''
 html=html.replace('<script src="js/bsp-render.js"></script>',mock+'<script src="js/bsp-render.js"></script>')
-for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/classic-ui.js','js/layout-nav.js']:
+for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/combat12.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/classic-ui.js','js/layout-nav.js']:
  html=html.replace(f'<script src="{path}"></script>','<script>\n'+(ROOT/path).read_text()+'\n</script>')
 assert '<script src=' not in html
 checks=[];errors=[];console=[]

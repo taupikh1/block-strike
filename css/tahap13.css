@@ -1,0 +1,55 @@
+/* TAHAP 13 — clean mobile icon bar, single-map setup, spectator and modal UX */
+#walkBtn{position:fixed;z-index:11;display:flex;align-items:center;justify-content:center;left:calc(env(safe-area-inset-left) + 112px);bottom:calc(env(safe-area-inset-bottom) + 96px);width:48px;height:48px;touch-action:none}
+body.pc #walkBtn{display:none!important}
+#walkBtn svg{width:26px;height:26px;pointer-events:none}
+body.playing .game-utility{display:flex}
+body.pc .game-utility{display:none!important}
+#flashBtn,#dropBtn,#teamBtn,#settingsGameBtn,#weaponBtn{position:fixed;display:none;align-items:center;justify-content:center;z-index:12;pointer-events:auto;background:rgba(18,28,25,.6);border:1px solid rgba(235,230,209,.5);border-radius:50%;color:#f5e1b1;box-shadow:0 2px 8px #0007;touch-action:manipulation;font-size:10px;font-weight:800;letter-spacing:.4px}
+#flashBtn svg,#dropBtn svg,#teamBtn svg,#settingsGameBtn svg,#weaponBtn svg{width:26px;height:26px;pointer-events:none}
+#flashBtn.active{border-color:#ffe49b!important;background:#8c7644a8!important;color:#fff1a6}
+#dropBtn{top:max(12px,env(safe-area-inset-top));left:calc(env(safe-area-inset-left) + 33vw);width:43px;height:43px}
+#weaponBtn{top:max(12px,env(safe-area-inset-top));left:calc(env(safe-area-inset-left) + 20vw);width:44px;height:44px}
+#settingsGameBtn{top:max(12px,env(safe-area-inset-top));left:calc(env(safe-area-inset-left) + 43vw);width:44px;height:44px}
+#flashBtn{top:max(12px,env(safe-area-inset-top));left:calc(env(safe-area-inset-left) + 53vw);width:44px;height:44px}
+#teamBtn{bottom:max(10px,env(safe-area-inset-bottom));left:max(12px,env(safe-area-inset-left));width:42px;height:42px}
+@media(pointer:coarse){body.playing #scoreBtn{right:max(12px,env(safe-area-inset-right));top:max(13px,env(safe-area-inset-top))}
+ body.playing #radioBtn{right:max(12px,env(safe-area-inset-right));top:max(70px,calc(env(safe-area-inset-top) + 58px))}}
+#fire svg{width:38px!important;height:38px!important;transform:rotate(-28deg)}
+#weaponOverlay,#teamOverlay{position:fixed;z-index:24;right:max(12px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);width:min(315px,65vw);max-height:88dvh;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;background:#101b16f2;border:1px solid #be9852;box-shadow:0 8px 30px #000d;padding:11px;display:flex;flex-direction:column;gap:7px;color:#f4dfa9}
+#weaponOverlay header,#teamOverlay header{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:850;letter-spacing:1.5px;font-size:13px}
+#weaponOverlay header button,#teamOverlay header button{background:transparent;color:#fff;font-size:23px;padding:1px 9px;border:0}
+#weaponItems{display:grid;grid-template-columns:1fr;gap:6px;overflow:auto;min-height:0;touch-action:pan-y}
+#weaponItems>b{font-size:9px;color:#cab47f;letter-spacing:2px;padding:4px 0}
+#weaponItems>.weapon-choice,#teamOverlay>button{display:flex;align-items:center;gap:12px;min-height:38px;padding:7px 9px;border:1px solid #515442;background:#233328;color:#f4e8c8;text-align:left;font:700 11px system-ui;touch-action:manipulation}
+#weaponItems>.weapon-choice img{height:24px;width:50px;object-fit:contain}
+#weaponItems>.weapon-choice.active{border-color:#dfbd6b;background:#62572f}
+#weaponItems>.weapon-choice:disabled{opacity:.4}
+#teamOverlay>p{font-size:11px;margin:4px 0;color:#bdc0a7}
+#spectatorHud{position:fixed;z-index:13;left:50%;bottom:max(15px,calc(env(safe-area-inset-bottom) + 12px));transform:translateX(-50%);display:flex;align-items:center;gap:12px;pointer-events:auto;padding:8px 14px;background:#0f1c19dc;border:1px solid #b6935d;color:#f2dfa7;max-width:88vw;box-sizing:border-box}
+#spectatorHud>div{display:flex;flex-direction:column;gap:2px;min-width:120px}
+#spectatorHud strong{font-size:9px;letter-spacing:2px;color:#e5b05a}
+#spectatorHud span{font-size:12px;max-width:42vw;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-weight:850}
+#spectatorHud small{font-size:9px;white-space:nowrap;color:#b8cfc5}
+#spectatorHud nav{display:flex;gap:6px}
+#spectatorHud button{background:#3f4434;color:#fff1ce;border:1px solid #937f53;padding:8px 10px;cursor:pointer}
+body.spectating #fire,body.spectating #ads,body.spectating #swap,body.spectating #walkBtn,body.spectating #rel,body.spectating #jump,body.spectating #crouchBtn,body.spectating #grenadeBtn,body.spectating #grenadeTypeBtn,body.spectating #nvgBtn,body.spectating #dropBtn,body.spectating #flashBtn,body.spectating #buybtn,body.spectating #pickupBtn,body.spectating #weaponBtn{display:none!important}
+#settingsScreen{overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;z-index:27}
+#settingsScreen>.dialog{max-height:92dvh;overflow:auto;touch-action:pan-y}
+#settingsScreen select,#settingsScreen input{accent-color:#ddb667}
+#mapScreen .map-options{display:none}
+body.layout-edit #settingsGameBtn,body.layout-edit #flashBtn,body.layout-edit #dropBtn,body.layout-edit #teamBtn,body.layout-edit #weaponBtn{display:flex!important}
+@media(orientation:landscape) and (max-height:500px){#dropBtn,#weaponBtn,#settingsGameBtn,#flashBtn{width:38px;height:38px;top:max(4px,env(safe-area-inset-top))}
+ #weaponBtn{left:calc(env(safe-area-inset-left) + 21vw)}#dropBtn{left:calc(env(safe-area-inset-left) + 32vw)}
+ #settingsGameBtn{left:calc(env(safe-area-inset-left) + 42vw)}#flashBtn{left:calc(env(safe-area-inset-left) + 52vw)}
+ #spectatorHud{padding:5px 8px;bottom:max(5px,env(safe-area-inset-bottom))}}
+/* ID selectors must outrank the base display:none from the optional utility controls. */
+body.playing:not(.pc):not(.spectating) #flashBtn,
+body.playing:not(.pc):not(.spectating) #dropBtn,
+body.playing:not(.pc):not(.spectating) #teamBtn,
+body.playing:not(.pc):not(.spectating) #settingsGameBtn,
+body.playing:not(.pc):not(.spectating) #weaponBtn{display:flex!important}
+#flashBtn,#dropBtn,#teamBtn,#settingsGameBtn,#weaponBtn{padding:0!important}
+#flashBtn svg,#dropBtn svg,#teamBtn svg,#settingsGameBtn svg,#weaponBtn svg{width:26px!important;height:26px!important;flex:0 0 26px;min-width:26px}
+#teamBtn{bottom:calc(env(safe-area-inset-bottom) + 90px)}
+body.playing:not(.pc) #top{top:55px!important;font-size:10px!important}
+body.playing:not(.pc) #roundclock{top:71px!important;font-size:12px!important}

@@ -1,3 +1,37 @@
+# BLOCK STRIKE — Tahap 13 (Dust Block Only)
+
+Versi ini melanjutkan Tahap 12 Final. Fokusnya kontrol FPS klasik, HUD ikon mobile, spectator, konfigurasi, dan pengurangan aset peta yang bermasalah. **QA: CONDITIONAL** karena rendering GPU/WebGL sungguhan dan Safari iPhone fisik belum teruji. Baca `QA_TAHAP13.md`.
+
+## Main game
+- `New Game` langsung membuka jumlah pemain (2–32; 32 eksperimental), difficulty Easy/Normal/Hard, lalu tim dan kelas. Arena tunggal **Dust Block**. Map `CS/AS/ES Kvartal` sengaja tidak disertakan.
+- Saat player mati, simulasi ronde terus berjalan. HUD Spectator menampilkan nama/HP/senjata bot; panah kiri/kanan mengganti bot hidup, termasuk bot musuh. Respawn ronde berikutnya.
+- Player dapat berganti CT ↔ T lewat tombol TEAM; perubahan **baru berlaku saat ronde berikutnya** untuk menjaga pembagian tim.
+- Tombol pemilih senjata menampilkan inventory nyata (primary/secondary/knife/shield/grenade); tombol drop menghasilkan world weapon yang bisa diambil kembali lewat mekanik pickup Tahap 9.
+- Knife: primary slash (fire/kiri) dan secondary stab (ADS/klik kanan); animasi dan damage kedua jenis berbeda.
+- Flashlight menggunakan sorotan `SpotLight` yang mengikuti kamera, tidak mengganti model senjata. Left/right-hand memantulkan viewmodel, crosshair tetap di tengah.
+- Shift sekarang berjalan pelan (walk) seperti CS 1.6, **bukan sprint**. Kecepatan per senjata mengikuti tabel internal yang dibatasi; crouch tetap aktif.
+- Efek darah memakai tekstur HD yang sudah ada, percikan sementara dan decal dinding terbatas per ronde untuk menjaga memori.
+
+## Controls
+Desktop: WASD move, **Shift walk**, Ctrl crouch, Space jump, mouse/primary fire, right click atau V alternate fire, **F flashlight**, **Q drop weapon**, **M team menu**, Tab scoreboard, Z/X/C radio, N night vision, R reload, B buy, G grenade, E pickup, Esc pause. Mobile: icon fire (hold/drag to aim), radio, stats, team, weapon, flashlight, drop, settings, walk, crouch, grenade.
+
+## Settings
+Graphics Low/Medium/High, sensitivity, volume, control layout customizer, crouch hold/toggle, **Weapon Hand Left/Right**, settings disimpan via localStorage. Tidak perlu akun atau backend.
+
+## Deployment
+Static hosting: upload **isi folder `BLOCK_STRIKE/`** ke root repository (index.html, css, js, assets bersama). GitHub Settings > Pages > Deploy from branch > main > /(root), atau workflow yang sudah dipakai repo. Sertakan `.nojekyll`. Jalankan via HTTP/HTTPS, bukan file://. Musik tidak ditambahkan.
+
+## Limitations
+- WebGL actual rendering tidak lolos pada environment tes: `Error creating WebGL context`; yang lulus adalah tes DOM/logic dengan renderer stub. UI pada iPhone landscape perlu uji nyata.
+- Blood splatter/decal adalah efek adaptasi berbasis tekstur, bukan simulasi fluida. Spotlight bergantung dukungan/performa GPU.
+- Spectator POV menggunakan arah bot, dengan viewmodel dari loadout bot; animasi asli first-person dan kamera setiap frame masih memerlukan verifikasi WebGL.
+- Knife/backstab, hitbox, FAMAS burst, BS physics dan performa bot 32 pemain memiliki keterbatasan yang sudah dijelaskan di Tahap 12.
+- File `assets` yang bersumber dari game/mod pihak ketiga memerlukan pemeriksaan lisensi sebelum distribusi publik. Baca `ASSET_NOTICES.md`.
+
+---
+
+## Riwayat lama
+
 > **Tahap 11 — CONDITIONAL (18 Nov 2026).** Radio Z/X/C masing-masing 9 perintah + MORE 6, radio scroll mobile, scoreboard kompak 2 kolom, ekonomi bot dengan pistol/$800 awal, bot crouch prosedural, shield dapat memakai Desert Eagle dan pistol tunggal lain, Arctic sekarang memakai reskin salju yang berbeda dari Phoenix. QA 39/39 khusus + 51/51 regresi 10 + 37/37 regresi 9 lulus pada **renderer simulasi**; WebGL asli dan Safari fisik belum teruji. Lihat `QA_TAHAP11.md`.
 
 > **Tahap 10 — CONDITIONAL.** Radio command, bot difficulty, match setup 2–32, scoreboard dan efek aset telah diimplementasikan. QA 51 tes simulasi Tahap 10 + 37 regresi Tahap 9 + 57 cek aset/JS lulus, tetapi **perangkat Safari iPhone fisik dan WebGL asli belum diuji**. Lihat `QA_TAHAP10.md`.

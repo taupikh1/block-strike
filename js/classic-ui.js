@@ -5,7 +5,7 @@ const BUY={pistols:['usp','glock18','p228','deagle','elite','fiveseven'],shotgun
  {id:'flash',name:'FLASHBANG',price:200,desc:'Maksimum 2'}, {id:'he',name:'HE GRENADE',price:300,desc:'Maksimum 1'}, {id:'smoke',name:'SMOKE GRENADE',price:300,desc:'Maksimum 1'},
  {id:'shield',name:'TACTICAL SHIELD',price:2200,desc:'CT only · uses primary slot'}, {id:'defuse',name:'DEFUSE KIT',price:200,desc:'Tidak digunakan pada mode eliminasi'}, {id:'nightvision',name:'NIGHT VISION',price:1250,desc:'Penglihatan untuk area gelap'}]};
 let activeBuyTab='',playerClass='gign',playerAvatar;
-function getItem(id){if(W[id])return {id,name:W[id].n,price:W[id].price,desc:id==='shield'?'CT · Perisai + pistol':' '+W[id].mag+' rounds · '+(W[id].team||'ALL TEAMS')};return Object.values(BUY).flat().find(x=>typeof x==='object'&&x.id===id)}
+function getItem(id){if(id==='helmet')return {id,name:'VEST + HELMET',price:Combat12.armorPrice(id,armor,helmet),desc:armor>0&&!helmet?'HELMET UPGRADE':'Armor 100 + helmet'};if(W[id])return {id,name:W[id].n,price:W[id].price,desc:id==='shield'?'CT · Perisai + pistol':' '+W[id].mag+' rounds · '+(W[id].team||'ALL TEAMS')};return Object.values(BUY).flat().find(x=>typeof x==='object'&&x.id===id)}
 function buyReason(item){
  const id=item.id,w=W[id];if(!running||buyTime<=0||!inBuyZone())return 'BUY ZONE CLOSED';
  if(w?.team&&w.team!==playerTeam)return w.team+' ONLY';

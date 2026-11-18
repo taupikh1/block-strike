@@ -182,6 +182,11 @@
       "detail": null
     },
     {
+      "name": "JS syntax combat12.js",
+      "pass": true,
+      "detail": null
+    },
+    {
       "name": "JS syntax config.js",
       "pass": true,
       "detail": null
@@ -203,6 +208,11 @@
     },
     {
       "name": "JS syntax game-systems11.js",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "JS syntax game-systems13.js",
       "pass": true,
       "detail": null
     },
@@ -302,7 +312,7 @@
       "detail": null
     }
   ],
-  "passed": 58,
+  "passed": 60,
   "failed": 0,
   "errors": []
 }

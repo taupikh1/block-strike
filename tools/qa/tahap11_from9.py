@@ -26,7 +26,7 @@ THREE.WebGLRenderer=class {constructor(o){this.domElement=o.canvas;this.info={re
 THREE.GLTFLoader.prototype.load=function(path,onLoad,onProgress,onError){const group=new THREE.Group(),bone=new THREE.Group();bone.name='Spine';group.add(bone);queueMicrotask(()=>onLoad({scene:group,animations:[]}));return {}};
 </script>'''
 html=html.replace('<script src="js/bsp-render.js"></script>',mock+'<script src="js/bsp-render.js"></script>')
-for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/game-systems11.js','js/classic-ui.js','js/layout-nav.js']:
+for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/combat12.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/game-systems11.js','js/classic-ui.js','js/layout-nav.js']:
  html=html.replace(f'<script src="{path}"></script>','<script>\n'+(ROOT/path).read_text()+'\n</script>')
 assert '<script src=' not in html
 checks=[];errors=[];console=[]
@@ -69,15 +69,15 @@ with sync_playwright() as p:
  check('Shield exposes rear bullet',"Phase9.blockShieldHit(P.pos.clone().add(V(0,0,5)))===false")
  check('Shield can lower to fire pistol',"(Phase9.secondaryAction(),cool=0,swapT=0,reloading=0,A.usp.mag=12,shoot(),A.usp.mag===11)")
  for t in ['he','flash','smoke']:
-  check(f'{t} throw creates moving projectile',f"(grenades.{t}=1,selectedGrenade='{t}',Phase9.throwGrenade(),Phase9.getDebugState().projectiles>0)")
-  check(f'{t} fuse resolves projectile',"(Array.from({length:145},()=>Phase9.update(.02)),Phase9.getDebugState().projectiles===0)")
+  check(f'{t} throw plays pin animation before releasing projectile',f"(grenades.{t}=1,selectedGrenade='{t}',Phase9.throwGrenade(),Phase9.update(.22),Phase9.update(.51),Phase9.getDebugState().projectiles>0)")
+  check(f'{t} fuse resolves projectile',"(Array.from({length:300},()=>Phase9.update(.02)),Phase9.getDebugState().projectiles===0)")
   if t=='smoke':
    check('Smoke persists after explosion','Phase9.getDebugState().smoke>0')
-   check('Smoke expires and releases resources',"(Array.from({length:650},()=>Phase9.update(.02)),Phase9.getDebugState().smoke===0)")
+   check('Smoke expires and releases resources',"(Array.from({length:820},()=>Phase9.update(.02)),Phase9.getDebugState().smoke===0)")
  check('Bot death creates world drop',"(()=>{const b=bots.find(x=>x.weaponId&&!x.dead&&x.team!==playerTeam);equipBot(b,0,'ak47');b.g.position.copy(P.pos).add(V(1,0,0));b.hp=1;damageBot(b,10,'body',b.g.position.clone(),true);return Phase9.getDebugState().dropped>0})()")
  check('Pickup prompt appears near dropped weapon',"(Phase9.update(.016),!$('pickupPrompt').classList.contains('hidden'))")
  check('Weapon pickup swaps primary and drops old one',"(()=>{const old=inventory.find(k=>W[k].slot==='primary');const n=Phase9.getDebugState().dropped;return Phase9.pickupNearest()&&!inventory.includes(old)&&inventory.some(k=>W[k].slot==='primary')&&Phase9.getDebugState().dropped>=n})()")
- check('Round clears transient grenade, smoke, and dropped objects',"(Phase9.resetRound(),Object.values(Phase9.getDebugState()).slice(0,3).every(v=>v===0))")
+ check('Round clears transient grenade, smoke, and dropped objects',"(Phase9.resetRound(),Phase9.getDebugState().projectiles===0&&Phase9.getDebugState().smoke===0&&Phase9.getDebugState().dropped===0&&Phase9.getDebugState().pendingThrow===null)")
  # Open settings/layout from match pause to exercise events.
  page.locator('#pauseBtn').click();page.locator('#settingsBtn').click();page.locator('#controlLayoutBtn').click()
  check('Control editor activates on iPhone viewport',"document.body.classList.contains('layout-edit')&&!$('controlEditor').classList.contains('hidden')")

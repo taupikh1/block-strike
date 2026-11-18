@@ -1,0 +1,20 @@
+BLOCK STRIKE TAHAP 13 — PANDUAN PEMASANGAN
+
+A. GAME LENGKAP
+1. Unduh SELURUH paket BLOCK_STRIKE_TAHAP13_PAKET_N_DARI_M.zip.
+2. Ekstrak seluruh ZIP ke folder induk yang SAMA; gabungkan isi folder BLOCK_STRIKE dari setiap paket. Jangan mengganti folder dari paket sebelumnya.
+3. Di root website harus ada index.html, css/, js/, assets/, .nojekyll, dsb.
+4. Untuk GitHub Pages: unggah ISI BLOCK_STRIKE ke root repository. Pages => main / (root).
+5. Gunakan cache hard refresh setelah mengganti versi.
+
+B. PATCH DARI TAHAP 12 FINAL
+1. Backup dulu proyek Tahap 12 Final.
+2. Ekstrak patch ke lokasi induk yang sama sehingga file BLOCK_STRIKE/... menimpa versi lama.
+3. Baca HAPUS_FILE_LAMA_TAHAP13.txt di patch dan hapus aset CS/AS/ES Kvartal secara manual; patch ZIP tidak otomatis menghapus file dari GitHub.
+4. Jangan gunakan patch pada Tahap 11 atau Tahap 12 Preview.
+
+C. CATATAN
+- Semua ZIP part maksimal 24.900.000 byte.
+- Mode permainan cuma Dust Block; radio, team balance dan bot tetap dipertahankan.
+- Versi ini QA CONDITIONAL. WebGL GPU nyata, Safari A2HS iPhone 13, performa 32 pemain belum lolos tes perangkat.
+- Tidak ada commit atau push ke repository GitHub lewat pekerjaan ini.

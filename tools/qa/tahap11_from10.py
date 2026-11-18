@@ -28,7 +28,7 @@ THREE.GLTFLoader.prototype.load=function(path,onLoad){const group=new THREE.Grou
 THREE.TextureLoader.prototype.load=function(path){const t=new THREE.Texture();t.needsUpdate=true;return t};
 </script>'''
 src=src.replace('<script src="js/bsp-render.js"></script>',stub+'<script src="js/bsp-render.js"></script>')
-for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/game-systems11.js','js/classic-ui.js','js/layout-nav.js']:
+for path in ['js/bsp-render.js','js/bsp-physics.js','js/bsp-doors.js','js/nav-graph.js','js/combat12.js','js/game-core.js','js/game-systems8.js','js/game-systems9.js','js/game-systems10.js','js/game-systems11.js','js/classic-ui.js','js/layout-nav.js']:
  src=src.replace(f'<script src="{path}"></script>','<script>\n'+(root/path).read_text()+'\n</script>')
 assert '<script src=' not in src
 checks=[];exceptions=[];console=[]

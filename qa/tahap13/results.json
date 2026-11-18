@@ -1,0 +1,7 @@
+{
+  "environment": "Chromium emulated 844x390 DOM/input; WebGL and GLTF stubs (NO real 3D validation)",
+  "total": 34,
+  "pass": 34,
+  "failed": [],
+  "errors": []
+}

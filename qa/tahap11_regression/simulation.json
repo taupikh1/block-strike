@@ -128,7 +128,7 @@
       "expected": true
     },
     {
-      "name": "he throw creates moving projectile",
+      "name": "he throw plays pin animation before releasing projectile",
       "result": "PASS",
       "value": true,
       "expected": true
@@ -140,7 +140,7 @@
       "expected": true
     },
     {
-      "name": "flash throw creates moving projectile",
+      "name": "flash throw plays pin animation before releasing projectile",
       "result": "PASS",
       "value": true,
       "expected": true
@@ -152,7 +152,7 @@
       "expected": true
     },
     {
-      "name": "smoke throw creates moving projectile",
+      "name": "smoke throw plays pin animation before releasing projectile",
       "result": "PASS",
       "value": true,
       "expected": true

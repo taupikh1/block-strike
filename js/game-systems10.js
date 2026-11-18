@@ -52,7 +52,7 @@ const Phase10=(()=>{
   b.effectiveRange=(b.effectiveRange||42)*b.skill.range;
   b.cd=Math.max(b.cd||0,b.skill.reaction*.6);
   b.aiAccum=(sideIndex%4)*.012;b.scanTimer=(sideIndex%6)*.045;
-  b.money=clamp(prev.money??800,0,16000);b.armor=prev.armor??0;
+  b.money=clamp(prev.money??800,0,16000);b.armor=prev.armor??0;b.helmet=prev.helmet??false;
   b.noticeElapsed=0;b.seenId=null;b.visibleEnemy=null;b.memory=null;b.radioOrder=null;b.grenadeUsed=false;
   const rec={id,team:b.team,name:b.name,bot:b,kills:prev.kills,deaths:prev.deaths,money:b.money,alive:true};
   statCache.set(id,prev);roster.push(rec);return b;
@@ -84,15 +84,20 @@ const Phase10=(()=>{
    }else if(b.money>=W.deagle.price+300&&((b.teamIndex+round)%3===0)){
     chosen='deagle';b.money-=W.deagle.price;
    }
-   if(b.money>=750){b.armor=100;b.money-=650;}else b.armor=0;
-  }else b.armor=0;
-  const stored=statCache.get(b.botId);if(stored){stored.money=b.money;stored.armor=b.armor;}
+   // Save armor across rounds and only purchase missing protection.
+   if(!b.helmet&&b.armor>30&&b.money>=350){b.helmet=true;b.money-=350;}
+   if(b.armor<60){
+    if(!b.helmet&&b.money>=1000){b.armor=100;b.helmet=true;b.money-=1000;}
+    else if(b.money>=650){b.armor=100;b.money-=650;}
+   }
+  }else {b.armor=0;b.helmet=false;}
+  const stored=statCache.get(b.botId);if(stored){stored.money=b.money;stored.armor=b.armor;stored.helmet=b.helmet;}
   const rec=roster.find(r=>r.bot===b);if(rec)rec.money=b.money;
   equipBot(b,b.teamIndex,chosen);
  }
  function onBotDeath(b,killer){
   const rec=roster.find(r=>r.bot===b);
-  if(rec&&rec.alive){rec.alive=false;rec.deaths++;const st=statCache.get(rec.id)||{};Object.assign(st,{kills:rec.kills,deaths:rec.deaths,money:b.money});statCache.set(rec.id,st)}
+  if(rec&&rec.alive){rec.alive=false;rec.deaths++;const st=statCache.get(rec.id)||{};Object.assign(st,{kills:rec.kills,deaths:rec.deaths,money:b.money,armor:b.armor,helmet:b.helmet});statCache.set(rec.id,st)}
   if(killer&&killer!==b&&killer.botId&&killer.team!==b.team){
    const k=roster.find(r=>r.bot===killer);if(k){k.kills++;const st=statCache.get(k.id)||{};st.kills=k.kills;statCache.set(k.id,st);creditBot(killer,300,'KILL')}
   }
@@ -185,10 +190,24 @@ const Phase10=(()=>{
   if(b.team===playerTeam)return {pos:P.pos,mode:'follow',radius:7};
   const spawn=activeMapData?.spawn?.[playerTeam==='CT'?'ct':'t'];
   const enemySpawn=spawn?new THREE.Vector3(...spawn):new THREE.Vector3(0,0,playerTeam==='CT'?23:-23);
-  // Enemy bots know an objective location, never the hidden live player coordinates.
+  // Enemy bots roam successive visible map points instead of freezing forever
+  // when they arrive at the human team's starting area. This never uses the
+  // player's live location or grants wall vision.
   const offset=(b.teamIndex||0)%5-2;
   enemySpawn.x+=offset*1.5;enemySpawn.z+=((b.teamIndex||0)%3-1)*1.1;
-  return {pos:enemySpawn,mode:'patrol',radius:5.5};
+  const time=now(),reached=b.patrolGoal&&p.distanceTo(b.patrolGoal)<2.6;
+  if(!b.patrolGoal||reached||time>=(b.patrolDeadline||0)){
+   b.patrolIndex=(b.patrolIndex||0)+1;
+   const angle=(b.teamIndex||0)*2.4+b.patrolIndex*2.36;
+   const radius=4+((b.patrolIndex+(b.teamIndex||0))%3)*3;
+   const candidate=enemySpawn.clone().add(new THREE.Vector3(Math.cos(angle)*radius,0,Math.sin(angle)*radius));
+   if(window.bspCol){
+    candidate.y=BSP.snapSpawn(bspCol,candidate.x,candidate.z);
+    if(!BSP.canStand(bspCol,candidate))candidate.copy(enemySpawn);
+   }
+   b.patrolGoal=candidate;b.patrolDeadline=time+7+(b.teamIndex%4);
+  }
+  return {pos:b.patrolGoal,mode:'patrol',radius:2.2};
  }
  function maybeBotGrenade(b,tg,dt){
   if(!b||b.dead||b.grenadeUsed||!tg||!running)return false;

@@ -1,0 +1,114 @@
+{
+  "checks": [
+    {
+      "name": "All 25 combat weapons have data",
+      "pass": true
+    },
+    {
+      "name": "Every weapon has finite base damage and valid range falloff",
+      "pass": true
+    },
+    {
+      "name": "AK-47 damage 36",
+      "pass": true
+    },
+    {
+      "name": "AWP damage 115",
+      "pass": true
+    },
+    {
+      "name": "Dual Elites damage 36",
+      "pass": true
+    },
+    {
+      "name": "Five-Seven damage 20",
+      "pass": true
+    },
+    {
+      "name": "M3 has nine pellets",
+      "pass": true
+    },
+    {
+      "name": "XM1014 has six pellets",
+      "pass": true
+    },
+    {
+      "name": "USP silenced changes damage",
+      "pass": true
+    },
+    {
+      "name": "M4A1 silenced changes damage and range",
+      "pass": true
+    },
+    {
+      "name": "FAMAS burst increases base damage",
+      "pass": true
+    },
+    {
+      "name": "Knife stab, slash, and backstab differ",
+      "pass": true
+    },
+    {
+      "name": "Headshot unarmored 4x",
+      "pass": true
+    },
+    {
+      "name": "Stomach hit 1.25x",
+      "pass": true
+    },
+    {
+      "name": "Leg hit 0.75x",
+      "pass": true
+    },
+    {
+      "name": "Headshot without helmet ignores kevlar",
+      "pass": true
+    },
+    {
+      "name": "Headshot with helmet is reduced and wears armor",
+      "pass": true
+    },
+    {
+      "name": "Armored legs do not wear kevlar",
+      "pass": true
+    },
+    {
+      "name": "Kevlar protects chest without helmet",
+      "pass": true
+    },
+    {
+      "name": "Ammunition does not gain damage with distance",
+      "pass": true
+    },
+    {
+      "name": "No negative health damage when armor exhausted",
+      "pass": true
+    },
+    {
+      "name": "No armor cannot reduce damage",
+      "pass": true
+    },
+    {
+      "name": "Grenade explosion armor is handled without head multiplier",
+      "pass": true
+    },
+    {
+      "name": "Helmet upgrade cost is 350 with vest",
+      "pass": true
+    },
+    {
+      "name": "Vest and helmet full purchase 1000",
+      "pass": true
+    },
+    {
+      "name": "Scoped weapons include all six",
+      "pass": true
+    },
+    {
+      "name": "Player and bot use same deterministic combat calculations",
+      "pass": true
+    }
+  ],
+  "passed": 27,
+  "total": 27
+}

@@ -8,9 +8,9 @@ const Phase9=(()=>{
  const dropped=[],projectiles=[],smokeClouds=[],worldLoads={};
  const SIGHT_RADIUS=3.5;
  const STORAGE='block-strike-tahap9-controls-v1';
- const controls=['fire','ads','jump','rel','swap','buybtn','grenadeBtn','grenadeTypeBtn','crouchBtn','pickupBtn','nvgBtn','radioBtn','scoreBtn'];
+ const controls=['fire','ads','jump','rel','swap','buybtn','grenadeBtn','grenadeTypeBtn','crouchBtn','walkBtn','pickupBtn','nvgBtn','radioBtn','scoreBtn','dropBtn','flashBtn','teamBtn','settingsGameBtn','weaponBtn'];
  const icons={
-  fire:'<circle cx="12" cy="12" r="8"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="2"/>',
+  fire:'<path d="m16.9 2.1 4.9 4.9L9.4 19.4l-4.9-4.9Z" fill="currentColor" stroke="none"/><path d="m3.8 15.1 5.5 5.5-2.1 2.1-5.5-5.5Z" fill="currentColor" stroke="none"/>', 
   ads:'<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/>',
   jump:'<path d="m6 18 6-12 6 12M7 14h10"/>',
   rel:'<path d="M20 11a8 8 0 1 0-2 7"/><path d="m20 4 0 7-7 0"/>',
@@ -18,17 +18,23 @@ const Phase9=(()=>{
   buybtn:'<path d="M4 9h16l-2 11H6L4 9ZM8 9V6a4 4 0 0 1 8 0v3"/>',
   grenadeBtn:'<circle cx="12" cy="14" r="7"/><path d="M12 7V4H9V2h6v2h-2m3 3 3-3"/>',
   grenadeTypeBtn:'<circle cx="10" cy="10" r="5"/><circle cx="17" cy="16" r="4"/><path d="M7 3h6M18 10h3"/>',
+  walkBtn:'<circle cx="15" cy="4" r="2"/><path d="m12 9 4 2-2 4 4 3M12 9 7 12l-4 4m8-4 1 6M3 20h17"/>',
   crouchBtn:'<circle cx="16" cy="5" r="2"/><path d="m12 9 4 2-2 4-5-2-4 3m8-2 5 5h4M3 20h9"/>',
   pickupBtn:'<path d="M5 16V9a2 2 0 0 1 4 0v3-7a2 2 0 0 1 4 0v7-5a2 2 0 0 1 4 0v5-3a2 2 0 0 1 4 0v5c0 5-3 8-8 8H9c-2 0-4-1-6-5z"/>',
   nvgBtn:'<path d="M3 10h7v9H3zm11 0h7v9h-7zM10 13h4M5 10V7l3-2m11 5V7l-3-2"/>',
   radioBtn:'<path d="M5 16v-4a7 7 0 0 1 14 0v4M7 20h10M8 11h8M12 4V1"/>',
-  scoreBtn:'<path d="M4 4h16v16H4zM4 10h16M10 10v10M14 10v10"/>',
+  scoreBtn:'<path d="M4 19V10M10 19V6M16 19V12M21 19V3"/>',
+  dropBtn:'<path d="M4 7h16M10 4h4M6 7l1 14h10l1-14M10 11v6M14 11v6"/>',
+  flashBtn:'<path d="M8 3h8v6l-2 3v8H10v-8L8 9zM8 6h8M5 10 2 8m17 2 3-2"/>',
+  teamBtn:'<path d="m4 7 4-4v3h11M20 17l-4 4v-3H5M4 17h10M20 7H10"/>',
+  settingsGameBtn:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/>',
+  weaponBtn:'<path d="M3 7h12l2 3h4v3H10v4H7v-4H3z"/>',
   pauseBtn:'<path d="M7 4v16M17 4v16"/>'
  };
  let crouchRequested=false,mobileCrouch=false,crouching=false,crouchBlend=0;
  let nightVisionActive=false,shieldRaised=false,activeFlash=0,flashStart=0;
  let pickupCandidate=null,dismissedDrop=null,editor=false,crouchMode='toggle',selectedControl='fire',dragging=null,config={};
- let grenadeView=null,grenadeViewToken=0;
+ let grenadeView=null,grenadeViewToken=0,pendingThrow=null,smokeTexture=null,famasBurst=false;
   const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  function sound(name,vol=.35){playOriginalSound(name,vol,.2,1350)}
  function blocked(){return inputBlocked()||over}
@@ -38,6 +44,9 @@ const Phase9=(()=>{
  function secondaryAction(){
   if(blocked()||reloading>0)return false;
   const k=cur();
+  // A right click with a knife is the slower, stronger stab attack.
+  if(k==='knife'){shoot('stab');return true}
+  if(k==='famas'){famasBurst=!famasBurst;say(famasBurst?'BURST FIRE':'FULL AUTO');return true}
   if(k==='shield'){
    shieldRaised=!shieldRaised;
    const a=vm?.userData.weaponAnimation;
@@ -66,14 +75,14 @@ const Phase9=(()=>{
   snd(.08,.1,1500);say(nightVisionActive?'NIGHT VISION ON':'NIGHT VISION OFF');updateHud();return true;
  }
  function updateHud(){
-  const action=$('ads'),k=cur(),supported=scopeLevels(k)>0||k==='usp'||k==='m4a1'||k==='shield';
+  const action=$('ads'),k=cur(),supported=scopeLevels(k)>0||k==='usp'||k==='m4a1'||k==='shield'||k==='knife'||k==='famas';
   document.body.classList.toggle('has-action',supported);
   if(action){const on=k==='shield'?shieldRaised:k==='usp'||k==='m4a1'?silenced[k]:aiming;action.classList.toggle('active',!!on);
-    const label=k==='usp'||k==='m4a1'?'PEREDAM':k==='shield'?'TAMENG':'BIDIK';action.setAttribute('aria-label',label)}
+    const label=k==='usp'||k==='m4a1'?'PEREDAM':k==='shield'?'TAMENG':k==='knife'?'STAB':k==='famas'?'BURST':'BIDIK';action.setAttribute('aria-label',label)}
   const nv=$('nvgBtn');if(nv){nv.classList.toggle('active',nightVisionActive);nv.classList.toggle('unavailable',!nightVision);nv.title=nightVision?'Night vision (N)':'Beli night vision dahulu'}
   const cr=$('crouchBtn');if(cr)cr.classList.toggle('active',crouching);
   const gd=$('grenadeTypeBtn');if(gd){gd.dataset.grenade=selectedGrenade;gd.title='Pilih '+selectedGrenade.toUpperCase()+' (tap untuk ganti)'}
-  const mode=$('modeStatus');if(mode){let bits=[];if(nightVisionActive)bits.push('NVG ON');if(k==='shield')bits.push(shieldRaised?'SHIELD UP':'SHIELD DOWN');if(k==='usp'||k==='m4a1')bits.push(silenced[k]?'SILENCER ON':'SILENCER OFF');if(crouching)bits.push('CROUCH');mode.textContent=bits.join(' · ')}
+  const mode=$('modeStatus');if(mode){let bits=[];if(nightVisionActive)bits.push('NVG ON');if(k==='shield')bits.push(shieldRaised?'SHIELD UP':'SHIELD DOWN');if(k==='usp'||k==='m4a1')bits.push(silenced[k]?'SILENCER ON':'SILENCER OFF');if(crouching)bits.push('CROUCH');if(typeof isWalking==='function'&&isWalking())bits.push('WALK');mode.textContent=bits.join(' · ')}
  }
  function setCrouchInput(on){crouchRequested=!!on}
  function updateCrouch(){
@@ -118,6 +127,13 @@ const Phase9=(()=>{
   return drop;
  }
  function dropBotWeapon(b){if(!b||!b.weaponId||b.weaponId==='knife')return null;return makeDrop(b.weaponId,b.g.position.clone(),Math.max(0,b.ammo||0),Math.floor(W[b.weaponId].res*.45))}
+ function dropPlayerWeapon(){
+  if(blocked())return false;
+  const k=cur();if(k==='knife'||!W[k]||!inventory.includes(k)){say('KNIFE CANNOT BE DROPPED');return false}
+  const dropped=makeDrop(k,P.pos.clone().add(new THREE.Vector3(-Math.sin(P.yaw)*1.3,0,-Math.cos(P.yaw)*1.3)),A[k]?.mag||0,A[k]?.res||0);
+  if(!dropped)return false;
+  inventory=inventory.filter(id=>id!==k);if(!inventory.length)inventory=['knife'];wi=0;setW(wi);say('DROPPED '+W[k].n);return true;
+ }
  function removeDrop(d){if(!d||!d.alive)return;d.alive=false;S?.remove(d.mesh);dropped.splice(dropped.indexOf(d),1);d.marker.geometry.dispose();d.marker.material.dispose();if(pickupCandidate===d){pickupCandidate=null;$('pickupPrompt').classList.add('hidden')}}
  function nearestDrop(){
   let closest=null,best=2.4;
@@ -170,6 +186,13 @@ const Phase9=(()=>{
   });
  }
 
+ function playGrenadeClip(name){
+  const g=grenadeView;if(!g)return;
+  const clip=g.clips.find(c=>c.name===name);if(!clip)return;
+  if(g.action){g.action.fadeOut(.06)}
+  const action=g.mixer.clipAction(clip);action.reset();action.setLoop(THREE.LoopOnce,1);
+  action.clampWhenFinished=true;action.fadeIn(.06).play();g.action=action;
+ }
  function showGrenadeView(type){
   const name={he:'hegrenade',flash:'flashbang',smoke:'smokegrenade'}[type];
   if(!name||!viewScene||!vm)return;
@@ -179,27 +202,33 @@ const Phase9=(()=>{
    if(token!==grenadeViewToken||!running)return;
    const model=THREE.SkeletonUtils?.clone?THREE.SkeletonUtils.clone(g.scene):g.scene.clone(true);
    const group=new THREE.Group();group.add(model);viewScene.add(group);
-   const mixer=new THREE.AnimationMixer(model);
-   const clip=g.animations.find(c=>c.name==='throw')||g.animations.find(c=>c.name==='pullpin');
-   if(clip){const act=mixer.clipAction(clip);act.setLoop(THREE.LoopOnce,1);act.clampWhenFinished=true;act.play()}
-   grenadeView={group,mixer,age:0,token};
+   grenadeView={group,mixer:new THREE.AnimationMixer(model),clips:g.animations,age:0,token,action:null};
+   playGrenadeClip('deploy');
   }).catch(e=>console.warn('Grenade viewmodel unavailable',name,e));
  }
  function clearGrenadeView(){
-  grenadeViewToken++;if(grenadeView){viewScene?.remove(grenadeView.group);grenadeView.mixer.stopAllAction();grenadeView=null}
-  if(vm&&cur()!=='shield')vm.visible=true;
+  grenadeViewToken++;
+  if(grenadeView){viewScene?.remove(grenadeView.group);grenadeView.mixer.stopAllAction();grenadeView=null}
+  if(vm&&!aiming)vm.visible=true;
  }
- function throwGrenade(){
-  if(blocked())return false;
-  const type=grenades[selectedGrenade]>0?selectedGrenade:['he','flash','smoke'].find(x=>grenades[x]>0);
-  if(!type){say('NO GRENADES');return false}
-  grenades[type]--;selectedGrenade=type;aiming=false;zoomIdx=0;syncAim();sound('pinpull.wav',.24);showGrenadeView(type);
-  const direction=cam.getWorldDirection(new THREE.Vector3()),origin=cam.position.clone().addScaledVector(direction,.6);
+ function releaseGrenade(type){
+  if(!running||!pendingThrow||pendingThrow.type!==type)return false;
+  const direction=cam.getWorldDirection(new THREE.Vector3());
+  const origin=cam.position.clone().addScaledVector(direction,.62);
   const holder=new THREE.Group();holder.position.copy(origin);holder.userData.active=true;
   const fallback=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.3,8),new THREE.MeshStandardMaterial({color:type==='he'?0x4d6548:type==='flash'?0xc6cbbd:0x73878a}));
   holder.userData.fallback=fallback;holder.add(fallback);S.add(holder);thrownModel(type,holder);
-  projectiles.push({type,mesh:holder,v:direction.multiplyScalar(16).add(new THREE.Vector3(0,3.2,0)),age:0,bounces:0,fuse:type==='smoke'?2.2:1.65,owner:'player'});
-  say(type.toUpperCase()+' THROWN');hud();return true;
+  projectiles.push({type,mesh:holder,v:direction.multiplyScalar(15).add(new THREE.Vector3(0,4.4,0)),age:0,bounces:0,
+   fuse:type==='smoke'?2.7:1.85,owner:'player',settled:false});
+  grenades[type]--;selectedGrenade=type;pendingThrow=null;
+  playGrenadeClip('throw');say(type.toUpperCase()+' THROWN');hud();return true;
+ }
+ function throwGrenade(){
+  if(blocked()||pendingThrow||reloading>0)return false;
+  const type=grenades[selectedGrenade]>0?selectedGrenade:['he','flash','smoke'].find(x=>grenades[x]>0);
+  if(!type){say('NO GRENADES');return false}
+  aiming=false;zoomIdx=0;syncAim();showGrenadeView(type);
+  pendingThrow={type,age:0,stage:'deploy'};return true;
  }
  function throwBotGrenade(b,target){
   if(!running||!b||b.dead||!target||!S)return false;
@@ -211,7 +240,8 @@ const Phase9=(()=>{
   const group=new THREE.Group();group.position.copy(origin);group.userData.active=true;
   const fallback=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,.28,8),new THREE.MeshStandardMaterial({color:0x526247}));
   group.userData.fallback=fallback;group.add(fallback);S.add(group);thrownModel('he',group);
-  projectiles.push({type:'he',owner:b,mesh:group,v:vel,age:0,bounces:0,fuse:1.72});
+  if(b.mixer&&b.acts.ref_shoot_rifle){setAnim(b,'ref_shoot_rifle',true);b.animHoldUntil=performance.now()/1000+.5}
+  projectiles.push({type:'he',owner:b,mesh:group,v:vel,age:0,bounces:0,fuse:1.85});
   return true;
  }
  function removeProjectile(p){p.mesh.userData.active=false;S.remove(p.mesh);const i=projectiles.indexOf(p);if(i>=0)projectiles.splice(i,1);
@@ -224,14 +254,14 @@ const Phase9=(()=>{
    const center=b.g.position.clone().add(new THREE.Vector3(0,.8,0)),dist=center.distanceTo(pos);
    if(dist<8&&sightClear(pos,center)){
     const dmg=Math.max(0,105*(1-dist/8));
-    if(dmg>1)damageBot(b,dmg,'body',center,owner==='player',owner==='player'?null:owner);
+    if(dmg>1)damageBot(b,dmg,'chest',center,owner==='player',owner==='player'?null:owner,'hegrenade',0,'explosion');
    }
   }
   const pd=cam.position.distanceTo(pos);
   // The player can hurt themselves; friendly bot grenades do not hurt their leader
   // when friendly fire is disabled.
   if((owner==='player'||team!==playerTeam||window.GAME_FRIENDLY_FIRE)&&pd<8&&sightClear(pos,cam.position))
-   hurt(Math.max(0,105*(1-pd/8)),pos,'explosion');
+   hurt(Math.max(0,105*(1-pd/8)),pos,'explosion',null,'chest','hegrenade');
  }
 
  function effectFlash(pos){
@@ -250,51 +280,84 @@ const Phase9=(()=>{
    activeFlash=Math.max(activeFlash,clamp((1-dist/19)*angular,0,1));flashStart=3.4;
   }
  }
+ function getSmokeTexture(){
+  if(smokeTexture)return smokeTexture;
+  try{
+   if(!THREE.CanvasTexture||!THREE.SpriteMaterial)return null;
+   const c=document.createElement('canvas');c.width=c.height=96;const ctx=c.getContext('2d');if(!ctx)return null;
+   const rad=ctx.createRadialGradient(48,48,5,48,48,47);
+   rad.addColorStop(0,'rgba(225,231,226,0.75)');rad.addColorStop(.5,'rgba(177,192,180,0.48)');rad.addColorStop(1,'rgba(151,166,155,0)');
+   ctx.fillStyle=rad;ctx.fillRect(0,0,96,96);smokeTexture=new THREE.CanvasTexture(c);return smokeTexture;
+  }catch(e){return null}
+ }
  function effectSmoke(pos){
-  sound('grenade_hit1.wav',.16);
+  // Proper smoke detonation sound from the supplied GoldSrc WAV collection.
+  sound('sg_explode.wav',.5);
   const obj=new THREE.Group();obj.position.copy(pos);S.add(obj);
-  const geom=new THREE.SphereGeometry(1,12,8);const particles=[];
-  for(let i=0;i<6;i++){
-   const mat=new THREE.MeshBasicMaterial({color:0xa9b4ad,transparent:true,opacity:.08,depthWrite:false});
-   const m=new THREE.Mesh(geom,mat);m.position.set(Math.sin(i*2.4)*.6,(i%3)*.28,Math.cos(i*2.4)*.6);
+  const texture=getSmokeTexture(),geom=texture?null:new THREE.SphereGeometry(1,8,6),particles=[];
+  for(let i=0;i<16;i++){
+   const mat=texture?new THREE.SpriteMaterial({map:texture,color:0xadb5ac,transparent:true,opacity:0,depthWrite:false}):
+    new THREE.MeshBasicMaterial({color:0xa0aaa1,transparent:true,opacity:0,depthWrite:false});
+   const m=texture?new THREE.Sprite(mat):new THREE.Mesh(geom,mat);
+   const phase=i*2.39996323,radius=Math.sqrt((i+.5)/16);
+   m.userData.smoke={dx:Math.cos(phase)*radius,dz:Math.sin(phase)*radius,dy:.35+((i*7)%11)/12};
+   m.position.set(m.userData.smoke.dx*.5,m.userData.smoke.dy*.55,m.userData.smoke.dz*.5);
    obj.add(m);particles.push(m)
   }
-  smokeClouds.push({mesh:obj,geom,particles,radius:0,age:0,duration:13});say('SMOKE DEPLOYED');
+  smokeClouds.push({mesh:obj,geom,particles,radius:0,age:0,duration:15});say('SMOKE DEPLOYED');
  }
  function explode(p){
   const type=p.type,point=p.mesh.position.clone();removeProjectile(p);
   if(type==='he')effectHE(point,p.owner||'player');else if(type==='flash')effectFlash(point);else effectSmoke(point);
  }
  function updateProjectile(p,dt){
-  p.age+=dt;const old=p.mesh.position.clone();p.v.y-=19*dt;
-  const next=old.clone().addScaledVector(p.v,dt);
-  const hit=worldSegment(old,next);
-  if(hit.hit){
-   p.mesh.position.copy(old.lerp(next,Math.max(0,hit.frac-.02)));
-   const n=hit.normal||new THREE.Vector3(0,1,0);p.v.reflect(n).multiplyScalar(.53);p.v.y=Math.max(.9,p.v.y);p.bounces++;sound('grenade_hit1.wav',.07);
-  }else p.mesh.position.copy(next);
-  if(!window.bspCol&&p.mesh.position.y<.14){p.mesh.position.y=.14;p.v.y=Math.abs(p.v.y)*.32;p.v.x*=.7;p.v.z*=.7;p.bounces++}
+  // Substeps stop fast grenades tunneling through narrow crates at low FPS.
+  const steps=Math.max(1,Math.ceil(dt/.016)),step=dt/steps;
+  for(let i=0;i<steps;i++){
+   p.age+=step;const old=p.mesh.position.clone();p.v.y-=19*step;
+   const next=old.clone().addScaledVector(p.v,step);
+   const hit=worldSegment(old,next);
+   if(hit.hit){
+    p.mesh.position.copy(old.clone().lerp(next,Math.max(0,(hit.frac||0)-.01)));
+    const n=(hit.normal||new THREE.Vector3(0,1,0)).normalize();
+    const impact=p.v.dot(n);if(impact<0)p.v.addScaledVector(n,-1.55*impact);
+    p.v.multiplyScalar(.65);p.bounces++;
+    if(n.y>.65){p.v.x*=.77;p.v.z*=.77;if(Math.abs(p.v.y)<1.3)p.v.y=0}
+    if(p.bounces<6)sound('grenade_hit1.wav',.075);
+   }else p.mesh.position.copy(next);
+   if(!window.bspCol&&p.mesh.position.y<.14){p.mesh.position.y=.14;p.v.y=Math.abs(p.v.y)*.27;p.v.x*=.7;p.v.z*=.7;p.bounces++}
+   if(p.mesh.position.y<.2&&p.age>.8){p.v.x*=.982;p.v.z*=.982}
+  }
   p.mesh.rotation.x+=dt*6;p.mesh.rotation.z+=dt*5;
-  if(p.age>=p.fuse)explode(p);
+  if(p.age>=p.fuse&&(p.type!=='smoke'||p.v.length()<2.5||p.age>=5.5))explode(p);
  }
  function update(dt){
-  if(grenadeView){grenadeView.mixer.update(dt);grenadeView.age+=dt;if(grenadeView.age>.65)clearGrenadeView()}
+  if(pendingThrow){pendingThrow.age+=dt;
+   if(pendingThrow.stage==='deploy'&&pendingThrow.age>=.18){pendingThrow.stage='pin';playGrenadeClip('pullpin');sound('pinpull.wav',.25)}
+   if(pendingThrow.age>=.72)releaseGrenade(pendingThrow.type);
+  }
+  if(grenadeView){grenadeView.mixer.update(dt);grenadeView.age+=dt;
+   if(!pendingThrow&&grenadeView.age>1.4)clearGrenadeView()}
   for(const p of projectiles.slice())updateProjectile(p,dt);
   for(const c of smokeClouds.slice()){
-   c.age+=dt;c.radius=Math.min(SIGHT_RADIUS,c.age*1.7);
-   const fade=clamp((c.duration-c.age)/2.3,0,1)*clamp(c.age/1.4,0,1);
+   c.age+=dt;c.radius=Math.min(SIGHT_RADIUS,c.age*1.3);
+   const fade=clamp((c.duration-c.age)/3,0,1)*clamp(c.age/1.8,0,1);
    for(let i=0;i<c.particles.length;i++){
-    const m=c.particles[i];m.scale.setScalar(c.radius*(.75+(i%3)*.12));m.material.opacity=fade*.075;
+    const m=c.particles[i],p=m.userData.smoke,spread=c.radius*(.85+.18*p.dy);
+    m.position.set(p.dx*spread,p.dy*.6+c.radius*(.25+p.dy*.23),p.dz*spread);
+    const size=c.radius*(1.3+p.dy*.36);m.scale.set(size,size,size);
+    m.material.opacity=fade*(c.geom?.12:.42);
    }
-   if(c.age>=c.duration){S.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom.dispose();smokeClouds.splice(smokeClouds.indexOf(c),1)}
+   if(c.age>=c.duration){S.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom?.dispose();smokeClouds.splice(smokeClouds.indexOf(c),1)}
   }
-  if(flashStart>0){flashStart=Math.max(0,flashStart-dt);$('flashEffect').style.opacity=String(clamp(activeFlash*flashStart/3.4,0,.96));if(flashStart<=0)activeFlash=0}
+  if(flashStart>0){flashStart=Math.max(0,flashStart-dt);
+   const fade=clamp(flashStart/3.4,0,1);$('flashEffect').style.opacity=String(clamp(activeFlash*fade*fade,0,.96));if(flashStart<=0)activeFlash=0}
   syncPickup();
  }
  function resetRound(){
-  clearGrenadeView();for(const d of dropped.slice())removeDrop(d);
+  pendingThrow=null;clearGrenadeView();for(const d of dropped.slice())removeDrop(d);
   for(const p of projectiles.slice())removeProjectile(p);
-  for(const c of smokeClouds.slice()){S?.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom.dispose()}
+  for(const c of smokeClouds.slice()){S?.remove(c.mesh);c.particles.forEach(m=>m.material.dispose());c.geom?.dispose()}
   smokeClouds.length=0;shieldRaised=false;crouchRequested=mobileCrouch=crouching=false;crouchBlend=0;
   activeFlash=flashStart=0;$('flashEffect').style.opacity=0;closePickup();dismissedDrop=null;
  }
@@ -316,9 +379,9 @@ const Phase9=(()=>{
  }
  function presets(type){
   const layouts={
-   two:{fire:[90,70],ads:[78,76],jump:[88,91],rel:[78,55],swap:[93,47],buybtn:[65,92],grenadeBtn:[63,68],grenadeTypeBtn:[62,51],crouchBtn:[77,91],pickupBtn:[64,35],nvgBtn:[51,92],radioBtn:[92,27],scoreBtn:[84,27]},
-   three:{fire:[88,24],ads:[77,69],jump:[89,90],rel:[90,69],swap:[91,47],buybtn:[70,91],grenadeBtn:[65,73],grenadeTypeBtn:[65,54],crouchBtn:[77,90],pickupBtn:[64,33],nvgBtn:[53,91],radioBtn:[83,26],scoreBtn:[76,26]},
-   four:{fire:[13,24],ads:[77,65],jump:[90,85],rel:[90,66],swap:[90,47],buybtn:[68,92],grenadeBtn:[63,72],grenadeTypeBtn:[63,52],crouchBtn:[77,88],pickupBtn:[64,33],nvgBtn:[53,91],radioBtn:[83,26],scoreBtn:[76,26]}
+   two:{fire:[90,70],ads:[78,76],jump:[88,91],rel:[78,55],swap:[93,47],buybtn:[65,92],grenadeBtn:[63,68],grenadeTypeBtn:[62,51],crouchBtn:[77,91],walkBtn:[24,24],pickupBtn:[64,35],nvgBtn:[51,92],radioBtn:[92,27],scoreBtn:[84,27],dropBtn:[36,9],flashBtn:[55,9],settingsGameBtn:[45,9],weaponBtn:[25,9],teamBtn:[7,91]},
+   three:{fire:[88,24],ads:[77,69],jump:[89,90],rel:[90,69],swap:[91,47],buybtn:[70,91],grenadeBtn:[65,73],grenadeTypeBtn:[65,54],crouchBtn:[77,90],walkBtn:[20,68],pickupBtn:[64,33],nvgBtn:[53,91],radioBtn:[83,26],scoreBtn:[76,26],dropBtn:[36,9],flashBtn:[55,9],settingsGameBtn:[45,9],weaponBtn:[25,9],teamBtn:[7,91]},
+   four:{fire:[13,24],ads:[77,65],jump:[90,85],rel:[90,66],swap:[90,47],buybtn:[68,92],grenadeBtn:[63,72],grenadeTypeBtn:[63,52],crouchBtn:[77,88],walkBtn:[18,55],pickupBtn:[64,33],nvgBtn:[53,91],radioBtn:[83,26],scoreBtn:[76,26],dropBtn:[36,9],flashBtn:[55,9],settingsGameBtn:[45,9],weaponBtn:[25,9],teamBtn:[7,91]}
   };
   const current=layouts[type];if(!current)return;
   for(const id of controls){if(!current[id])continue;config[id]={x:current[id][0],y:current[id][1],size:id==='fire'?66:50,opacity:.78}}
@@ -356,7 +419,7 @@ const Phase9=(()=>{
   }
  }
  function setupIcons(){
-  const names={fire:'Tembak',ads:'Bidik / fungsi senjata',jump:'Lompat',rel:'Reload',swap:'Ganti senjata',buybtn:'Beli',grenadeBtn:'Lempar grenade',grenadeTypeBtn:'Pilih grenade',crouchBtn:'Jongkok',pickupBtn:'Ambil senjata',nvgBtn:'Night vision',radioBtn:'Perintah radio',scoreBtn:'Scoreboard'};
+  const names={fire:'Tembak',ads:'Bidik / fungsi senjata',jump:'Lompat',rel:'Reload',swap:'Ganti senjata',buybtn:'Beli',grenadeBtn:'Lempar grenade',grenadeTypeBtn:'Pilih grenade',crouchBtn:'Jongkok',walkBtn:'Walk',pickupBtn:'Ambil senjata',nvgBtn:'Night vision',radioBtn:'Perintah radio',scoreBtn:'Scoreboard',dropBtn:'Drop weapon',flashBtn:'Flashlight',teamBtn:'Change team',settingsGameBtn:'Settings',weaponBtn:'Weapon selector'};
   for(const id of controls){const b=$(id);if(!b)continue;b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+icons[id]+'</svg>';
    b.setAttribute('role','button');b.setAttribute('tabindex','0');b.setAttribute('aria-label',names[id]);b.title=names[id];
   }
@@ -380,9 +443,9 @@ const Phase9=(()=>{
   updateHud();
  }
  setup();
- return {get crouching(){return crouching},get crouchBlend(){return crouchBlend},get shieldRaised(){return shieldRaised},
+ return {get famasBurst(){return famasBurst},get crouching(){return crouching},get crouchBlend(){return crouchBlend},get shieldRaised(){return shieldRaised},
   unsilenced,firingSound,shieldPistol,secondaryAction,toggleNightVision,updateHud,
   setCrouchInput,updateCrouch,releaseControls,blockShieldHit,shieldImpact,
-  dropBotWeapon,pickupNearest,blocksSight,throwGrenade,throwBotGrenade,resetRound,resetMatch,update,
-  getDebugState:()=>({projectiles:projectiles.length,smoke:smokeClouds.length,dropped:dropped.length,nightVisionActive,shieldRaised,crouching})};
+  dropBotWeapon,dropPlayerWeapon,pickupNearest,blocksSight,throwGrenade,throwBotGrenade,resetRound,resetMatch,update,
+  getDebugState:()=>({projectiles:projectiles.length,smoke:smokeClouds.length,pendingThrow:pendingThrow?.stage||null,dropped:dropped.length,nightVisionActive,shieldRaised,crouching})};
 })();

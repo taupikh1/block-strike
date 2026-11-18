@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "name": "New touch sprint icon exists",
+      "pass": true
+    },
+    {
+      "name": "Fire control uses bullet icon",
+      "pass": true
+    },
+    {
+      "name": "Sprint control supported in customization",
+      "pass": true
+    },
+    {
+      "name": "Game starts",
+      "pass": true
+    },
+    {
+      "name": "Shift enables sprint only while moving",
+      "pass": true
+    },
+    {
+      "name": "Shift release disables sprint",
+      "pass": true
+    },
+    {
+      "name": "Crouch blocks sprint",
+      "pass": true
+    },
+    {
+      "name": "Mobile sprint toggle",
+      "pass": true
+    },
+    {
+      "name": "Touch fire hold and aim drag",
+      "pass": true
+    },
+    {
+      "name": "Enemy bot patrols next point after arrival",
+      "pass": true
+    },
+    {
+      "name": "Old bot crouch fallback still works",
+      "pass": true
+    },
+    {
+      "name": "Native bot crouch does not sink model below base height",
+      "pass": true
+    },
+    {
+      "name": "Bot visual interpolation mount is present",
+      "pass": true
+    },
+    {
+      "name": "Gameplay remains running after input tests",
+      "pass": true
+    },
+    {
+      "name": "Model ct/gsg9 has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/sas has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/gign has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/urban has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/guerilla has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/leet has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/arctic has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/terror has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "CT thumbnails distinct",
+      "pass": true
+    },
+    {
+      "name": "No JS page errors",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "pass": 24,
+  "total": 24
+}

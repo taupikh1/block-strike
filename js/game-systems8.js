@@ -13,7 +13,7 @@ function equipBot(b,i,preferredId=null){
  const token=b.weaponLoadToken=(b.weaponLoadToken||0)+1;
  if(b.weaponModel?.length){for(const mesh of b.weaponModel)mesh.parent?.remove(mesh)}
  b.weaponModel=[];
- Object.assign(b,{weaponId:id,damage:w.dmg*.38,fireRate:w.rate,
+ Object.assign(b,{weaponId:id,damage:w.dmg,fireRate:w.rate,
   effectiveRange:(w.slot==='pistol'?32:Math.max(38,70-w.sp*800))*(b.skill?.range||1),
   accuracy:Math.min(.72,Math.max(.10,Math.max(.35,.62-w.sp*5)*(b.skill?.aim||1))),sound:w.sound,ammo:w.mag,reserve:w.res,burst:0});
  loadHeld(id).then(g=>{
@@ -26,16 +26,17 @@ function equipBot(b,i,preferredId=null){
  }).catch(e=>console.warn('Held model failed',id,e));
 }
 function disposeBot(b){
+ for(const mesh of b.gearMeshes||[]){mesh.geometry.dispose();mesh.material.dispose()}
  if(b.mixer){b.mixer.stopAllAction();b.mixer.uncacheRoot(b.body)}
  b.parts.forEach(p=>{p.geometry.dispose();p.material.dispose()});
  b.g.traverse(o=>{if(o.isSkinnedMesh)o.skeleton.dispose()});S.remove(b.g);
 }
 function resetInputs(){
- fh=fl=jmp=firedLatch=false;jx=jy=0;Object.keys(K).forEach(k=>K[k]=0);
+ fh=fl=jmp=firedLatch=false;walkHeld=mobileWalk=false;fireAimPointer=fireAimLast=null;$('walkBtn')?.classList.remove('active');jx=jy=0;Object.keys(K).forEach(k=>K[k]=0);
  jid=lid=null;jb.style.display=jk.style.display='none';if(typeof Phase9!=='undefined')Phase9.releaseControls();
 }
 function requestLock(){try{const p=$('pad').requestPointerLock?.();p?.catch?.(()=>{})}catch(e){}}
-function inputBlocked(){return !running||!$('buyMenu').classList.contains('hidden')||!$('menu').classList.contains('hidden')}
+function inputBlocked(){return !running||!$('buyMenu').classList.contains('hidden')||!$('menu').classList.contains('hidden')||(typeof Phase13!=='undefined'&&(Phase13.isSpectating()||Phase13.visibleOverlay()))}
 function syncAim(){
  const sniper=aiming&&['awp','scout','g3sg1','sg550'].includes(cur());
  $('scopeOverlay').classList.toggle('hidden',!sniper);$('scopeOverlay').classList.toggle('active',sniper);

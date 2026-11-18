@@ -11,10 +11,7 @@ export const CT_MODELS = ['gsg9','gign','sas','urban'];
 export const T_MODELS  = ['arctic','guerilla','leet','terror'];
 
 export const MAPS = [
-  {id: 'dust_block', name: 'Dust Block', file: 'assets/maps/dust_block.json'},
-  {id: 'cs_kvartal', name: 'CS Kvartal', file: 'assets/maps/cs_kvartal.json'},
-  {id: 'as_kvartal', name: 'AS Kvartal', file: 'assets/maps/as_kvartal.json'},
-  {id: 'es_kvartal', name: 'ES Kvartal', file: 'assets/maps/es_kvartal.json'}
+  {id:'dust_block', name:'Dust Block', file:'assets/maps/dust_block.json'}
 ];
 
 export const SETTINGS = {

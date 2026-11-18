@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="css/tahap9.css">
 <link rel="stylesheet" href="css/tahap10.css">
 <link rel="stylesheet" href="css/tahap11.css">
+<link rel="stylesheet" href="css/tahap12-hotfix.css">
+<link rel="stylesheet" href="css/tahap13.css">
 <link rel="icon" href="assets/ui/cross.svg" type="image/svg+xml">
 </head>
 <body>
@@ -38,7 +40,15 @@
 <div id="radioOverlay" class="hidden" role="dialog" aria-label="Radio commands"><header><b id="radioTitle">RADIO COMMANDS</b><button id="radioClose" aria-label="Close radio">×</button></header><nav class="radio-tabs"><button id="radioTabZ">Z · ORDERS</button><button id="radioTabX">X · TEAM</button><button id="radioTabC">C · REPORT</button><button id="radioTabMore">MORE</button></nav><div id="radioCommands" tabindex="0" aria-label="Daftar perintah radio, bisa digulir"></div></div>
 <button class="game-utility" id="radioBtn" type="button" aria-label="Open radio commands"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16v-4a7 7 0 0 1 14 0v4M7 20h10M8 11h8M12 4V1"/></svg></button>
 <button class="game-utility" id="scoreBtn" type="button" aria-label="Open scoreboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM4 10h16M10 10v10M14 10v10"/></svg></button>
-<div class="btn" id="buybtn">BUY</div><div class="btn" id="crouchBtn">CROUCH</div><div class="btn" id="nvgBtn">NVG</div><div class="btn" id="pickupBtn">TAKE</div><div class="btn" id="grenadeTypeBtn">TYPE</div><div class="btn" id="grenadeBtn">GREN</div><div class="btn" id="fire">TEMBAK</div><div class="btn" id="ads">BIDIK</div><div class="btn" id="jump">LOMPAT</div><div class="btn" id="rel">RELOAD</div><div class="btn" id="swap">GANTI</div>
+<div class="btn" id="buybtn">BUY</div><div class="btn" id="crouchBtn">CROUCH</div><div class="btn" id="walkBtn">WALK</div><div class="btn" id="nvgBtn">NVG</div><div class="btn" id="pickupBtn">TAKE</div><div class="btn" id="grenadeTypeBtn">TYPE</div><div class="btn" id="grenadeBtn">GREN</div><div class="btn" id="fire">TEMBAK</div><div class="btn" id="ads">BIDIK</div><div class="btn" id="jump">LOMPAT</div><div class="btn" id="rel">RELOAD</div><div class="btn" id="swap">GANTI</div>
+<button class="game-utility" id="settingsGameBtn" type="button" aria-label="Game settings">SET</button>
+<button class="game-utility" id="teamBtn" type="button" aria-label="Change team">TEAM</button>
+<button class="game-utility" id="flashBtn" type="button" aria-label="Toggle flashlight">LIGHT</button>
+<button class="game-utility" id="dropBtn" type="button" aria-label="Drop weapon">DROP</button>
+<button class="game-utility" id="weaponBtn" type="button" aria-label="Weapon selection">WEAPON</button>
+<div id="spectatorHud" class="hidden" aria-live="polite"><div><strong>SPEC MODE</strong><span id="specName">-</span><small id="specInfo">-</small></div><nav><button id="specPrev" aria-label="Previous bot">◀</button><button id="specNext" aria-label="Next bot">▶</button></nav></div>
+<div id="weaponOverlay" class="hidden"><header>SELECT WEAPON <button id="weaponClose" aria-label="Close weapon selector">×</button></header><div id="weaponItems"></div></div>
+<div id="teamOverlay" class="hidden"><header>CHANGE TEAM <button id="teamClose" aria-label="Close team menu">×</button></header><p>Perpindahan berlaku pada ronde berikutnya.</p><button data-switch-team="CT">COUNTER-TERRORISTS</button><button data-switch-team="T">TERRORISTS</button><p id="teamQueued"></p></div>
 <div id="pickupPrompt" class="hidden" role="group" aria-label="Ambil senjata">
  <strong id="pickupName">Weapon</strong><small id="pickupDesc"></small>
  <div><button id="pickupAccept">AMBIL [E]</button><button id="pickupCancel">BATAL</button></div>
@@ -55,29 +65,28 @@
  <div class="menu-brand"><span class="brand-kicker">CLASSIC BOT COMBAT</span><h1>BLOCK<br><b>STRIKE</b></h1><p>TACTICAL FIRST-PERSON SHOOTER</p></div>
  <img class="menu-soldier" src="assets/ui/classes/gign.png" alt="Counter-Terrorist">
  <div class="menu-panel" id="mainPanel">
-  <div class="menu-copy"><strong>READY TO DEPLOY</strong><span>Pilih peta, tentukan tim, dan menangkan ronde.</span></div>
+  <div class="menu-copy"><strong>READY TO DEPLOY</strong><span>Dust Block · pilih tim, pimpin bot, menangkan ronde.</span></div>
   <button id="go" class="primary">1 &nbsp; NEW GAME</button>
-  <button id="selectMapBtn">2 &nbsp; SELECT MAP</button>
+  <button id="selectMapBtn">2 &nbsp; NEW MATCH</button>
   <button id="settingsBtn">3 &nbsp; SETTINGS</button>
   <button id="creditsBtn">4 &nbsp; CREDITS / ASSET NOTICES</button>
   <button id="resumeBtn" class="hidden">5 &nbsp; RESUME MATCH</button>
-  <small>WASD MOVE · Z/X/C RADIO · TAB SCORE · B BUY · ESC MENU</small>
+  <small>WASD MOVE · SHIFT WALK · Z/X/C RADIO · TAB SCORE · B BUY · ESC MENU</small>
  </div>
- <div class="menu-footer">BLOCK STRIKE <span>TAHAP 11 · SINGLE PLAYER</span><small>Weapon models &amp; sounds: <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html" target="_blank" rel="noopener noreferrer">CS16planet.ru</a></small></div>
+ <div class="menu-footer">BLOCK STRIKE <span>TAHAP 13 · SINGLE PLAYER</span><small>Weapon models &amp; sounds: <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html" target="_blank" rel="noopener noreferrer">CS16planet.ru</a></small></div>
 </div>
-<div id="settingsScreen" class="screen hidden"><section class="dialog"><h2>Settings</h2><div class="settings-row"><label for="q">Graphics</label><select id="q"><option value="0">Low</option><option value="1" selected>Medium</option><option value="2">High</option></select><label for="sn">Sensitivity</label><select id="sn"><option value="0.003">Low</option><option value="0.0045" selected>Medium</option><option value="0.007">High</option></select><label for="volume">Sound volume</label><input id="volume" type="range" min="0" max="1" step=".1" value=".8"></div><p>Desktop: WASD · mouse fire · right-click/V secondary action (scope/silencer/shield) · Ctrl crouch · Z/X/C radio · Tab scoreboard · N night vision · E pickup · G grenade · R reload · B buy.</p><label for="crouchMode">Mobile crouch</label><select id="crouchMode"><option value="toggle">Toggle</option><option value="hold">Hold</option></select><button id="controlLayoutBtn" type="button">CUSTOMIZE MOBILE CONTROL LAYOUT</button><button data-close="settingsScreen">0 &nbsp; BACK</button></section></div>
+<div id="settingsScreen" class="screen hidden"><section class="dialog"><h2>Settings</h2><div class="settings-row"><label for="q">Graphics</label><select id="q"><option value="0">Low</option><option value="1" selected>Medium</option><option value="2">High</option></select><label for="sn">Sensitivity</label><select id="sn"><option value="0.003">Low</option><option value="0.0045" selected>Medium</option><option value="0.007">High</option></select><label for="volume">Sound volume</label><input id="volume" type="range" min="0" max="1" step=".1" value=".8"></div><p>Desktop: WASD · Shift walk · F flashlight · Q weapon drop · M team · mouse fire · right-click/V secondary action (scope/silencer/shield) · Ctrl crouch · Z/X/C radio · Tab scoreboard · N night vision · E pickup · G grenade · R reload · B buy.</p><label for="weaponHand">Weapon hand</label><select id="weaponHand"><option value="right">Right Hand</option><option value="left">Left Hand</option></select>
+<label for="crouchMode">Mobile crouch</label><select id="crouchMode"><option value="toggle">Toggle</option><option value="hold">Hold</option></select><button id="controlLayoutBtn" type="button">CUSTOMIZE MOBILE CONTROL LAYOUT</button><button data-close="settingsScreen">0 &nbsp; BACK</button></section></div>
 <div id="creditsScreen" class="screen hidden"><section class="dialog"><h2>Credits &amp; asset notices</h2><p>BLOCK STRIKE · Three.js / WebGL. Model dan suara GoldSrc berasal dari paket yang disediakan pengguna, dengan atribusi <a href="https://cs16planet.ru/modeli-oruzhiya-cs-16/26189-standartnye-modeli-oruzhija-dlja-cs-16.html">CS16planet.ru</a>.</p><p>HUD: Armory Xtreme / CS16Forge. GUI: CSGO GUI 1.6 Fixed. Map, tekstur dan karakter dipertahankan dari Tahap 7. Hak aset pihak ketiga tetap milik pemiliknya; izin redistribusi publik belum terverifikasi.</p><p><a href="ASSET_NOTICES.md" target="_blank" rel="noopener">Baca catatan aset lengkap</a></p><button data-close="creditsScreen">0 &nbsp; BACK</button></section></div>
 <div id="mapScreen" class="screen hidden">
  <div class="team-title"><small>NEW GAME / 01</small><h2>Select battlefield</h2></div>
  <div id="mapOptions" class="map-options">
   <button class="map-card selected" data-map="dust_block"><strong>DUST BLOCK</strong><span>Arena blok klasik · eliminasi tim</span><i>SELECTED</i></button>
-  <button class="map-card" data-map="cs_kvartal"><img class="map-preview" src="assets/ui/maps/cs_kvartal.png" alt="Overview cs_kvartal"><strong>CS KVARTAL</strong><span>BSP bertekstur · collision · pintu · navigasi A*</span><i>SELECT MAP</i></button>
-  <button class="map-card" data-map="as_kvartal"><img class="map-preview" src="assets/ui/maps/as_kvartal.png" alt="Overview as_kvartal"><strong>AS KVARTAL</strong><span>BSP bertekstur · collision · pintu</span><i>SELECT MAP</i></button>
-  <button class="map-card" data-map="es_kvartal"><img class="map-preview" src="assets/ui/maps/es_kvartal.png" alt="Overview es_kvartal"><strong>ES KVARTAL</strong><span>Layout blok sederhana dari BSP</span><i>SELECT MAP</i></button>
+  
  </div>
  
 <div class="map-actions"><button id="backMap">0 &nbsp; BACK / CANCEL</button><button id="continueMap" class="primary">CHOOSE TEAM →</button></div>
- <small class="map-note">Mode semua peta: eliminasi tim. Objective hostage, VIP, dan escape belum tersedia.</small>
+ <small class="map-note">Dust Block · mode eliminasi tim.</small>
 </div>
 <div id="matchConfigScreen" class="screen hidden"><div class="team-title"><small>NEW GAME / 02</small><h2>Match configuration</h2></div>
 <section class="match-config" aria-label="Match configuration"><div class="match-config-title"><strong>MATCH SETTINGS</strong><small>Free player count · 1 human + bots</small></div>
@@ -85,7 +94,7 @@
  <div class="match-config-row"><label for="matchDifficulty">Bot difficulty (both teams)</label><select id="matchDifficulty"><option value="easy">Easy</option><option value="normal" selected>Normal</option><option value="hard">Hard</option></select></div>
  <div id="matchTeamPreview" class="match-preview">CT 8 · T 8 · 15 bots · Normal</div><small id="matchPerformanceHint">Jumlah termasuk 1 pemain manusia; sisanya bot.</small>
 </section>
- <div class="map-actions"><button id="backMatchConfig">0 &nbsp; BACK TO MAP</button><button id="continueMatchConfig" class="primary">CHOOSE TEAM →</button></div>
+ <div class="map-actions"><button id="backMatchConfig">0 &nbsp; BACK</button><button id="continueMatchConfig" class="primary">CHOOSE TEAM →</button></div>
 </div>
 <div id="teamScreen" class="screen hidden">
  <div class="team-title"><small>NEW GAME / 03</small><h2>Choose a team</h2></div>
@@ -121,6 +130,7 @@
 <script src="js/bsp-doors.js"></script>
 <script>window.NAV_BOTS=true; /* Tahap 7B: aktifkan A* nav untuk bot (T→CT sudah jalan, CT→T masih fallback) */</script>
 <script src="js/nav-graph.js"></script>
+<script src="js/combat12.js"></script>
 <script src="js/game-core.js"></script>
 <script src="js/game-systems8.js"></script>
 <script src="js/game-systems9.js"></script>
@@ -128,5 +138,6 @@
 <script src="js/game-systems11.js"></script>
 <script src="js/classic-ui.js"></script>
 <script src="js/layout-nav.js"></script>
+<script src="js/game-systems13.js"></script>
 </body>
 </html>

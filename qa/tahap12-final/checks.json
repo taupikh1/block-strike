@@ -1,0 +1,191 @@
+{
+  "checks": [
+    {
+      "name": "New touch sprint icon exists",
+      "pass": true
+    },
+    {
+      "name": "Fire control uses bullet icon",
+      "pass": true
+    },
+    {
+      "name": "Sprint control supported in customization",
+      "pass": true
+    },
+    {
+      "name": "Game starts",
+      "pass": true
+    },
+    {
+      "name": "Shift enables sprint only while moving",
+      "pass": true
+    },
+    {
+      "name": "Shift release disables sprint",
+      "pass": true
+    },
+    {
+      "name": "Crouch blocks sprint",
+      "pass": true
+    },
+    {
+      "name": "Mobile sprint toggle",
+      "pass": true
+    },
+    {
+      "name": "Touch fire hold and aim drag",
+      "pass": true
+    },
+    {
+      "name": "Enemy bot patrols next point after arrival",
+      "pass": true
+    },
+    {
+      "name": "Old bot crouch fallback still works",
+      "pass": true
+    },
+    {
+      "name": "Native bot crouch does not sink model below base height",
+      "pass": true
+    },
+    {
+      "name": "Bot visual interpolation mount is present",
+      "pass": true
+    },
+    {
+      "name": "Gameplay remains running after input tests",
+      "pass": true
+    },
+    {
+      "name": "Combat12 module available",
+      "pass": true
+    },
+    {
+      "name": "Bot shots no longer use 38% damage multiplier",
+      "pass": true
+    },
+    {
+      "name": "Kevlar without helmet does not prevent headshot",
+      "pass": true
+    },
+    {
+      "name": "Kevlar+helmet reduces headshot and wears armor",
+      "pass": true
+    },
+    {
+      "name": "Bot headshot obeys helmet state",
+      "pass": true
+    },
+    {
+      "name": "Vest-to-helmet upgrade priced at $350",
+      "pass": true
+    },
+    {
+      "name": "No purchase of helmet twice",
+      "pass": true
+    },
+    {
+      "name": "Six zoom weapons exit scope before reload",
+      "pass": true
+    },
+    {
+      "name": "Reload with full magazine does not alter aim",
+      "pass": true
+    },
+    {
+      "name": "Shotgun fires nine independent ray tests",
+      "pass": true
+    },
+    {
+      "name": "XM1014 fires six independent ray tests",
+      "pass": true
+    },
+    {
+      "name": "FAMAS secondary toggles burst and uses three bullets",
+      "pass": true
+    },
+    {
+      "name": "Knife secondary stab executes an attack",
+      "pass": true
+    },
+    {
+      "name": "he grenade requires pin/throw animation before projectile",
+      "pass": true
+    },
+    {
+      "name": "he grenade detonates and clears projectile",
+      "pass": true
+    },
+    {
+      "name": "flash grenade requires pin/throw animation before projectile",
+      "pass": true
+    },
+    {
+      "name": "flash grenade detonates and clears projectile",
+      "pass": true
+    },
+    {
+      "name": "smoke grenade requires pin/throw animation before projectile",
+      "pass": true
+    },
+    {
+      "name": "smoke grenade detonates and clears projectile",
+      "pass": true
+    },
+    {
+      "name": "Smoke cloud remains after grenade activation",
+      "pass": true
+    },
+    {
+      "name": "Smoke particles expire without lingering resources",
+      "pass": true
+    },
+    {
+      "name": "Round reset clears projectile, smoke and pending throw",
+      "pass": true
+    },
+    {
+      "name": "Model ct/gsg9 has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/sas has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/gign has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model ct/urban has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/guerilla has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/leet has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/arctic has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "Model t/terror has native locomotion and crouch",
+      "pass": true
+    },
+    {
+      "name": "CT thumbnails distinct",
+      "pass": true
+    },
+    {
+      "name": "No JS page errors",
+      "pass": true
+    }
+  ],
+  "pageErrors": [],
+  "pass": 46,
+  "total": 46
+}

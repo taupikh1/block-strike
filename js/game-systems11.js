@@ -38,8 +38,13 @@ const Phase11=(()=>{
   if(!b||b.dead)return;
   const blend=b.crouchPose=clamp((b.crouchPose||0)+(Number(!!b.crouching)-(b.crouchPose||0))*Math.min(1,dt*10),0,1);
   if(!b.body)return;
-  b.body.position.y=(b.baseBodyY??0)-blend*.28;
+  if(b.gearGroup)b.gearGroup.position.y=-blend*.23;
+  // Native crouch clips bend knees while preserving the feet on the floor.
+  // Previous procedural path lowered the whole mesh as well, causing clipping.
+  const nativeCrouch=!!(b.acts?.crouch_idle&&b.acts?.crouchrun);
+  b.body.position.y=(b.baseBodyY??0)-(nativeCrouch?0:blend*.28);
   if(b.crouchHitBase){b.parts.forEach((p,i)=>{p.position.y=b.crouchHitBase[i]-blend*(p.userData.part==='head'?.37:.23)})}
+  if(nativeCrouch)return;
   for(const entry of b.crouchBones||[]){
    const bone=entry.bone;
    // Mixer may overwrite tracked joints. For untracked joints, undo the last

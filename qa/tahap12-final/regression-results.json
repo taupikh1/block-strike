@@ -1,0 +1,58 @@
+[
+  {
+    "command": "node tools/qa/tahap12_combat.cjs",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "RESULT 27/27",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/tahap12_final.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "RESULT 46 / 46 JS errors: []",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/tahap12_preview.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "RESULT 24 / 24 JS errors: []",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/tahap11_targeted.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "RESULT 39 / 39 errors: []",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/tahap11_from10.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "QA 51 / 51 JS_ERRORS []",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/tahap11_from9.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "RESULT PASS LOGIC SIMULATION 37 / 37 ERRORS [] []",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/validate_assets.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "PASS 31 animated GLBs; 165 WAVs; 34 transparent icons; local paths valid",
+    "errors": ""
+  },
+  {
+    "command": "python tools/qa/validate_tahap10.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "summary": "STATIC QA 59 PASS 0 FAIL",
+    "errors": ""
+  }
+]
